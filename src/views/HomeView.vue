@@ -48,6 +48,7 @@
           <!-- 标题区 -->
           <div class="section-title-group">
             <h2 class="area-title">创作者档案</h2>
+            <p class="declare-change">(当前仅演示样式，内容待定)</p>
             <p class="area-subtitle">Creator Profile & Statistics</p>
           </div>
 
@@ -594,6 +595,12 @@
     font-size: 3rem;
     color: #fff;
     letter-spacing: 2px;
+  }
+
+  .declare-change {
+    margin: 10px;
+    font-size: 0.8rem;
+    color: #b2afa3;
   }
 
   .area-subtitle {
