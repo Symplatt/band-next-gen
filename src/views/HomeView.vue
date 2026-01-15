@@ -18,7 +18,7 @@
             <div class="line-right"></div>
           </div>
           <div class="sub-title">那美好的未来</div>
-          <div class="motto">EX-lilith and GO Rai</div>
+          <div class="motto">EX-lilith ~ GO Rai</div>
         </div>
 
         <div class="scroll-hint" :class="{ hidden: !isScrollHintVisible }" @click="scrollToContent">
@@ -33,7 +33,7 @@
           <!-- 标题区 -->
           <div class="section-title-group">
             <h2 class="area-title">创作者档案</h2>
-            <p class="declare-change">(当前仅演示样式，内容待定)</p>
+            <p class="declare-change">(当前仅供样式演示，具体内容待定)</p>
             <p class="area-subtitle">Creator Profile & Statistics</p>
           </div>
 
@@ -41,39 +41,11 @@
             <!-- 左侧：社交链接-->
             <div class="info-column social-column">
               <h3 class="column-title">Connect / 关注</h3>
-              <div class="link-list">
-                <a href="https://space.bilibili.com/589781780" target="_blank" class="social-link">
+              <div class="link-list" v-for="item in accountList">
+                <a :href="item.link" target="_blank" class="social-link">
                   <div class="link-info">
-                    <span class="platform">Bilibili</span>
-                    <span class="username">hero鶴星</span>
-                  </div>
-                  <span class="arrow-icon">↗</span>
-                </a>
-
-                <a href="https://x.com/hero45439083942" target="_blank" class="social-link">
-                  <div class="link-info">
-                    <span class="platform">X / Twitter</span>
-                    <span class="username">hero鶴星</span>
-                  </div>
-                  <span class="arrow-icon">↗</span>
-                </a>
-
-                <a href="https://xiao7108.lofter.com/" target="_blank" class="social-link">
-                  <div class="link-info">
-                    <span class="platform">Lofter</span>
-                    <span class="username">hero鹤星</span>
-                  </div>
-                  <span class="arrow-icon">↗</span>
-                </a>
-
-                <a
-                  href="https://www.xiaohongshu.com/user/profile/61a4a93c0000000010006c00"
-                  target="_blank"
-                  class="social-link"
-                >
-                  <div class="link-info">
-                    <span class="platform">小红书</span>
-                    <span class="username">违规英雄（避难中）</span>
+                    <span class="platform">{{ item.platform }}</span>
+                    <span class="username">{{ item.name }}</span>
                   </div>
                   <span class="arrow-icon">↗</span>
                 </a>
@@ -128,6 +100,35 @@
     update: () => void
     draw: (ctx: CanvasRenderingContext2D) => void
   }
+
+  interface PlatformAccount {
+    name: string
+    platform: string
+    link: string
+  }
+
+  const accountList = ref<PlatformAccount[]>([
+    {
+      name: 'hero鶴星',
+      platform: 'Bilibili',
+      link: 'https://space.bilibili.com/589781780',
+    },
+    {
+      name: 'hero鹤星',
+      platform: 'X / Twitter',
+      link: 'https://x.com/hero45439083942',
+    },
+    {
+      name: 'hero鹤星',
+      platform: 'Lofter',
+      link: 'https://xiao7108.lofter.com/',
+    },
+    {
+      name: '违规英雄（避难中）',
+      platform: '小红书',
+      link: 'https://www.xiaohongshu.com/user/profile/61a4a93c0000000010006',
+    },
+  ])
 
   const SCROLL_THRESHOLD = 50
 
@@ -279,7 +280,7 @@
 
   .home-view {
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     font-family: 'Noto Serif SC', serif;
     color: #fff;
     background-color: #000205;
@@ -297,7 +298,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 90vh;
+    height: 100%;
     overflow: hidden;
   }
 
@@ -326,7 +327,6 @@
     background: radial-gradient(circle at center, transparent 0%, #000205 90%);
   }
 
-  /* 标题样式 (完全保留您要求的代码) */
   .content-overlay {
     position: relative;
     z-index: 10;
@@ -334,8 +334,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: 90vh;
     text-align: center;
+    transform: translateY(-8vh);
   }
 
   .main-title {
@@ -471,17 +472,17 @@
   }
 
   .hint-text {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 0.8rem;
-    color: rgb(255 255 255 / 70%);
+    color: rgb(222 221 221 / 47.9%);
     letter-spacing: 0.2rem;
   }
 
   .hint-arrow {
     width: 20px;
     height: 20px;
-    border-right: 2px solid #fff;
-    border-bottom: 2px solid #fff;
+    border-right: 2px solid #c4c4c45e;
+    border-bottom: 2px solid #c4c4c45e;
     transform: rotate(45deg);
     animation: arrow-bounce 2s infinite;
   }
@@ -512,6 +513,7 @@
     justify-content: center;
     min-height: 80vh;
     padding: 120px 0;
+    padding-top: 40px;
     background-color: #0b0c10;
   }
 
