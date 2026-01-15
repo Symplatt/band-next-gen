@@ -59,7 +59,7 @@
                 <a href="https://space.bilibili.com/589781780" target="_blank" class="social-link">
                   <div class="link-info">
                     <span class="platform">Bilibili</span>
-                    <span class="username">@鹤星</span>
+                    <span class="username">hero鶴星</span>
                   </div>
                   <span class="arrow-icon">↗</span>
                 </a>
@@ -67,7 +67,7 @@
                 <a href="https://x.com/hero45439083942" target="_blank" class="social-link">
                   <div class="link-info">
                     <span class="platform">X / Twitter</span>
-                    <span class="username">@鹤星</span>
+                    <span class="username">hero鶴星</span>
                   </div>
                   <span class="arrow-icon">↗</span>
                 </a>
@@ -75,7 +75,7 @@
                 <a href="https://xiao7108.lofter.com/" target="_blank" class="social-link">
                   <div class="link-info">
                     <span class="platform">Lofter</span>
-                    <span class="username">@鹤星</span>
+                    <span class="username">hero鹤星</span>
                   </div>
                   <span class="arrow-icon">↗</span>
                 </a>
@@ -87,7 +87,7 @@
                 >
                   <div class="link-info">
                     <span class="platform">小红书</span>
-                    <span class="username">@鹤星</span>
+                    <span class="username">违规英雄（避难中）</span>
                   </div>
                   <span class="arrow-icon">↗</span>
                 </a>
