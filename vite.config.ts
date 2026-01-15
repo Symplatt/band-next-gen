@@ -14,6 +14,7 @@ export default defineConfig({
       // 自动导入组件，无需手动注册
     }),
   ],
+  base: '/band-next-gen/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

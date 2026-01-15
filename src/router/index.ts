@@ -1,5 +1,5 @@
 // src/router/index.ts
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue' // 首页
 import CharactersView from '@/views/CharactersView.vue' // 角色
 import Relations from '@/views/Relations.vue' // 关系
@@ -8,7 +8,7 @@ import AboutView from '@/views/AboutView.vue' // 关于
 import NotFound from '@/views/NotFound.vue' // 页面不存在
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',
