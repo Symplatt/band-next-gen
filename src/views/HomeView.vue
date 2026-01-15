@@ -2,21 +2,6 @@
 
 <template>
   <div class="home-view">
-    <!-- 顶部导航栏 -->
-    <header class="site-header">
-      <div class="header-inner">
-        <div class="brand-logo">Band Next Generation</div>
-        <nav class="main-nav">
-          <!-- 确保 active-class 能高亮当前路由 -->
-          <RouterLink to="/" class="nav-link" active-class="active">首页</RouterLink>
-          <RouterLink to="/characters" class="nav-link" active-class="active">角色</RouterLink>
-          <RouterLink to="/relations" class="nav-link" active-class="active">关系</RouterLink>
-          <RouterLink to="/chronicle" class="nav-link" active-class="active">纪事</RouterLink>
-          <RouterLink to="/about" class="nav-link" active-class="active">关于</RouterLink>
-        </nav>
-      </div>
-    </header>
-
     <main class="main-content">
       <!-- 第一部分：Hero 展示页 (保持不变) -->
       <section class="hero-area">
@@ -42,7 +27,7 @@
         </div>
       </section>
 
-      <!-- 第二部分：账号页 (完全重构) -->
+      <!-- 第二部分：账号页 -->
       <section id="account-section" class="account-area">
         <div class="container">
           <!-- 标题区 -->
@@ -53,7 +38,7 @@
           </div>
 
           <div class="info-content">
-            <!-- 左侧：社交链接 (去除卡片背景，增强点击感) -->
+            <!-- 左侧：社交链接-->
             <div class="info-column social-column">
               <h3 class="column-title">Connect / 关注</h3>
               <div class="link-list">
@@ -98,7 +83,7 @@
             <!-- 中间分割线 (竖线) -->
             <div class="vertical-divider"></div>
 
-            <!-- 右侧：数据统计 (极简风格) -->
+            <!-- 右侧：数据统计 -->
             <div class="info-column stats-column">
               <h3 class="column-title">Database / 统计</h3>
               <div class="stats-grid">
@@ -300,55 +285,6 @@
     background-color: #000205;
   }
 
-  /* 导航栏 */
-  .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-    height: 80px;
-    background: rgb(0 2 5 / 80%);
-    border-bottom: 1px solid rgb(212 175 55 / 30%);
-    backdrop-filter: blur(5px);
-  }
-
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1400px;
-    height: 100%;
-    padding: 0 40px;
-    margin: 0 auto;
-  }
-
-  .brand-logo {
-    font-family: 'Cinzel Decorative', cursive;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #d4af37;
-    letter-spacing: 2px;
-  }
-
-  .main-nav {
-    display: flex;
-    gap: 40px;
-  }
-
-  .nav-link {
-    font-size: 1rem;
-    color: rgb(255 255 255 / 70%);
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-
-  .nav-link:hover,
-  .nav-link.active {
-    color: #d4af37;
-    text-shadow: 0 0 8px rgb(212 175 55 / 40%);
-  }
-
   /* Hero 区域 */
   .main-content {
     position: relative;
@@ -361,7 +297,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 100vh;
+    height: 90vh;
     overflow: hidden;
   }
 

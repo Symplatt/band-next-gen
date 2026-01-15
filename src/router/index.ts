@@ -2,7 +2,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue' // 首页
 import CharactersView from '@/views/CharactersView.vue' // 角色
-import Relations from '@/views/RelationsView.vue' // 关系
+import RelationsView from '@/views/RelationsView.vue' // 关系
 import ChronicleView from '@/views/ChronicleView.vue' // 纪事
 import AboutView from '@/views/AboutView.vue' // 关于
 import NotFound from '@/views/NotFound.vue' // 页面不存在
@@ -18,12 +18,12 @@ const router = createRouter({
     {
       path: '/characters',
       name: 'characters',
-      components: CharactersView
+      component: CharactersView
     },
     {
       path: '/relations',
       name: 'relations',
-      component: Relations
+      component: RelationsView
     },
     {
       path: '/chronicle',

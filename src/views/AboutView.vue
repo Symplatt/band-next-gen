@@ -4,3 +4,14 @@
 </template>
 
 <script lang="ts" setup></script>
+
+<style scoped lang="css">
+  .about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vh;
+    height: 50vh;
+    background-color: aqua;
+  }
+</style>
