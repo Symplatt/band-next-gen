@@ -1,0 +1,1 @@
+import{_ as a,c as e,a as o,F as t,o as s}from"./index-Ctk0G68V.js";const r={};function c(d,n){return s(),e(t,null,[n[0]||(n[0]=o("div",{class:"notfound-container"},"此页面不存在",-1)),n[1]||(n[1]=o("p",null,"都说了不存在了，别翻了呗",-1))],64)}const f=a(r,[["render",c],["__scopeId","data-v-5a1a4acc"]]);export{f as default};
