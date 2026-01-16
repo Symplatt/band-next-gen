@@ -11,13 +11,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    CreatorProfile: typeof import('./src/components/home/CreatorProfile.vue')['default']
+    AppFooter: typeof import('./src/components/AppFooter.vue')['default']
+    Footer: typeof import('./src/components/Footer.vue')['default']
     HeroSection: typeof import('./src/components/home/HeroSection.vue')['default']
-    Profile: typeof import('./src/components/home/Profile.vue')['default']
-    ProfileSection: typeof import('./src/components/home/ProfileSection.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     StarryBackground: typeof import('./src/components/home/StarryBackground.vue')['default']
-    StaryCanvas: typeof import('./src/components/hero/StaryCanvas.vue')['default']
   }
 }
