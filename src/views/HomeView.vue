@@ -1,4 +1,4 @@
-// views/HomeView.vue
+<!-- views/HomeView.vue -->
 
 <template>
   <div class="home-view">
@@ -35,25 +35,14 @@
             <div class="vertical-divider"></div>
 
             <!-- 右侧：数据统计 -->
-            <!-- 修改：改成3✕2 宫格布局，缩小列宽，防止视觉重心向左倾斜（不着急，demo做到这样就够了）-->
             <div class="info-column stats-column">
-              <h3 class="column-title">Database / 统计</h3>
+              <h3 class="column-title">
+                Database / 统计<span class="comment">非真实数据，仅用于展示效果</span>
+              </h3>
               <div class="stats-grid">
-                <div class="stat-unit">
-                  <span class="stat-num">100+</span>
-                  <span class="stat-desc">Illustrations<br />插画作品</span>
-                </div>
-                <div class="stat-unit">
-                  <span class="stat-num">9</span>
-                  <span class="stat-desc">Characters<br />子世代角色</span>
-                </div>
-                <div class="stat-unit">
-                  <span class="stat-num">2</span>
-                  <span class="stat-desc">Bands<br />原创乐队</span>
-                </div>
-                <div class="stat-unit">
-                  <span class="stat-num">∞</span>
-                  <span class="stat-desc">Stories<br />未完的故事</span>
+                <div class="stat-unit" v-for="item in statList">
+                  <span class="stat-num">{{ item.num }}</span>
+                  <span class="stat-desc">{{ item.desc }}</span>
                 </div>
               </div>
             </div>
@@ -102,6 +91,38 @@
       link: 'https://www.xiaohongshu.com/user/profile/61a4a93c0000000010006',
     },
   ])
+
+  interface stat {
+    num: string
+    desc: string
+  }
+
+  const statList = ref<stat[]>([
+    {
+      num: '200+',
+      desc: '插画作品',
+    },
+    {
+      num: '9',
+      desc: '子世代角色',
+    },
+    {
+      num: '2',
+      desc: '原创乐队',
+    },
+    {
+      num: '100+',
+      desc: '三创插画',
+    },
+    {
+      num: '20+',
+      desc: '三创文章',
+    },
+    {
+      num: '∞',
+      desc: '未完的故事',
+    },
+  ])
 </script>
 
 <style scoped>
@@ -124,11 +145,9 @@
   .account-area {
     z-index: 5;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    min-height: 80vh;
-    padding: 120px 0;
-    padding-top: 40px;
+    min-height: 100vh;
     background-color: #0b0c10;
   }
 
@@ -136,6 +155,8 @@
     width: 100%;
     max-width: 1200px;
     padding: 0 40px;
+    margin-top: 60px;
+    margin-bottom: 150px;
   }
 
   .section-title-group {
@@ -178,6 +199,8 @@
   .info-column {
     flex: 1;
     padding: 0 20px;
+
+    /* background-color: aquamarine; */
   }
 
   .column-title {
@@ -186,6 +209,11 @@
     font-size: 1.2rem;
     color: #ff2e63;
     letter-spacing: 1px;
+  }
+
+  .comment {
+    margin-left: 20px;
+    color: #535353;
   }
 
   /* 链接列表 */
@@ -250,12 +278,16 @@
   /* 统计数据 */
   .stats-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 80px 50px;
+
+    /* background-color: bisque; */
   }
 
   .stat-unit {
-    text-align: left;
+    text-align: center;
+
+    /* background-color: #ff2e63; */
   }
 
   .stat-num {
@@ -268,7 +300,7 @@
   }
 
   .stat-desc {
-    font-size: 0.85rem;
+    font-size: 1rem;
     line-height: 1.5;
     color: #888;
     letter-spacing: 1px;

@@ -1,3 +1,5 @@
+/* src/components/NavBar.vue */
+
 <template>
   <header class="site-header">
     <div class="header-inner">
@@ -39,6 +41,7 @@
   }
 
   .header-inner {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;

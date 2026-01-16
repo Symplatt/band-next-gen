@@ -1,4 +1,5 @@
-// views/NotFound.vue
+<!-- views/NotFound.vue -->
+
 <template>
   <div class="notfound-container">此页面不存在</div>
   <p>都说了不存在了，别翻了呗</p>

@@ -36,6 +36,11 @@ const router = createRouter({
       component: AboutView
     },
     {
+      path: '/theme',
+      name: 'theme',
+      component: () => import('@/views/ThemeTemptView.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('@/views/NotFound.vue'),

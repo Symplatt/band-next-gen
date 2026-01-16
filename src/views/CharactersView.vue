@@ -1,7 +1,18 @@
 // views/CharactersView.vue
 <template>
-  <div class="characters-view">角色</div>
-  <span style="padding-left: 200px; color: aliceblue">页面开发中……</span>
+  <div class="characters-view">
+    <div class="page-container">
+      <div class="suibian"></div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup></script>
+
+<style lang="css" scoped>
+  .suibian {
+    width: 100%;
+    height: 100px;
+    background-color: red;
+  }
+</style>

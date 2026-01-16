@@ -1,9 +1,9 @@
-<!-- src/views/AboutView.vue -->
+<!-- src/views/ThemeTempt.vue -->
 
 <template>
   <div class="about-view">
     <div class="page-container">
-      <MarkDownViewer :content="discalimer" />
+      <MarkDownViewer :content="themeTempt" />
     </div>
   </div>
 </template>
@@ -12,5 +12,5 @@
   import MarkDownViewer from '@/components/MarkDownViewer.vue'
 
   // 导入文本
-  import discalimer from '@/content/免责声明.md?raw'
+  import themeTempt from '@/content/主题试用.md?raw'
 </script>
