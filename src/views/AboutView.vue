@@ -1,17 +1,7 @@
 // views/AboutView.vue
 <template>
-  <div class="about-container">关于</div>
+  <div class="about-view">关于</div>
+  <span style="padding-left: 200px; color: aliceblue">页面开发中……</span>
 </template>
 
 <script lang="ts" setup></script>
-
-<style scoped lang="css">
-  .about-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50vh;
-    height: 50vh;
-    background-color: aqua;
-  }
-</style>
