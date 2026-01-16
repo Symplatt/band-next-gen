@@ -1,3 +1,5 @@
+<!-- src/components/home/HeroSection.vue -->
+
 <template>
   <section class="hero-section">
     <div class="background-layer">
@@ -16,6 +18,7 @@
       <div class="motto">EX-lilith ~ GO Rai</div>
     </div>
 
+    <!-- 如果 isScrollHintVisible 为 false (!true)，就加上 'hidden' 这个 CSS 类 -->
     <div class="scroll-hint" :class="{ hidden: !isScrollHintVisible }" @click="onScrollClick">
       <span class="hint-text">SCROLL</span>
       <div class="hint-arrow"></div>
@@ -31,17 +34,18 @@
 
   const isScrollHintVisible = ref(true)
 
+  // 定义无参数（void）事件 scroll-next，用于向HomeView 发送一个事件，表示用户点击了滚动按钮
   const emit = defineEmits<{
     (e: 'scroll-next'): void
   }>()
 
   const onScrollClick = () => {
-    emit('scroll-next')
+    emit('scroll-next') // 发送事件给父组件
   }
 
   // 滚动逻辑
   const handleScroll = () => {
-    isScrollHintVisible.value = window.scrollY < SCROLL_THRESHOLD
+    isScrollHintVisible.value = window.scrollY < SCROLL_THRESHOLD // 如果滚动距离小于50px，则为true
   }
 
   onMounted(() => {
@@ -61,7 +65,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - 72px); /* 减去导航栏高度72px */
+    height: calc(100vh - var(--header-height)); /* 减去导航栏高度 */
     overflow: hidden;
   }
 

@@ -1,5 +1,9 @@
 /* src/styles/global.css */
 
+:root {
+  --header-height: 72px;
+}
+
 /* 控制滚动条样式 */
 /* Firefox */
 * {

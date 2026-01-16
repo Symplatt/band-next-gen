@@ -7,7 +7,7 @@
       <HeroSection @scroll-next="handleScrollClick" />
 
       <!-- 第二页：账号页 -->
-      <section class="account-area" id="profile-section">
+      <section class="account-area" ref="profileSectionRef">
         <div class="container">
           <!-- 标题区 -->
           <div class="section-title-group">
@@ -20,7 +20,7 @@
             <!-- 左侧：平台链接-->
             <div class="info-column social-column">
               <h3 class="column-title">Account / 画师账号</h3>
-              <div class="link-list" v-for="item in accountList">
+              <div class="link-list" v-for="item in accountList" :key="item.name">
                 <a :href="item.link" target="_blank" class="social-link">
                   <div class="link-info">
                     <span class="platform">{{ item.platform }}</span>
@@ -37,10 +37,10 @@
             <!-- 右侧：数据统计 -->
             <div class="info-column stats-column">
               <h3 class="column-title">
-                Database / 统计<span class="comment">非真实数据，仅用于展示效果</span>
+                Statistics / 数据统计<span class="comment">非真实数据，仅用于展示效果</span>
               </h3>
               <div class="stats-grid">
-                <div class="stat-unit" v-for="item in statList">
+                <div class="stat-unit" v-for="item in statList" :key="item.desc">
                   <span class="stat-num">{{ item.num }}</span>
                   <span class="stat-desc">{{ item.desc }}</span>
                 </div>
@@ -57,18 +57,21 @@
   import { ref } from 'vue'
   import HeroSection from '@/components/home/HeroSection.vue'
 
+  const profileSectionRef = ref<HTMLElement | null>(null)
+
   // 点击后整页滚动到账号页
   const handleScrollClick = () => {
-    const el = document.getElementById('profile-section')
-    el?.scrollIntoView({ behavior: 'smooth' })
+    profileSectionRef.value?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // 平台账号接口
   interface PlatformAccount {
     name: string
     platform: string
     link: string
   }
 
+  // 平台账号
   const accountList = ref<PlatformAccount[]>([
     {
       name: 'hero鶴星',
@@ -92,12 +95,14 @@
     },
   ])
 
-  interface stat {
+  // 统计数据接口
+  interface StatData {
     num: string
     desc: string
   }
 
-  const statList = ref<stat[]>([
+  // 数据统计
+  const statList = ref<StatData[]>([
     {
       num: '200+',
       desc: '插画作品',
@@ -126,9 +131,6 @@
 </script>
 
 <style scoped>
-  /* 引入字体 */
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Noto+Serif+SC:wght@200;400;700;900&family=Playfair+Display:ital,wght@1,700&family=Share+Tech+Mono&display=swap');
-
   .home-view {
     width: 100%;
     height: 100%;
@@ -199,8 +201,6 @@
   .info-column {
     flex: 1;
     padding: 0 20px;
-
-    /* background-color: aquamarine; */
   }
 
   .column-title {
@@ -280,14 +280,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 80px 50px;
-
-    /* background-color: bisque; */
+    padding-top: 10px;
   }
 
   .stat-unit {
     text-align: center;
-
-    /* background-color: #ff2e63; */
   }
 
   .stat-num {

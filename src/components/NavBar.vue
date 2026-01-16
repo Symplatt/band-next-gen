@@ -34,7 +34,7 @@
 <style scoped>
   .site-header {
     width: 100%;
-    height: 72px;
+    height: var(--header-height);
     background: rgb(0 2 5 / 80%);
     border-bottom: 1px solid rgb(212 175 55 / 30%);
     backdrop-filter: blur(5px);
