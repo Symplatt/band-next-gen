@@ -8,7 +8,8 @@
 
       <!-- 第二页：账号页 -->
       <section class="account-area" ref="profileSectionRef">
-        <div class="container">
+        <!-- <div class="container"> -->
+        <div class="page-container">
           <!-- 标题区 -->
           <div class="section-title-group">
             <h2 class="area-title"><span class="title-content">创作档案</span></h2>
@@ -16,40 +17,39 @@
             <p class="declare-change">(当前仅供样式演示，具体内容待定)</p>
           </div>
 
-          <div class="page-container">
-            <div class="info-content">
-              <!-- 左侧：平台链接-->
-              <div class="info-column social-column">
-                <h3 class="column-title">Account / 画师账号</h3>
-                <div class="link-list" v-for="item in accountList" :key="item.name">
-                  <a :href="item.link" target="_blank" class="social-link">
-                    <div class="link-info">
-                      <span class="platform">{{ item.platform }}</span>
-                      <span class="username">{{ item.name }}</span>
-                    </div>
-                    <span class="arrow-icon">↗</span>
-                  </a>
-                </div>
-              </div>
-
-              <!-- 中间分割线 (竖线) -->
-              <div class="vertical-divider"></div>
-
-              <!-- 右侧：数据统计 -->
-              <div class="info-column stats-column">
-                <h3 class="column-title">
-                  Statistics / 数据统计<span class="comment">非真实数据，仅用于展示效果</span>
-                </h3>
-                <div class="stats-grid">
-                  <div class="stat-unit" v-for="item in statList" :key="item.desc">
-                    <span class="stat-num">{{ item.num }}</span>
-                    <span class="stat-desc">{{ item.desc }}</span>
+          <div class="info-content">
+            <!-- 左侧：平台链接-->
+            <div class="info-column social-column">
+              <h3 class="column-title">Account / 画师账号</h3>
+              <div class="link-list" v-for="item in accountList" :key="item.name">
+                <a :href="item.link" target="_blank" class="social-link">
+                  <div class="link-info">
+                    <span class="platform">{{ item.platform }}</span>
+                    <span class="username">{{ item.name }}</span>
                   </div>
+                  <span class="arrow-icon">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 中间分割线 (竖线) -->
+            <div class="vertical-divider"></div>
+
+            <!-- 右侧：数据统计 -->
+            <div class="info-column stats-column">
+              <h3 class="column-title">
+                Statistics / 数据统计<span class="comment">非真实数据，仅用于展示效果</span>
+              </h3>
+              <div class="stats-grid">
+                <div class="stat-unit" v-for="item in statList" :key="item.desc">
+                  <span class="stat-num">{{ item.num }}</span>
+                  <span class="stat-desc">{{ item.desc }}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- </div> -->
       </section>
     </main>
   </div>
@@ -152,16 +152,17 @@
     align-items: flex-start;
     justify-content: center;
     min-height: 100vh;
+    padding-top: 40px;
     background-color: #0b0c10;
   }
 
-  .container {
+  /* .container {
     width: 100%;
     max-width: 1200px;
     padding: 0 40px;
     margin-top: 60px;
     margin-bottom: 150px;
-  }
+  } */
 
   .section-title-group {
     margin-bottom: 80px;
@@ -202,7 +203,10 @@
 
   .info-column {
     flex: 1;
-    padding: 0 20px;
+  }
+
+  .social-column {
+    padding-right: 20px;
   }
 
   .column-title {
