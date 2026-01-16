@@ -14,6 +14,7 @@ declare module 'vue' {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     HeroSection: typeof import('./src/components/home/HeroSection.vue')['default']
+    NavBar: typeof import('./src/components/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     StarryBackground: typeof import('./src/components/home/StarryBackground.vue')['default']
