@@ -16,33 +16,35 @@
             <p class="declare-change">(当前仅供样式演示，具体内容待定)</p>
           </div>
 
-          <div class="info-content">
-            <!-- 左侧：平台链接-->
-            <div class="info-column social-column">
-              <h3 class="column-title">Account / 画师账号</h3>
-              <div class="link-list" v-for="item in accountList" :key="item.name">
-                <a :href="item.link" target="_blank" class="social-link">
-                  <div class="link-info">
-                    <span class="platform">{{ item.platform }}</span>
-                    <span class="username">{{ item.name }}</span>
-                  </div>
-                  <span class="arrow-icon">↗</span>
-                </a>
+          <div class="page-container">
+            <div class="info-content">
+              <!-- 左侧：平台链接-->
+              <div class="info-column social-column">
+                <h3 class="column-title">Account / 画师账号</h3>
+                <div class="link-list" v-for="item in accountList" :key="item.name">
+                  <a :href="item.link" target="_blank" class="social-link">
+                    <div class="link-info">
+                      <span class="platform">{{ item.platform }}</span>
+                      <span class="username">{{ item.name }}</span>
+                    </div>
+                    <span class="arrow-icon">↗</span>
+                  </a>
+                </div>
               </div>
-            </div>
 
-            <!-- 中间分割线 (竖线) -->
-            <div class="vertical-divider"></div>
+              <!-- 中间分割线 (竖线) -->
+              <div class="vertical-divider"></div>
 
-            <!-- 右侧：数据统计 -->
-            <div class="info-column stats-column">
-              <h3 class="column-title">
-                Statistics / 数据统计<span class="comment">非真实数据，仅用于展示效果</span>
-              </h3>
-              <div class="stats-grid">
-                <div class="stat-unit" v-for="item in statList" :key="item.desc">
-                  <span class="stat-num">{{ item.num }}</span>
-                  <span class="stat-desc">{{ item.desc }}</span>
+              <!-- 右侧：数据统计 -->
+              <div class="info-column stats-column">
+                <h3 class="column-title">
+                  Statistics / 数据统计<span class="comment">非真实数据，仅用于展示效果</span>
+                </h3>
+                <div class="stats-grid">
+                  <div class="stat-unit" v-for="item in statList" :key="item.desc">
+                    <span class="stat-num">{{ item.num }}</span>
+                    <span class="stat-desc">{{ item.desc }}</span>
+                  </div>
                 </div>
               </div>
             </div>
