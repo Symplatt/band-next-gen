@@ -3,11 +3,11 @@
 <template>
   <div class="home-view">
     <main class="main-content">
-      <!-- 第一部分：Hero 展示页-->
+      <!-- 第一页：Hero 展示页-->
       <HeroSection @scroll-next="handleScrollClick" />
 
-      <!-- 第二部分：账号页 -->
-      <section id="profile-section" class="account-area">
+      <!-- 第二页：账号页 -->
+      <section class="account-area" id="profile-section">
         <div class="container">
           <!-- 标题区 -->
           <div class="section-title-group">
@@ -17,7 +17,7 @@
           </div>
 
           <div class="info-content">
-            <!-- 左侧：社交链接-->
+            <!-- 左侧：平台链接-->
             <div class="info-column social-column">
               <h3 class="column-title">Account / 画师账号</h3>
               <div class="link-list" v-for="item in accountList">
@@ -35,6 +35,7 @@
             <div class="vertical-divider"></div>
 
             <!-- 右侧：数据统计 -->
+            <!-- 修改：改成3✕2 宫格布局，缩小列宽，防止视觉重心向左倾斜（不着急，demo做到这样就够了）-->
             <div class="info-column stats-column">
               <h3 class="column-title">Database / 统计</h3>
               <div class="stats-grid">
@@ -67,6 +68,7 @@
   import { ref } from 'vue'
   import HeroSection from '@/components/home/HeroSection.vue'
 
+  // 点击后整页滚动到账号页
   const handleScrollClick = () => {
     const el = document.getElementById('profile-section')
     el?.scrollIntoView({ behavior: 'smooth' })

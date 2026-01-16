@@ -54,13 +54,14 @@
 </script>
 
 <style scoped>
+  /* 修改：减去导航栏高度72px无法适配手机端浏览器 */
   .hero-section {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 72px); /* 减去导航栏高度72px */
     overflow: hidden;
   }
 

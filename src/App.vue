@@ -3,9 +3,7 @@
 <template>
   <div class="app">
     <NavigationBar />
-    <div class="website-content">
-      <RouterView />
-    </div>
+    <RouterView />
     <Footer />
   </div>
 </template>
@@ -28,10 +26,5 @@
   .app {
     display: flex;
     flex-direction: column;
-  }
-
-  .website-content {
-    flex: 1;
-    height: 90vh;
   }
 </style>
