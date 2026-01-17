@@ -2,7 +2,7 @@
   {
     "groupKey": "ex-lilith",
     "groupName": "EX-Lilith",
-    "bandLogo": "/images/band-logo/ex-lilith.png",
+    "bandLogo": "images/band-logo/ex-lilith.png",
     "description": "血脉喻叹",
     "members": [
       {
@@ -11,16 +11,16 @@
         "name": "丰川羽月",
         "romaji": "Togawa Hazuki",
         "codeName": "Autumnus",
-        "position": "键盘/主唱",
+        "position": "键盘手 / 主唱",
         "school": "月之森女子学园",
-        "image": "/images/chars/hazuki.png",
-        "studentCard": "/images/cards/hazuki-card.png",
+        "image": "images/stand-image/hazuki.png",
+        "studentCard": "images/cards/hazuki-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "丰川羽月的个人简介丰川羽月的个人简介",
-          "longIntro": "丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介丰川羽月的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "丰川祥子",
@@ -39,16 +39,16 @@
         "name": "八幡莉子",
         "romaji": "Yahata Riko",
         "codeName": "Veris",
-        "position": "贝斯",
+        "position": "贝斯手",
         "school": "月之森女子学园",
-        "image": "/images/chars/riko.png",
-        "studentCard": "/images/cards/riko-card.png",
+        "image": "images/stand-image/riko.png",
+        "studentCard": "images/cards/riko-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "八幡莉子的个人简介八幡莉子的个人简介",
-          "longIntro": "八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介八幡莉子的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "八幡海铃",
@@ -67,16 +67,16 @@
         "name": "若叶天叶",
         "romaji": "Wakaba Ameha",
         "codeName": "Aestas",
-        "position": "吉他",
+        "position": "吉他手",
         "school": "月之森女子学园",
-        "image": "/images/chars/ameha.png",
-        "studentCard": "/images/cards/ameha-card.png",
+        "image": "images/stand-image/ameha.png",
+        "studentCard": "images/cards/ameha-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "若叶天叶的个人简介若叶天叶的个人简介",
-          "longIntro": "若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介若叶天叶的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "祐天寺若麦",
@@ -95,16 +95,16 @@
         "name": "若叶若穗",
         "romaji": "Wakaba Wakaho",
         "codeName": "HeMis",
-        "position": "架子鼓",
+        "position": "鼓手",
         "school": "月之森女子学园",
-        "image": "/images/chars/wakaho.png",
-        "studentCard": "/images/cards/wakaho-card.png",
+        "image": "images/stand-image/wakaho.png",
+        "studentCard": "images/cards/wakaho-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "若叶若穗的个人简介若叶若穗的个人简介",
-          "longIntro": "若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介若叶若穗的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "祐天寺若麦",
@@ -122,7 +122,7 @@
   {
     "groupKey": "gorai",
     "groupName": "Go-Raiiii",
-    "bandLogo": "/images/band-logo/gorai.png",
+    "bandLogo": "images/band-logo/gorai.png",
     "description": "光行之辰",
     "members": [
       {
@@ -130,16 +130,16 @@
         "route": "mirei",
         "name": "椎名美铃",
         "romaji": "Shiina Mirei",
-        "position": "吉他/主唱",
+        "position": "吉他手 / 主唱",
         "school": "花咲川女子学园",
-        "image": "/images/chars/mirei.png",
-        "studentCard": "/images/cards/mirei-card.png",
+        "image": "images/stand-image/mirei.png",
+        "studentCard": "images/cards/mirei-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "椎名美铃的个人简介椎名美铃的个人简介",
-          "longIntro": "椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介椎名美铃的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "椎名立希",
@@ -157,16 +157,16 @@
         "route": "shizuku",
         "name": "高松雫",
         "romaji": "Takamatsu Shizuku",
-        "position": "吉他",
+        "position": "吉他手",
         "school": "羽丘女子学园",
-        "image": "/images/chars/shizuku.png",
-        "studentCard": "/images/cards/shizuku-card.png",
+        "image": "images/stand-image/shizuku.png",
+        "studentCard": "images/cards/shizuku-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "高松雫的个人简介高松雫的个人简介",
-          "longIntro": "高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介高松雫的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "高松灯",
@@ -184,16 +184,16 @@
         "route": "anna",
         "name": "长崎杏奈",
         "romaji": "Nagasaki Anna",
-        "position": "贝斯",
+        "position": "贝斯手",
         "school": "羽丘女子学园",
-        "image": "/images/chars/anna.png",
-        "studentCard": "/images/cards/anna-card.png",
+        "image": "images/stand-image/anna.png",
+        "studentCard": "images/cards/anna-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "长崎杏奈的个人简介长崎杏奈的个人简介",
-          "longIntro": "长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介长崎杏奈的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "长崎素世",
@@ -211,16 +211,16 @@
         "route": "muna",
         "name": "若叶梦那",
         "romaji": "Wakaba Muna",
-        "position": "架子鼓",
+        "position": "鼓手",
         "school": "月之森女子学园",
-        "image": "/images/chars/muna.png",
-        "studentCard": "/images/cards/muna-card.png",
+        "image": "images/stand-image/muna.png",
+        "studentCard": "images/cards/muna-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "若叶梦那的个人简介若叶梦那的个人简介",
-          "longIntro": "若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介若叶梦那的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "祐天寺若麦",
@@ -240,14 +240,14 @@
         "romaji": "Chihaya Sora",
         "position": "编外人员.后勤",
         "school": "花咲川女子学园",
-        "image": "/images/chars/sora.png",
-        "studentCard": "/images/cards/sora-card.png",
+        "image": "images/stand-image/sora.png",
+        "studentCard": "images/cards/sora-card.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
           "mbti": "ABCD",
-          "shortIntro": "千早空的个人简介千早空的个人简介",
-          "longIntro": "千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介千早空的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": [
             {
               "name": "千早爱音",
@@ -265,7 +265,7 @@
   {
     "groupKey": "ave-mujica",
     "groupName": "Ave Mujica",
-    "bandLogo": "/images/band-logo/ave-mujica.png",
+    "bandLogo": "images/band-logo/ave-mujica.png",
     "description": "欢迎来到这假面舞会",
     "members": [
       {
@@ -274,14 +274,14 @@
         "name": "丰川祥子",
         "romaji": "Togawa Sakiko",
         "codeName": "Oblivionis",
-        "position": "键盘",
+        "position": "键盘手",
         "school": "羽丘女子学园",
-        "image": "/images/chars/sakiko.png",
+        "image": "images/stand-image/sakiko.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "丰川祥子的个人简介丰川祥子的个人简介",
-          "longIntro": "丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介丰川祥子的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       },
@@ -291,14 +291,14 @@
         "name": "三角初华",
         "romaji": "Misumi Uika",
         "codeName": "Doloris",
-        "position": "主唱/吉他",
+        "position": "主唱 / 吉他手",
         "school": "花咲川女子学园",
-        "image": "/images/chars/uika.png",
+        "image": "images/stand-image/uika.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "三角初华的个人简介三角初华的个人简介",
-          "longIntro": "三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介三角初华的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       },
@@ -308,14 +308,14 @@
         "name": "若叶睦",
         "romaji": "Wakaba Mutsumi",
         "codeName": "Mortis",
-        "position": "吉他",
+        "position": "吉他手",
         "school": "月之森女子学园",
-        "image": "/images/chars/mutsumi.png",
+        "image": "images/stand-image/mutsumi.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "若叶睦的个人简介若叶睦的个人简介",
-          "longIntro": "若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介若叶睦的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       },
@@ -325,14 +325,14 @@
         "name": "八幡海铃",
         "romaji": "Yahata Umiri",
         "codeName": "Timoris",
-        "position": "贝斯",
+        "position": "贝斯手",
         "school": "花咲川女子学园",
-        "image": "/images/chars/umiri.png",
+        "image": "images/stand-image/umiri.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "八幡海铃的个人简介八幡海铃的个人简介",
-          "longIntro": "八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介八幡海铃的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       },
@@ -342,14 +342,14 @@
         "name": "祐天寺若麦",
         "romaji": "Yutenji Nyamu",
         "codeName": "Amoris",
-        "position": "架子鼓",
+        "position": "鼓手",
         "school": "原作未提及",
-        "image": "/images/chars/nyamu.png",
+        "image": "images/stand-image/nyamu.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "祐天寺若麦的个人简介祐天寺若麦的个人简介",
-          "longIntro": "祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介祐天寺若麦的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       }
@@ -358,7 +358,7 @@
   {
     "groupKey": "mygo",
     "groupName": "MyGO!!!!!",
-    "bandLogo": "/images/band-logo/mygo.png",
+    "bandLogo": "images/band-logo/mygo.png",
     "description": "共同前行的迷途之子",
     "members": [
       {
@@ -368,13 +368,13 @@
         "romaji": "Takamatsu Tomori",
         "position": "主唱",
         "school": "羽丘女子学园",
-        "image": "/images/chars/tomori.png",
+        "image": "images/stand-image/tomori.png",
         "specialNote": "小说《蝉鸣蟋音》致敬MyGO!!!!!二创游戏——《鼓手余命十日谭》",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "高松灯的个人简介高松灯的个人简介",
-          "longIntro": "高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介高松灯的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲（孩子的另一个母亲）。",
           "mothers": []
         }
       },
@@ -383,30 +383,30 @@
         "route": "anon",
         "name": "千早爱音",
         "romaji": "Chihaya Anon",
-        "position": "吉他",
+        "position": "吉他手",
         "school": "羽丘女子学园",
-        "image": "/images/chars/anon.png",
+        "image": "images/stand-image/anon.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "千早爱音的个人简介千早爱音的个人简介",
-          "longIntro": "千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介千早爱音的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       },
       {
         "id": "mg-03",
-        "route": "taki",
+        "route": "rikki",
         "name": "椎名立希",
         "romaji": "Shiina Taki",
-        "position": "架子鼓",
+        "position": "鼓手",
         "school": "花咲川女子学园",
-        "image": "/images/chars/taki.png",
+        "image": "images/stand-image/taki.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "椎名立希的个人简介椎名立希的个人简介",
-          "longIntro": "椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介椎名立希的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       },
@@ -415,14 +415,14 @@
         "route": "soyo",
         "name": "长崎素世",
         "romaji": "Nagasaki Soyo",
-        "position": "贝斯",
+        "position": "贝斯手",
         "school": "月之森女子学园",
-        "image": "/images/chars/soyo.png",
+        "image": "images/stand-image/soyo.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "长崎素世的个人简介长崎素世的个人简介",
-          "longIntro": "长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介长崎素世的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       },
@@ -431,14 +431,14 @@
         "route": "rana",
         "name": "要乐奈",
         "romaji": "Kaname Rana",
-        "position": "吉他",
+        "position": "吉他手",
         "school": "花咲川女子学园",
-        "image": "/images/chars/rana.png",
+        "image": "images/stand-image/rana.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "要乐奈的个人简介要乐奈的个人简介",
-          "longIntro": "要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介要乐奈的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       }
@@ -447,7 +447,6 @@
   {
     "groupKey": "other",
     "groupName": "Other",
-    "bandLogo": "",
     "description": "甜甜圈，甜甜圈",
     "members": [
       {
@@ -457,12 +456,12 @@
         "romaji": "Sumida Mana",
         "position": "Null",
         "school": "原作未提及",
-        "image": "/images/chars/mana.png",
+        "image": "images/stand-image/mana.png",
         "profile": {
           "height": "180cm",
           "birthday": "13月32日 待定座",
-          "shortIntro": "纯田真奈的个人简介纯田真奈的个人简介",
-          "longIntro": "纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介纯田真奈的个人简介",
+          "shortIntro": "一条比较简短的个人简介，大概一两行",
+          "longIntro": "个人简介个人简介人个简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介个人简介\n\n身高、生日等信息后续修改，当前仅展示页面视觉\n\nPARENTS部分的两个人，前者是母系母亲（生下孩子的母亲），后者是父系母亲。",
           "mothers": []
         }
       }

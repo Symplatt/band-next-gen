@@ -11,6 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BackToTop: typeof import('./src/components/BackToTop.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     HeroSection: typeof import('./src/components/home/HeroSection.vue')['default']
     MarkDownViewer: typeof import('./src/components/MarkDownViewer.vue')['default']

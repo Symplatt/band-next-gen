@@ -1,5 +1,6 @@
 <template>
   <div class="characters-view">
+    <BackToTop />
     <!-- 顶部标题区 -->
     <div class="page-header">
       <h1 class="main-title">Characters</h1>
@@ -10,9 +11,9 @@
       </div>
       <p class="intro-text">
         曾经的 MyGO!!!!! 与 Ave Mujica 的成员们已各自组建家庭。<br />
-        这是属于她们孩子们的，继往开来的崭新故事。<br />
-        （获得鹤星授权前，暂时不放角色插画）
+        这是属于她们孩子们的，继往开来的崭新故事。
       </p>
+      <p class="comment">（获得正式授权前，暂时以默认图片代替应有角色插画）</p>
     </div>
 
     <div class="page-container">
@@ -195,7 +196,7 @@
   .diamond {
     width: 8px;
     height: 8px;
-    margin: 0 15px;
+    margin-top: 15px;
     background: #d4af37;
     transform: rotate(45deg);
   }
@@ -206,6 +207,13 @@
     font-size: 1rem;
     line-height: 1.8;
     color: #c5c6c7;
+  }
+
+  .comment {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #535353;
+    letter-spacing: 1px;
   }
 
   /* --- 乐队分组区域 --- */

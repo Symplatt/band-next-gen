@@ -13,22 +13,23 @@
     <div v-else class="detail-container">
       <!-- === 左侧视觉区 === -->
       <div class="visual-column">
-        <!-- 1. 角色大立绘 -->
+        <!-- images角色大立绘 -->
         <div class="stand-image-box">
           <img
-            :src="member.image || 'https://placehold.co/600x900/1a1a1a/d4af37?text=Character+Image'"
+            :src="`${baseUrl}${member.image}`"
+            @error="handStandImageError"
             class="stand-image"
           />
-          <!-- 专属代号 -->
-          <div v-if="member.codeName" class="code-overlay">{{ member.codeName }}</div>
+          <span class="stand-comment">一小段对图片的简短说明</span>
         </div>
 
-        <!-- 2. 学生证 (比例 7:4) -->
-        <div class="student-card-box">
-          <div class="card-label">STUDENT ID</div>
+        <!-- images学生证 (固定比例 7:4) -->
+        <div class="student-card-box" v-if="member.studentCard">
+          <div class="card-label">STUDENT CARD</div>
           <div class="card-aspect-ratio">
             <img
-              :src="member.studentCard || 'https://placehold.co/350x200/222/555?text=Student+Card'"
+              :src="`${baseUrl}${member.studentCard}`"
+              @error="handleCardError"
               class="student-card-img"
             />
           </div>
@@ -52,10 +53,9 @@
           </div>
         </div>
 
+        <!-- 这是一条剪切线 -->
         <div class="divider"></div>
-        <span style="font-size: 12px; color: #999; text-align: center"
-          >身高、生日、MBTI等之后再看，当前仅展示效果</span
-        >
+
         <!-- 关键数据网格 -->
         <div class="data-grid">
           <div class="data-item">
@@ -90,7 +90,7 @@
 
         <!-- 亲缘关系 (点击跳转) -->
         <div class="mothers-section" v-if="member.profile.mothers.length > 0">
-          <h3 class="section-title">RELATIONSHIPS</h3>
+          <h3 class="section-title">PARENTS</h3>
           <div class="mothers-list">
             <div
               v-for="mom in member.profile.mothers"
@@ -115,12 +115,12 @@
   import { useRouter, useRoute } from 'vue-router'
   import rawData from '@/assets/data/characters.json'
 
-  // 1. 获取路由参数
+  const baseUrl = import.meta.env.BASE_URL
   // 即使 props 没传过来，useRoute().params.id 也是保底方案
   const route = useRoute()
   const router = useRouter()
 
-  // 2. 类型定义 (保持和 CharactersView 一致)
+  // images类型定义 (保持和 CharactersView 一致)
   interface Member {
     id: string
     route: string
@@ -141,7 +141,10 @@
     }
   }
 
-  // 3. 查找当前角色逻辑
+  const DEFAULT_STAND_IMAGE = 'images/stand-image/default-stand-image.png'
+  const DEFAULT_STUDENT_CARD = 'images/card/default-card.png'
+
+  // images查找当前角色逻辑
   const member = computed(() => {
     // 当前 URL 里的 id (例如 'tomori')
     const currentId = route.params.id as string
@@ -154,15 +157,20 @@
     return null
   })
 
-  // 4. 获取当前角色的乐队 Logo
+  // images获取当前角色的乐队 Logo
   const groupLogo = computed(() => {
     const currentId = route.params.id as string
     const group = rawData.find((g) => g.members.some((m: any) => m.route === currentId))
     return group ? group.bandLogo : ''
   })
 
-  // 5. 跳转逻辑
-  const goBack = () => router.push('/characters')
+  // images跳转逻辑
+  const goBack = () => {
+    if (window.history.state.back) {
+      router.back()
+    }
+    return router.replace('/characters')
+  }
 
   const goToMother = (motherId: string) => {
     if (!motherId) return // 如果是“待定”这种没ID的，不跳转
@@ -181,13 +189,31 @@
       router.push({ name: 'char-detail', params: { id: targetRoute } })
     }
   }
+
+  const handStandImageError = (e: Event) => {
+    const img = e.target as HTMLImageElement
+    // 如果图片加载失败，则用默认图片替换
+    if (img.src !== DEFAULT_STAND_IMAGE) {
+      img.src = DEFAULT_STAND_IMAGE
+    }
+  }
+
+  const handleCardError = (e: Event) => {
+    const img = e.target as HTMLImageElement
+    // 如果图片加载失败，则用默认图片替换
+    if (img.src !== DEFAULT_STUDENT_CARD) {
+      img.src = DEFAULT_STUDENT_CARD
+    }
+  }
 </script>
 
 <style scoped>
   .detail-view {
     position: relative;
     min-height: 100vh;
-    padding: 80px 40px;
+    padding-top: 80px;
+    padding-right: 40px;
+    padding-left: 40px;
     color: #fff;
     background-color: #0b0c10;
   }
@@ -213,6 +239,10 @@
     border-color: #d4af37;
   }
 
+  .not-found {
+    text-align: center;
+  }
+
   /* 布局容器 */
   .detail-container {
     display: flex;
@@ -228,11 +258,14 @@
     flex: 5; /* 占 5/12 */
     flex-direction: column;
     gap: 30px;
+    padding-top: 5px; /* 为了和旁边的角色名完美顶端对齐 */
   }
 
   .stand-image-box {
     position: relative;
+    box-sizing: border-box;
     width: 100%;
+    height: 600px;
     overflow: hidden;
     background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
     border: 1px solid rgb(255 255 255 / 5%);
@@ -240,9 +273,22 @@
   }
 
   .stand-image {
-    display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .stand-comment {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 2px 10px;
+    font-size: 12px;
+    color: #fff;
+    background: rgb(0 0 0 / 60%);
+    border: 2px solid rgb(255 255 255 / 10%);
+    border-radius: 8px;
   }
 
   /* 代号浮层 */
@@ -250,7 +296,7 @@
     position: absolute;
     right: 20px;
     bottom: 20px;
-    font-family: 'Pinyon Script', cursive; /* 之前让你加的手写体 */
+    font-family: 'Pinyon Script', cursive;
     font-size: 3rem;
     color: rgb(212 175 55 / 30%);
     pointer-events: none;
@@ -291,7 +337,6 @@
   /* === 右侧信息区 === */
   .info-column {
     flex: 7; /* 占 7/12 */
-    padding-top: 20px;
   }
 
   .info-header {
