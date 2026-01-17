@@ -1,4 +1,4 @@
-import{M as n}from"./MarkDownViewer-BENXnwiB.js";import{d as r,c as i,f as s,h as e,s as t,e as a}from"./index-VjlD91PC.js";const o=`# 一级标题\r
+import{M as n}from"./MarkDownViewer-rBVsenAD.js";import{d as r,c as i,f as s,h as e,p as t,e as a}from"./index-C1w9rq4-.js";const o=`# 一级标题\r
 \r
 ## 二级标题\r
 \r

@@ -1,1 +1,0 @@
-import{_ as t,c as n,f as s,F as a,e as o}from"./index-VjlD91PC.js";const r={};function l(i,e){return o(),n(a,null,[e[0]||(e[0]=s("div",{class:"relations-view"},"关系",-1)),e[1]||(e[1]=s("span",{style:{"padding-left":"200px",color:"aliceblue"}},"页面开发中……",-1))],64)}const f=t(r,[["render",l]]);export{f as default};
