@@ -1,5 +1,6 @@
 <template>
   <div class="characters-view">
+    <!-- 回到顶部按钮 -->
     <BackToTop />
     <!-- 顶部标题区 -->
     <div class="page-header">

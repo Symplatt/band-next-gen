@@ -1,4 +1,6 @@
 <template>
+  <!-- 回到顶部按钮 -->
+  <BackToTop />
   <div class="detail-view">
     <!-- 返回按钮 -->
     <button class="back-btn" @click="goBack"><span class="arrow">←</span> BACK</button>
@@ -210,10 +212,10 @@
 <style scoped>
   .detail-view {
     position: relative;
-    min-height: 100vh;
-    padding-top: 80px;
-    padding-right: 40px;
-    padding-left: 40px;
+    box-sizing: border-box;
+    min-height: calc(100vh - var(--header-heright));
+    padding: 0 40px;
+    padding-bottom: 100px;
     color: #fff;
     background-color: #0b0c10;
   }
