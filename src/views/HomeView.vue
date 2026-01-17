@@ -14,7 +14,7 @@
           <div class="section-title-group">
             <h2 class="area-title"><span class="title-content">创作档案</span></h2>
             <p class="area-subtitle">Portfolio</p>
-            <p class="declare-change">(当前仅供样式演示，具体内容待定)</p>
+            <p class="declare-change">(当前仅供样式演示，具体内容待定，页面也将继续美化)</p>
           </div>
 
           <div class="info-content">
@@ -118,11 +118,11 @@
       desc: '原创乐队',
     },
     {
-      num: '100+',
+      num: '700+',
       desc: '三创插画',
     },
     {
-      num: '20+',
+      num: '200+',
       desc: '三创文章',
     },
     {
