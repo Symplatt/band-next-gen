@@ -1,0 +1,1 @@
+import{_ as e,c,e as o}from"./index-DjhgCk5s.js";const t={},n={style:{"padding-left":"200px",color:"aliceblue"}};function s(a,r){return o(),c("span",n,"页面开发中……")}const l=e(t,[["render",s],["__scopeId","data-v-4cecfe8d"]]);export{l as default};
