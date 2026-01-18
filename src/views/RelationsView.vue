@@ -2,6 +2,7 @@
   <div class="relations-view">
     <!-- 回到顶部按钮 -->
     <BackToTop />
+
     <!-- 目录轴 (Sidebar) -->
     <nav class="sidebar">
       <div class="nav-line"></div>
@@ -22,27 +23,30 @@
     <div class="page-container">
       <!-- === 第一部分：称呼表 (Call Table) === -->
       <section id="section-table" class="section-block">
-        <h2 class="section-title">APPELLATION CHART</h2>
+        <h2 class="section-title">称呼表</h2>
         <div class="table-scroll-wrapper">
           <table class="call-table">
             <thead>
               <!-- 头像行 -->
               <tr class="header-avator">
-                <th></th>
+                <!-- 第一列空缺，固定宽度 -->
+                <th class="fixed-col"></th>
                 <th v-for="member in memberList" :key="member.id">
                   <img :src="resolvePath(member.avatar)" class="avatar-square" />
                 </th>
               </tr>
               <!-- 组合行 -->
               <tr class="header-group">
-                <th><span class="group-label">所属组合</span></th>
+                <th class="fixed-col"><span class="group-label">所属组合</span></th>
                 <th colspan="4" class="group-name lilith">Ex-Lilith</th>
                 <th colspan="4" class="group-name gorai">Go Raiiii</th>
                 <th colspan="1" class="group-name other">Other</th>
               </tr>
               <!-- 名字行 -->
               <tr class="header-char">
-                <th class="corner-header"><span class="corner-comment">称呼→被称呼</span></th>
+                <th class="corner-header fixed-col">
+                  <span class="corner-comment">称呼→被称呼</span>
+                </th>
                 <th
                   v-for="member in memberList"
                   :key="member.id"
@@ -54,8 +58,11 @@
             </thead>
             <tbody>
               <tr v-for="caller in memberList" :key="caller.id">
-                <!-- 第一列 -->
-                <td class="row-header" :class="{ 'highlight-row': hoverRow === caller.id }">
+                <!-- 第一列：行头 -->
+                <td
+                  class="row-header fixed-col"
+                  :class="{ 'highlight-row': hoverRow === caller.id }"
+                >
                   <div class="td-content">{{ caller.name }}</div>
                 </td>
                 <!-- 单元格 -->
@@ -87,7 +94,7 @@
 
       <!-- === 第二部分：关系网 (Network) === -->
       <section id="section-network" class="section-block">
-        <h2 class="section-title">RELATIONSHIP NETWORK</h2>
+        <h2 class="section-title">关系网</h2>
         <div class="network-container">
           <div class="circle-layout">
             <!-- 连线层 (SVG) -->
@@ -121,19 +128,20 @@
               @mouseleave="networkHoverId = null"
             >
               <div class="node-circle">
-                <!-- 只显示名字，例如 '羽月' -->
                 <span class="node-text">{{ char.name.slice(-2) }}</span>
               </div>
             </div>
 
-            <div class="center-text">子世代<br />关系网</div>
+            <div class="center-text">
+              这里用贴图吧<br />线条太繁杂实在做不出来<br />已经做了快40个小时了
+            </div>
           </div>
         </div>
       </section>
 
       <!-- === 第三部分：亲缘谱 (Family Tree) === -->
       <section id="section-family" class="section-block">
-        <h2 class="section-title">GENEALOGY</h2>
+        <h2 class="section-title">亲缘谱</h2>
         <div class="genealogy-grid">
           <div v-for="(family, index) in normalizedFamilyData" :key="index" class="family-unit">
             <!-- 母亲层 -->
@@ -167,7 +175,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
   import relationData from '@/assets/data/relations.json'
   import BackToTop from '@/components/BackToTop.vue'
 
@@ -177,7 +185,6 @@
   // 辅助函数：处理图片路径
   const resolvePath = (path: string) => {
     if (!path) return ''
-    // 移除开头的 / 防止双斜杠 (适配你JSON里有时写/有时不写的情况)
     const cleanPath = path.startsWith('/') ? path.slice(1) : path
     return `${baseUrl}${cleanPath}`
   }
@@ -204,7 +211,6 @@
   }
 
   const getCallName = (callerId: string, targetId: string) => {
-    // TS修复：增加可选链和空字符串保底
     return callTable[callerId]?.[targetId] || '?'
   }
 
@@ -215,33 +221,58 @@
     { id: 'section-network', label: '关系网' },
     { id: 'section-family', label: '亲缘谱' },
   ]
+
   const scrollToSection = (id: string) => {
     activeSection.value = id
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    // block: 'start' 会让元素的顶部对齐视口顶部，加 scrollMarginTop 调整偏移
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
+
+  // 滚动监听函数
+  const handleScroll = () => {
+    // 阈值：滚动到距离顶部 300px 的位置时判定为进入该区域
+    const threshold = 300
+    const scrollY = window.scrollY
+
+    for (const item of navItems) {
+      const section = document.getElementById(item.id)
+      if (section) {
+        const { offsetTop, offsetHeight } = section
+        // 如果当前滚动位置在 (section顶部 - 阈值) 和 (section底部 - 阈值) 之间
+        if (scrollY >= offsetTop - threshold && scrollY < offsetTop + offsetHeight - threshold) {
+          activeSection.value = item.id
+        }
+      }
+    }
+  }
+
+  onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+  })
 
   // --- 关系网逻辑 ---
   const networkHoverId = ref<string | null>(null)
 
-  // TS修复：定义连线数据
+  // 定义连线数据
   const networkLinks = computed(() => {
     const links: { source: string; target: string }[] = []
     const ids = memberList.value.map((m) => m.id)
 
     ids.forEach((id, i) => {
-      // TS修复：使用 ! (非空断言)，因为 if 条件已经保证了 i+1 存在
       if (i < ids.length - 1) links.push({ source: id, target: ids[i + 1]! })
       if (i < ids.length - 2) links.push({ source: id, target: ids[i + 2]! })
-      // 让头尾相连
       if (i === ids.length - 1) links.push({ source: id, target: ids[0]! })
     })
     return links
   })
 
-  // 计算圆周坐标 (SVG 坐标系 500x500，中心 250,250)
+  // 计算圆周坐标
   const getNodePos = (id: string) => {
     const index = memberList.value.findIndex((m) => m.id === id)
-    // 防止找不到id报错
     if (index === -1) return { x: 250, y: 250 }
 
     const total = memberList.value.length
@@ -254,7 +285,6 @@
     }
   }
 
-  // 节点样式定位
   const getCircleStyle = (index: number, total: number) => {
     const m = memberList.value[index]
     if (!m) return {}
@@ -262,7 +292,6 @@
     return { left: `${pos.x}px`, top: `${pos.y}px` }
   }
 
-  // 高亮判断逻辑
   const isNodeActive = (id: string) => {
     if (!networkHoverId.value) return true
     const isSelf = id === networkHoverId.value
@@ -280,11 +309,9 @@
   }
 
   // --- 亲缘谱数据处理 ---
-  // 关键逻辑：处理 JSON 中 child 可能是对象也可能是数组的情况
   const normalizedFamilyData = computed(() => {
     return relationData.familyTree.map((item: any) => ({
       ...item,
-      // 如果 child 是数组直接用，如果是对象包成数组
       child: Array.isArray(item.child) ? item.child : [item.child],
     }))
   })
@@ -337,7 +364,7 @@
 
   .nav-item .dot {
     position: absolute;
-    left: -20px; /* 对齐线条 */
+    left: -20px;
     width: 8px;
     height: 8px;
     background: #000;
@@ -366,17 +393,43 @@
   /* === 通用块 === */
   .section-block {
     margin-bottom: 150px;
-    scroll-margin-top: 100px; /* 给平滑滚动留余地 */
+    scroll-margin-top: 100px; /* 关键：解决点击跳转被遮挡的问题 */
   }
 
   .section-title {
-    margin-bottom: 50px;
-    font-family: 'Cinzel Decorative', cursive;
+    /* 布局 */
+    display: flex;
+    gap: 20px; /* 文字和线条的间距 */
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* 占满容器宽度以便居中 */
+    padding-bottom: 0;
+    margin-bottom: 60px;
+
+    /* 文字样式 */
+    font-family: 'Noto Serif SC', cursive;
     font-size: 2.5rem;
     color: #d4af37;
-    text-align: center;
     letter-spacing: 4px;
-    text-shadow: 0 4px 10px rgb(0 0 0 / 50%);
+    text-shadow: 0 0 10px rgb(212 175 55 / 30%);
+
+    /* 取消原来的下划线，改用伪元素做左右装饰 */
+    border-bottom: none;
+  }
+
+  /* 左侧线条装饰 */
+  .section-title::before,
+  .section-title::after {
+    display: block;
+    width: 400px; /* 线条长度 */
+    height: 1px; /* 线条粗细 */
+    content: '';
+    background: linear-gradient(90deg, transparent, rgb(185 153 48 / 50%)); /* 渐变金线 */
+  }
+
+  /* 右侧线条 (反向渐变) */
+  .section-title::after {
+    background: linear-gradient(90deg, rgb(185 153 48 / 50%), transparent);
   }
 
   /* === 称呼表 === */
@@ -400,32 +453,20 @@
     border: 1px solid rgb(255 255 255 / 10%);
   }
 
-  .header-avator th {
-    box-sizing: border-box; /* 边框算在尺寸内 */
-    width: 80px; /* 设定宽度 */
-    min-width: 80px; /* 防止表格挤压导致变形 */
-    height: 80px; /* 设定高度与宽度一致 -> 正方形 */
-    padding: 0; /* 关键：去掉内边距，让图片能贴边 */
+  /* --- 修复左列宽度的关键 CSS --- */
+
+  /* 给第一列（无论哪一行）都设置固定宽度 */
+  .fixed-col {
+    box-sizing: border-box;
+    width: 120px; /* 统一设为 120px，或者你想要的宽度 */
+    min-width: 120px;
+    max-width: 120px;
   }
 
-  /* 左上角那个空格子也需要同步高度 */
-
-  .header-avator th:first-child {
-    min-width: auto;
-
-    /* width: auto; */
-    height: 80px;
-  }
-
-  .avatar-square {
-    display: block; /* 消除图片底部的幽灵间隙 */
-    width: 100%; /* 宽撑满格子 */
-    height: 100%; /* 高撑满格子 */
-    object-fit: cover; /* 保持比例裁切填充，不会拉伸变形 */
-    border: none;
-
-    /* 完全填满，去掉圆角和边框 */
-    border-radius: 0;
+  /* 头像行：左上角空格 */
+  .header-avator .fixed-col {
+    height: 80px; /* 保持和头像高度一致 */
+    padding: 0;
   }
 
   .header-group th {
@@ -433,6 +474,24 @@
     font-size: 0.8rem;
     letter-spacing: 2px;
     background: rgb(255 255 255 / 2%);
+  }
+
+  /* 头像单元格 */
+  .header-avator th:not(.fixed-col) {
+    box-sizing: border-box;
+    width: 80px;
+    min-width: 80px;
+    height: 80px;
+    padding: 0;
+  }
+
+  .avatar-square {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: 0;
   }
 
   .group-name.lilith {
@@ -488,10 +547,12 @@
     z-index: 2;
     font-weight: bold;
     color: #000;
-    background-color: #d4af37;
-    border: 2px solid #fff;
+    background-color: #ffd700;
+
+    /* border: 2px solid #fff; */
     box-shadow: 0 0 20px rgb(0 0 0 / 50%);
-    transform: scale(1.1);
+
+    /* transform: scale(1.1); */
   }
 
   .cell.active .romaji {
@@ -601,19 +662,19 @@
     top: 50%;
     left: 50%;
     font-family: 'Noto Serif SC', serif;
-    font-size: 1.5rem;
-    color: rgb(255 255 255 / 10%);
+    font-size: 1rem;
+    color: rgb(255 255 255 / 40%);
     text-align: center;
     pointer-events: none;
     transform: translate(-50%, -50%);
   }
 
-  /* === 亲缘谱 === */
+  /* === 亲缘谱 (修改为 inline-block/flex-wrap 布局) === */
   .genealogy-grid {
     display: flex;
-    flex-direction: column;
-    gap: 60px;
-    align-items: center;
+    flex-flow: row wrap; /* 修改：横向排列 */ /* 修改：允许换行 */
+    gap: 40px 60px; /* 行间距40，列间距60 */
+    justify-content: center; /* 居中显示 */
   }
 
   .family-unit {
@@ -646,7 +707,7 @@
     margin-bottom: 8px;
     object-fit: cover;
     background: #000;
-    border: 2px solid #d4af37; /* 全金色边框 */
+    border: 2px solid #d4af37;
     border-radius: 50%;
   }
 
@@ -662,28 +723,25 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 40px; /* 上下间距 */
+    height: 40px;
   }
 
-  /* 父母连线 (倒U型) */
   .connector-top {
-    width: 60%; /* 连接父母的横线宽度 */
+    width: 60%;
     height: 20px;
     border-bottom: 1px solid #d4af37;
   }
 
-  /* 孩子连线 (正U型) */
   .connector-bottom {
     position: relative;
-    width: 60%; /* 连接孩子的横线宽度 (如果有多个孩子) */
+    width: 60%;
     height: 20px;
     border-top: 1px solid #d4af37;
   }
 
-  /* 垂直连线 */
   .connector-bottom::before {
     position: absolute;
-    top: -20px; /* 连到上面去 */
+    top: -20px;
     left: 50%;
     width: 1px;
     height: 20px;
@@ -691,28 +749,55 @@
     background: #d4af37;
   }
 
+  /* Stylelint 修复：调整 CSS 顺序，避免 no-descending-specificity 警告 */
+
   /* 虚线样式 */
-  .dashed-line .connector-top,
-  .dashed-line .connector-bottom,
-  .dashed-line .connector-bottom::before {
-    background: none; /* 垂直线得用 border-left 模拟 dashed */
-    border-style: dashed;
+
+  /* 1. 父母连接线 (上半部分)：只留底边 */
+  .dashed-line .connector-top {
+    background: none;
+    border: none; /* 先清除原本可能存在的四边框 */
+    border-bottom: 1px dashed #d4af37; /* 重新指定：只有底边、虚线、金色 */
   }
 
-  /* 只有一个孩子时，去掉底部的横线，只留垂直线 */
+  /* 2. 孩子连接线 (下半部分)：只留顶边 */
+  .dashed-line .connector-bottom {
+    position: relative; /* 确保伪元素定位正常 */
+    background: none;
+    border: none; /* 先清除 */
+    border-top: 1px dashed #d4af37; /* 重新指定：只有顶边、虚线、金色 */
+  }
+
+  /* 3. 垂直连接线：只留左边 */
+  .dashed-line .connector-bottom::before {
+    width: 0;
+    content: '';
+    background: none;
+    border: none; /* 先清除 */
+    border-left: 1px dashed #d4af37; /* 重新指定：只有左边、虚线、金色 */
+  }
+
+  /* 单孩特殊样式，必须放在最后以覆盖 */
   .child-row:has(.child-node:only-child) + .connector .connector-bottom {
     border-top: none;
   }
 
-  /* 垂直虚线修正 */
-  .dashed-line .connector-bottom::before {
-    width: 0;
-    border-left: 1px dashed #d4af37;
+  /* 手机适配微调 */
+  @media (width <= 768px) {
+    .section-title {
+      gap: 10px;
+      font-size: 1.8rem;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      width: 30px;
+    }
   }
 
   @media (width <= 1200px) {
     .sidebar {
       display: none;
-    } /* 窄屏隐藏目录 */
+    }
   }
 </style>
