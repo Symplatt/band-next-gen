@@ -1,1 +1,0 @@
-import{_ as e,c,e as o}from"./index-D5RIeEsQ.js";const t={},s={class:"page-comment"};function n(_,a){return o(),c("div",s,"（获得正式授权前，暂时以默认图片代替应有角色插画）")}const m=e(t,[["render",n],["__scopeId","data-v-1d79cfa6"]]);export{m as D};
