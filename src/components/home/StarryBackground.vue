@@ -1,5 +1,3 @@
-// components/hero/StarryBackground.vue
-
 <template>
   <canvas ref="canvasRef" class="starry-canvas"></canvas>
 </template>
