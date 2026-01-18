@@ -5,6 +5,7 @@
     <NavigationBar />
     <RouterView />
     <Footer />
+    <BackToTop />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
   import { RouterView } from 'vue-router'
   import NavigationBar from './components/NavBar.vue'
   import Footer from './components/Footer.vue'
+  import BackToTop from './components/BackToTop.vue'
 </script>
 
 <style>

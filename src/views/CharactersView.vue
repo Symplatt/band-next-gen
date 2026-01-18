@@ -1,7 +1,5 @@
 <template>
   <div class="characters-view">
-    <!-- 回到顶部按钮 -->
-    <BackToTop />
     <DemoComment />
     <!-- 顶部标题区 -->
     <div class="page-header">
@@ -12,7 +10,7 @@
         <div class="line-right"></div>
       </div>
       <p class="intro-text">
-        曾经的 MyGO!!!!! 与 Ave Mujica 的成员们已各自组建家庭。<br />
+        MyGO!!!!! 与 Ave Mujica 的成员们已各自组建家庭。<br />
         这是属于她们孩子们的，继往开来的崭新故事。
       </p>
     </div>

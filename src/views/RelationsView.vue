@@ -1,8 +1,5 @@
 <template>
   <div class="relations-view">
-    <!-- 回到顶部按钮 -->
-    <BackToTop />
-
     <!-- 目录轴 (Sidebar) -->
     <nav class="sidebar">
       <div class="nav-line"></div>

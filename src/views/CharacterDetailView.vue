@@ -1,6 +1,4 @@
 <template>
-  <!-- 回到顶部按钮 -->
-  <BackToTop />
   <div class="detail-view">
     <!-- 返回按钮 -->
     <button class="back-btn" @click="goBack"><span class="arrow">←</span> BACK</button>
