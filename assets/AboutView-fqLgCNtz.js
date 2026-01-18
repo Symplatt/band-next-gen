@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-LX-zbWQc.js";import{d as a,c as s,f as n,h as e,p as t,e as o,_ as c}from"./index-C4cGNjUV.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-Dwy-B_Wx.js";import{d as a,c as s,f as n,h as e,p as t,e as o,_ as c}from"./index-7osuQAAy.js";const i=`## 项目介绍\r
 \r
 \`PS：当前仅展示效果，具体文本待定\`\r
 \r
