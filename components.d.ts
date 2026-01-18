@@ -12,6 +12,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BackToTop: typeof import('./src/components/BackToTop.vue')['default']
+    DemoComment: typeof import('./src/components/DemoComment.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     HeroSection: typeof import('./src/components/home/HeroSection.vue')['default']
     MarkDownViewer: typeof import('./src/components/MarkDownViewer.vue')['default']

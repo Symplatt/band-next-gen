@@ -20,7 +20,9 @@
       </ul>
     </nav>
 
+    <!-- 页面内容 -->
     <div class="page-container">
+      <DemoComment />
       <!-- === 第一部分：称呼表 (Call Table) === -->
       <section id="section-table" class="section-block">
         <h2 class="section-title">称呼表</h2>
@@ -133,7 +135,7 @@
             </div>
 
             <div class="center-text">
-              这里用贴图吧<br />线条太繁杂实在做不出来<br />已经做了快40个小时了
+              这里用贴图吧<br />线条太繁杂实在做不出来<br />这个网站已经做了快40个小时了
             </div>
           </div>
         </div>
@@ -178,6 +180,7 @@
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   import relationData from '@/assets/data/relations.json'
   import BackToTop from '@/components/BackToTop.vue'
+  import DemoComment from '@/components/DemoComment.vue'
 
   // 基础路径
   const baseUrl = import.meta.env.BASE_URL
@@ -321,7 +324,6 @@
   .relations-view {
     position: relative;
     min-height: 100vh;
-    padding-top: 40px;
     padding-bottom: 100px;
     color: #fff;
     background-color: #0b0c10;

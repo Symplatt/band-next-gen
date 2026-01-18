@@ -2,6 +2,7 @@
   <div class="characters-view">
     <!-- 回到顶部按钮 -->
     <BackToTop />
+    <DemoComment />
     <!-- 顶部标题区 -->
     <div class="page-header">
       <h1 class="main-title">Characters</h1>
@@ -14,7 +15,6 @@
         曾经的 MyGO!!!!! 与 Ave Mujica 的成员们已各自组建家庭。<br />
         这是属于她们孩子们的，继往开来的崭新故事。
       </p>
-      <p class="comment">（获得正式授权前，暂时以默认图片代替应有角色插画）</p>
     </div>
 
     <div class="page-container">
@@ -45,10 +45,7 @@
                 :alt="member.name"
                 class="char-image"
               /> -->
-              <img
-                src="https://placehold.co/400x500/1a1a1a/d4af37?text=No+Image"
-                class="char-image"
-              />
+              <img :src="resolvePath(member.image)" class="char-image" @error="onImageError" />
               <div v-if="member.codeName" class="code-name-badge">{{ member.codeName }}</div>
             </div>
 
@@ -84,6 +81,7 @@
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import rawData from '@/assets/data/characters.json'
+  import DemoComment from '@/components/DemoComment.vue'
 
   interface Mother {
     /* src\assets\data\characters.json 中的Mother字段 */
@@ -128,6 +126,20 @@
   const characterData = ref<Group[]>(rawData as Group[])
   const groupRefMap = ref<Record<string, HTMLElement | null>>({})
   const router = useRouter()
+  // 基础路径
+  const baseUrl = import.meta.env.BASE_URL
+
+  // 辅助函数：处理图片路径
+  const resolvePath = (path: string) => {
+    if (!path) return ''
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path
+    return `${baseUrl}${cleanPath}`
+  }
+
+  const onImageError = (e: Event) => {
+    const img = e.target as HTMLImageElement
+    img.src = 'https://placehold.co/400x500/1a1a1a/d4af37?text=Default+Image'
+  }
 
   function goToDetailPage(routeKey: string) {
     router.push({
