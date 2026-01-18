@@ -14,7 +14,8 @@
           <div class="section-title-group">
             <h2 class="area-title"><span class="title-content">创作档案</span></h2>
             <p class="area-subtitle">Portfolio</p>
-            <p class="declare-change">(当前仅供样式演示，具体内容待定，页面也将继续美化)</p>
+            <!-- 还有要补充的写在这里 -->
+            <p class="extra-describe"></p>
           </div>
 
           <div class="info-content">
@@ -37,9 +38,7 @@
 
             <!-- 右侧：数据统计 -->
             <div class="info-column stats-column">
-              <h3 class="column-title">
-                Statistics / 数据统计<span class="comment">非真实数据，仅用于展示效果</span>
-              </h3>
+              <h3 class="column-title">Statistics / 数据统计</h3>
               <div class="stats-grid">
                 <div class="stat-unit" v-for="item in statList" :key="item.desc">
                   <span class="stat-num">{{ item.num }}</span>
@@ -76,6 +75,11 @@
   // 平台账号
   const accountList = ref<PlatformAccount[]>([
     {
+      name: 'hero鹤星',
+      platform: 'Lofter',
+      link: 'https://www.lofter.com/front/blog/collection/share?collectionId=22881169&incantation=hjoTvd7LiZIh',
+    },
+    {
       name: 'hero鶴星',
       platform: 'Bilibili',
       link: 'https://space.bilibili.com/589781780',
@@ -85,15 +89,11 @@
       platform: 'X / Twitter',
       link: 'https://x.com/hero45439083942',
     },
+
     {
-      name: 'hero鹤星',
-      platform: 'Lofter',
-      link: 'https://xiao7108.lofter.com/',
-    },
-    {
-      name: '违规英雄（避难中）',
+      name: '违规英雄',
       platform: '小红书',
-      link: 'https://www.xiaohongshu.com/user/profile/61a4a93c0000000010006',
+      link: 'https://www.xiaohongshu.com/user/profile/61a4a93c0000000010006c00',
     },
   ])
 
@@ -179,18 +179,18 @@
     letter-spacing: 2rem;
   }
 
-  .declare-change {
-    margin: 10px;
-    font-size: 0.8rem;
-    color: #b2afa3;
-  }
-
   .area-subtitle {
     margin-top: 10px;
     font-size: 0.9rem;
     color: #d4af37;
     text-transform: uppercase;
     letter-spacing: 2px;
+  }
+
+  .extra-describe {
+    margin: 10px;
+    font-size: 0.8rem;
+    color: #b2afa3;
   }
 
   /* 双列布局 */
@@ -215,11 +215,6 @@
     font-size: 1.2rem;
     color: #ff2e63;
     letter-spacing: 1px;
-  }
-
-  .comment {
-    margin-left: 20px;
-    color: #535353;
   }
 
   /* 链接列表 */
