@@ -1,9 +1,11 @@
 <template>
-  <Transition name="fade">
-    <div v-show="visible" class="back-to-top" @click="scrollToTop" title="Return to Top">
-      <div class="arrow-up"></div>
-    </div>
-  </Transition>
+  <div class="if-display" v-if="ifDisplay">
+    <Transition name="fade">
+      <div v-show="visible" class="back-to-top" @click="scrollToTop" title="Return to Top">
+        <div class="arrow-up"></div>
+      </div>
+    </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -18,6 +20,10 @@
       visible.value = window.scrollY > SCROLL_THRESHOLD
     })
   }
+
+  defineProps<{
+    ifDisplay: boolean
+  }>()
 
   const scrollToTop = () => {
     window.scrollTo({

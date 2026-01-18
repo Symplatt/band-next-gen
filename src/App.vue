@@ -5,15 +5,22 @@
     <NavigationBar />
     <RouterView />
     <Footer />
-    <BackToTop />
+    <BackToTop :ifDisplay="showBackToTop" />
   </div>
 </template>
 
 <script lang="ts" setup name="App">
   import { RouterView } from 'vue-router'
+  import { useRoute } from 'vue-router'
+  import { computed } from 'vue'
   import NavigationBar from './components/NavBar.vue'
   import Footer from './components/Footer.vue'
   import BackToTop from './components/BackToTop.vue'
+
+  const route = useRoute()
+  const showBackToTop = computed(() => {
+    return route.name != 'home'
+  })
 </script>
 
 <style>

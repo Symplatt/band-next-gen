@@ -9,8 +9,8 @@
         <div class="line-right"></div>
       </div>
       <p class="intro-text">
-        MyGO!!!!! 与 Ave Mujica 的成员们已各自组建家庭。<br />
-        这是属于她们孩子们的，继往开来的崭新故事。
+        MyGO!!!!! 与 Ave Mujica 已各自组建家庭。<br />
+        这是子辈们继往开来的崭新故事。
       </p>
     </div>
 

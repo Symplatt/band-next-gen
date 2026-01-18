@@ -1,8 +1,3 @@
-<!-- 
- 手机适配问题：
- 账号列表没填满宽度，应该需要把width 设置成100vw或者100%
- 数据也没两侧对齐，宽度也不够适配
--->
 <template>
   <div class="home-view">
     <main class="main-content">
@@ -23,12 +18,28 @@
             <!-- 左侧：平台链接 -->
             <div class="info-column social-column">
               <h3 class="column-title">Account / 画师账号</h3>
-              <div class="link-list" v-for="item in accountList" :key="item.name">
-                <a :href="item.link" target="_blank" class="social-link">
+
+              <!-- 建议结构：link-list 是容器，a 标签循环 -->
+              <div class="link-list">
+                <a
+                  v-for="item in accountList"
+                  :key="item.name"
+                  :href="item.link"
+                  target="_blank"
+                  class="social-link"
+                >
                   <div class="link-info">
-                    <span class="platform">{{ item.platform }}</span>
-                    <span class="username">{{ item.name }}</span>
+                    <span class="platform">
+                      {{ item.platform }}
+                      <span class="platform-describe" v-if="item.describe">
+                        {{ item.describe }}
+                      </span>
+                    </span>
+                    <span class="username">
+                      @{{ item.name }}<span class="tag">{{ item.tag }}</span>
+                    </span>
                   </div>
+
                   <span class="arrow-icon">↗</span>
                 </a>
               </div>
@@ -72,6 +83,8 @@
     name: string
     platform: string
     link: string
+    describe?: string
+    tag?: string
   }
 
   // 接口定义：统计数据
@@ -86,6 +99,8 @@
       name: 'hero鹤星',
       platform: 'Lofter',
       link: 'https://www.lofter.com/front/blog/collection/share?collectionId=22881169&incantation=hjoTvd7LiZIh',
+      describe: '主要更新',
+      tag: '#乐队子世代：那美好的未来',
     },
     {
       name: 'hero鶴星',
@@ -186,6 +201,7 @@
 
   .info-column {
     flex: 1;
+    min-width: 0;
   }
 
   .social-column {
@@ -208,14 +224,15 @@
   .link-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 0;
   }
 
   .social-link {
     display: flex;
-    align-items: center;
+    align-items: center; /* 垂直居中 */
     justify-content: space-between;
-    padding: 15px 0;
+    width: 100%;
+    padding: 20px 0;
     color: #fff;
     text-decoration: none;
     border-bottom: 1px solid rgb(255 255 255 / 10%);
@@ -223,14 +240,20 @@
   }
 
   .social-link:hover {
+    padding-left: 10px; /* 整体右移效果替代 translateX，防止图标出界 */
+    background: linear-gradient(90deg, rgb(255 255 255 / 3%), transparent); /* 添加微弱背景交互 */
     border-bottom-color: #d4af37;
-    transform: translateX(10px);
   }
 
   .username {
-    font-size: 0.9rem;
+    font-family: monospace; /* 用户名用等宽字体更有科技感 */
+    font-size: 0.8rem;
     color: #888;
     transition: color 0.3s;
+  }
+
+  .tag {
+    margin-left: 10px;
   }
 
   .arrow-icon {
@@ -239,20 +262,47 @@
     transition: color 0.3s;
   }
 
-  .social-link:hover .username,
+  .social-link:hover .username {
+    color: #fff;
+  }
+
   .social-link:hover .arrow-icon {
     color: #d4af37;
+    transform: translate(3px, -3px); /* 箭头向右上角微动 */
   }
 
   .link-info {
     display: flex;
+    flex: 1; /* 占满剩余宽度 */
     flex-direction: column;
+    min-width: 0; /* 防止文本溢出 */
+    padding-right: 5px; /* 避免文字撞到箭头 */
+  }
+
+  .info-header {
+    display: flex;
+    flex-wrap: wrap; /* 防止手机端爆开 */
+    gap: 10px;
+    align-items: center; /* 垂直居中 */
+    margin-bottom: 4px;
   }
 
   .platform {
     margin-bottom: 4px;
     font-size: 1.1rem;
     font-weight: bold;
+  }
+
+  .platform-describe {
+    display: inline-block; /* 为了让transform 生效 */
+    padding: 2px 5px;
+    margin-left: 5px;
+    font-size: 0.6em;
+    color: #eff0dc;
+    letter-spacing: 0.1em;
+    border: 1px solid #eff0dc;
+    border-radius: 5px;
+    transform: translateY(-2px);
   }
 
   /* 垂直分割线 */
@@ -294,6 +344,10 @@
 
   /* 移动端适配 */
   @media (width <= 768px) {
+    .account-area {
+      padding: 50px 20px;
+    }
+
     .title-content {
       margin-right: -0.8rem;
       font-size: 1.8rem;
@@ -308,6 +362,14 @@
     .social-column,
     .stats-column {
       padding: 0; /* 移除内边距 */
+    }
+
+    .social-column {
+      width: 100%;
+    }
+
+    .platform-describe {
+      margin-left: 13px;
     }
 
     .vertical-divider {
