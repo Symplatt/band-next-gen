@@ -1,8 +1,8 @@
-import{M as r}from"./MarkDownViewer-Dn7s3N0W.js";import{d as a,c as s,f as n,h as e,p as t,e as o,_ as c}from"./index-DXRQIv8H.js";const i=`## 项目介绍\r
+import{M as e}from"./MarkDownViewer-Bsh5JM_W.js";import{d as a,c as s,f as n,h as r,p as t,e as o,_ as c}from"./index-quwwJfL9.js";const i=`## 项目介绍\r
 \r
 \`PS：当前仅展示效果，具体文本待定\`\r
 \r
-「乐队子世代——那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
+「乐队子世代：那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
 ### 世界观\r
 \r
@@ -30,4 +30,4 @@ import{M as r}from"./MarkDownViewer-Dn7s3N0W.js";import{d as a,c as s,f as n,h a
 \r
 具体内容待定，当前仅展示效果。\r
 \r
-`,d={class:"about-view"},m={class:"page-container"},_={class:"content-card"},p={class:"footer-disclaimer"},g=a({__name:"AboutView",setup(u){return(f,Q)=>(o(),s("div",d,[n("div",m,[n("article",_,[e(r,{content:t(i)},null,8,["content"])]),n("footer",p,[e(r,{content:t(l),class:"small-text"},null,8,["content"])])])]))}}),x=c(g,[["__scopeId","data-v-21a32743"]]);export{x as default};
+`,d={class:"about-view"},m={class:"page-container"},_={class:"content-card"},p={class:"footer-disclaimer"},g=a({__name:"AboutView",setup(u){return(f,Q)=>(o(),s("div",d,[n("div",m,[n("article",_,[r(e,{content:t(i)},null,8,["content"])]),n("footer",p,[r(e,{content:t(l),class:"small-text"},null,8,["content"])])])]))}}),x=c(g,[["__scopeId","data-v-ee06262f"]]);export{x as default};
