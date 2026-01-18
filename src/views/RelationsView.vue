@@ -1,3 +1,5 @@
+<!-- npm run release 后的修改 -->
+
 <template>
   <div class="relations-view">
     <div class="left-bar"></div>
