@@ -56,7 +56,7 @@
   /* 手机端适配 */
   @media (width <= 768px) {
     .content-card {
-      padding: 30px 20px;
+      padding: 0;
       margin: 0 10px 40px;
       background: none;
       border: none; /* 手机端去掉边框，减少拥挤感 */

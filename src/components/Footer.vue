@@ -2,7 +2,7 @@
   <footer class="site-footer" v-if="!route.meta.hideFooter">
     <div class="page-container">
       <div class="footer-inner">
-        <div class="footer-block footer-main">© 2026 乐队子世代——那美好的未来</div>
+        <div class="footer-block footer-main">© 2026 乐队子世代：那美好的未来</div>
         <div class="footer-block footer-disclaimer">
           本网站为非商业性质的二次创作同人站点，与《BanG
           Dream!》系列及其版权方无任何官方隶属或合作关系。 原作版权归 Bushiroad / BanG Dream! Our
