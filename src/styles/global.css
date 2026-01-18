@@ -37,3 +37,11 @@
   padding: 0 40px;
   margin: 0 auto;
 }
+
+@media (min-width: 768px) {
+  .page-container {
+    box-sizing: border-box;
+    width: 100vw;
+    padding: 0 40px;
+  }
+}

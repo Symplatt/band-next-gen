@@ -19,7 +19,6 @@
 
     <!-- 页面内容 -->
     <div class="page-container">
-      <DemoComment />
       <!-- === 第一部分：称呼表 (Call Table) === -->
       <section id="section-table" class="section-block">
         <h2 class="section-title">称呼表</h2>
@@ -130,10 +129,6 @@
                 <span class="node-text">{{ char.name.slice(-2) }}</span>
               </div>
             </div>
-
-            <div class="center-text">
-              这里用贴图吧<br />线条太繁杂实在做不出来<br />这个网站已经做了快40个小时了
-            </div>
           </div>
         </div>
       </section>
@@ -177,7 +172,6 @@
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   import relationData from '@/assets/data/relations.json'
   import BackToTop from '@/components/BackToTop.vue'
-  import DemoComment from '@/components/DemoComment.vue'
 
   // 基础路径
   const baseUrl = import.meta.env.BASE_URL
@@ -654,18 +648,6 @@
   .node-wrapper.dimmed {
     opacity: 0.2;
     filter: grayscale(100%);
-  }
-
-  .center-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-family: 'Noto Serif SC', serif;
-    font-size: 1rem;
-    color: rgb(255 255 255 / 40%);
-    text-align: center;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
   }
 
   /* === 亲缘谱 (修改为 inline-block/flex-wrap 布局) === */

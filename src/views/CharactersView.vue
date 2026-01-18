@@ -1,6 +1,5 @@
 <template>
   <div class="characters-view">
-    <DemoComment />
     <!-- 顶部标题区 -->
     <div class="page-header">
       <h1 class="main-title">Characters</h1>
@@ -38,11 +37,6 @@
           >
             <!-- 图片区域 -->
             <div class="card-image-wrapper">
-              <!-- <img
-                :src="member.image || 'https://placehold.co/400x500/1a1a1a/d4af37?text=No+Image'"
-                :alt="member.name"
-                class="char-image"
-              /> -->
               <img :src="resolvePath(member.image)" class="char-image" @error="onImageError" />
               <div v-if="member.codeName" class="code-name-badge">{{ member.codeName }}</div>
             </div>
@@ -54,7 +48,7 @@
                 <span class="char-romaji">{{ member.romaji }}</span>
               </div>
 
-              <!-- 修改点：内容在左，标题在右 -->
+              <!-- 内容在左，标题在右 -->
               <div class="meta-info">
                 <div class="meta-row">
                   <span class="value highlight">{{ member.position }}</span
@@ -79,7 +73,6 @@
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import rawData from '@/assets/data/characters.json'
-  import DemoComment from '@/components/DemoComment.vue'
 
   interface Mother {
     /* src\assets\data\characters.json 中的Mother字段 */

@@ -10,7 +10,5 @@
 
 <script lang="ts" setup>
   import MarkDownViewer from '@/components/MarkDownViewer.vue'
-
-  // 导入文本
   import themeTempt from '@/content/主题试用.md?raw'
 </script>

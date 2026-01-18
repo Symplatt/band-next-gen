@@ -7,8 +7,6 @@ import ChronicleView from '@/views/ChronicleView.vue' // 纪事
 import AboutView from '@/views/AboutView.vue' // 关于
 import NotFound from '@/views/NotFound.vue' // 页面不存在
 
-
-
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [

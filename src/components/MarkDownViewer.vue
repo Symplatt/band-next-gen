@@ -12,7 +12,7 @@
 
   const props = withDefaults(
     defineProps<{
-      content: string
+      content: string // md文件
       indent?: number // 每段开头空几个汉字
     }>(),
     {

@@ -43,8 +43,8 @@
   .header-inner {
     box-sizing: border-box;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 两侧对齐 */
     max-width: 1400px;
     height: 100%;
     padding: 0 40px;
@@ -75,5 +75,16 @@
   .nav-link.active {
     color: #d4af37;
     text-shadow: 0 0 8px rgb(212 175 55 / 40%);
+  }
+
+  @media (width <= 768px) {
+    .brand-logo {
+      display: none;
+    }
+
+    .main-nav {
+      gap: 20px;
+      justify-content: center;
+    }
   }
 </style>
