@@ -1,6 +1,8 @@
 <template>
   <div class="relations-view">
-    <!-- === 2. 目录轴 (Sidebar) === -->
+    <!-- 回到顶部按钮 -->
+    <BackToTop />
+    <!-- 目录轴 (Sidebar) -->
     <nav class="sidebar">
       <div class="nav-line"></div>
       <ul class="nav-list">
@@ -28,7 +30,6 @@
               <tr class="header-avator">
                 <th></th>
                 <th v-for="member in memberList" :key="member.id">
-                  <!-- ✅ 修复：处理 BaseURL 拼接 -->
                   <img :src="resolvePath(member.avatar)" class="avatar-square" />
                 </th>
               </tr>
@@ -41,7 +42,7 @@
               </tr>
               <!-- 名字行 -->
               <tr class="header-char">
-                <th class="corner-header">称呼<br />↘<br />被称呼</th>
+                <th class="corner-header"><span class="corner-comment">称呼→被称呼</span></th>
                 <th
                   v-for="member in memberList"
                   :key="member.id"
@@ -168,6 +169,7 @@
 <script lang="ts" setup>
   import { ref, computed } from 'vue'
   import relationData from '@/assets/data/relations.json'
+  import BackToTop from '@/components/BackToTop.vue'
 
   // 基础路径
   const baseUrl = import.meta.env.BASE_URL
@@ -345,7 +347,6 @@
   }
 
   .nav-item .label {
-    font-family: 'Cinzel Decorative', cursive;
     font-size: 0.9rem;
     color: #d4af37;
     letter-spacing: 1px;
@@ -399,12 +400,32 @@
     border: 1px solid rgb(255 255 255 / 10%);
   }
 
+  .header-avator th {
+    box-sizing: border-box; /* 边框算在尺寸内 */
+    width: 80px; /* 设定宽度 */
+    min-width: 80px; /* 防止表格挤压导致变形 */
+    height: 80px; /* 设定高度与宽度一致 -> 正方形 */
+    padding: 0; /* 关键：去掉内边距，让图片能贴边 */
+  }
+
+  /* 左上角那个空格子也需要同步高度 */
+
+  .header-avator th:first-child {
+    min-width: auto;
+
+    /* width: auto; */
+    height: 80px;
+  }
+
   .avatar-square {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border: 1px solid rgb(255 255 255 / 20%);
-    border-radius: 4px;
+    display: block; /* 消除图片底部的幽灵间隙 */
+    width: 100%; /* 宽撑满格子 */
+    height: 100%; /* 高撑满格子 */
+    object-fit: cover; /* 保持比例裁切填充，不会拉伸变形 */
+    border: none;
+
+    /* 完全填满，去掉圆角和边框 */
+    border-radius: 0;
   }
 
   .header-group th {
@@ -439,6 +460,16 @@
     font-family: sans-serif;
     font-size: 0.75rem;
     color: #888;
+  }
+
+  .row-header {
+    font-weight: bold;
+    color: #d4af37;
+    background-color: rgb(212 175 55 / 5%);
+  }
+
+  .corner-comment {
+    font-size: 0.8rem;
   }
 
   /* 表格高亮 */
