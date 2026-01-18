@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-BB2RjQ-c.js";import{d as a,c as s,f as n,h as e,p as t,e as o,_ as c}from"./index-BjvrgLBw.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-Bji9SHM5.js";import{d as a,c as s,f as n,h as e,p as t,e as o,_ as c}from"./index-D5RIeEsQ.js";const i=`## 项目介绍\r
 \r
 \`PS：当前仅展示效果，具体文本待定\`\r
 \r
@@ -24,11 +24,10 @@ import{M as r}from"./MarkDownViewer-BB2RjQ-c.js";import{d as a,c as s,f as n,h a
 <img src="/band-next-gen/images/group1.png" alt="QQ群（左）" class="qr-img"></img>\r
 <img src="/band-next-gen/images/group2.png" alt="QQ群（右）" class="qr-img"></img>\r
 </div>\r
-\r
-\`@Symplatt：图片其实是我自己的QQ二维码，等正式发布再换成QQ群的。\``,l=`## 免责声明\r
+`,l=`## 免责声明\r
 \r
 本项目仅用于学习，请勿用于商业用途。本项目仅用于学习，请勿用于商业用途。本项目仅用于学习，请勿用于商业用途。本项目仅用于学习，请勿用于商业用途。本项目仅用于学习，请勿用于商业用途。本项目仅用于学习，请勿用于商业用途。本项目仅用于学习，请勿用于商业用途。本项目仅用于学习，请勿用于商业用途。本项目仅用于学习，请勿用于商业用途。\r
 \r
 具体内容待定，当前仅展示效果。\r
 \r
-`,d={class:"about-view"},m={class:"page-container"},_={class:"content-card"},p={class:"footer-disclaimer"},g=a({__name:"AboutView",setup(u){return(Q,f)=>(o(),s("div",d,[n("div",m,[n("article",_,[e(r,{content:t(i)},null,8,["content"])]),n("footer",p,[e(r,{content:t(l),class:"small-text"},null,8,["content"])])])]))}}),x=c(g,[["__scopeId","data-v-21a32743"]]);export{x as default};
+`,d={class:"about-view"},m={class:"page-container"},_={class:"content-card"},p={class:"footer-disclaimer"},g=a({__name:"AboutView",setup(u){return(f,Q)=>(o(),s("div",d,[n("div",m,[n("article",_,[e(r,{content:t(i)},null,8,["content"])]),n("footer",p,[e(r,{content:t(l),class:"small-text"},null,8,["content"])])])]))}}),x=c(g,[["__scopeId","data-v-21a32743"]]);export{x as default};
