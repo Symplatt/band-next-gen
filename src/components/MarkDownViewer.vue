@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
   import MarkdownIt from 'markdown-it'
-  import { computed } from 'vue'
+  import { ref, onMounted } from 'vue'
 
   const props = withDefaults(
     defineProps<{
@@ -26,8 +26,17 @@
     breaks: true,
   })
 
-  const renderedContent = computed(() => {
-    return props.content ? md.render(props.content) : ''
+  const renderedContent = ref('')
+
+  // md文件懒加载
+  onMounted(() => {
+    requestIdleCallback
+      ? requestIdleCallback(() => {
+          renderedContent.value = md.render(props.content)
+        })
+      : setTimeout(() => {
+          renderedContent.value = md.render(props.content)
+        }, 0)
   })
 </script>
 
