@@ -1,7 +1,7 @@
 <template>
   <div class="home-view">
     <main class="main-content">
-      <!-- 第一页：Hero 展示页，监听向下滚动事件 -->
+      <!-- 第一页：Hero 展示页 -->
       <HeroSection @scroll-next="handleScrollClick" />
 
       <!-- 第二页：账号与统计页 -->
@@ -19,7 +19,6 @@
             <div class="info-column social-column">
               <h3 class="column-title">Account / 画师账号</h3>
 
-              <!-- 建议结构：link-list 是容器，a 标签循环 -->
               <div class="link-list">
                 <a
                   v-for="item in accountList"
@@ -28,16 +27,21 @@
                   target="_blank"
                   class="social-link"
                 >
+                  <!-- 修改：Grid 容器 -->
                   <div class="link-info">
-                    <span class="platform">
-                      {{ item.platform }}
-                      <span class="platform-describe" v-if="item.describe">
-                        {{ item.describe }}
-                      </span>
+                    <!-- 左上：平台名 -->
+                    <span class="platform">{{ item.platform }}</span>
+
+                    <!-- 右上：主要更新标识 (v-if) -->
+                    <span class="platform-describe" v-if="item.describe">
+                      {{ item.describe }}
                     </span>
-                    <span class="username">
-                      @{{ item.name }}<span class="tag">{{ item.tag }}</span>
-                    </span>
+
+                    <!-- 左下：用户名 -->
+                    <span class="username">@{{ item.name }}</span>
+
+                    <!-- 右下：Tag (v-if) -->
+                    <span class="tag" v-if="item.tag">{{ item.tag }}</span>
                   </div>
 
                   <span class="arrow-icon">↗</span>
@@ -70,15 +74,12 @@
   // 确保路径正确指向你的组件
   import HeroSection from '@/components/home/HeroSection.vue'
 
-  // 滚动锚点引用
   const profileSectionRef = ref<HTMLElement | null>(null)
 
-  // 滚动处理函数：平滑滚动到账号区域
   const handleScrollClick = () => {
     profileSectionRef.value?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  // 接口定义：平台账号
   interface PlatformAccount {
     name: string
     platform: string
@@ -87,13 +88,11 @@
     tag?: string
   }
 
-  // 接口定义：统计数据
   interface StatData {
     num: string
     desc: string
   }
 
-  // 数据源：账号列表
   const accountList = ref<PlatformAccount[]>([
     {
       name: 'hero鹤星',
@@ -119,7 +118,6 @@
     },
   ])
 
-  // 数据源：统计列表
   const statList = ref<StatData[]>([
     { num: '9', desc: '子世代角色' },
     { num: '2', desc: '原创乐队' },
@@ -131,7 +129,7 @@
 </script>
 
 <style scoped>
-  /* 全局容器样式 */
+  /* 全局容器 */
   .home-view {
     width: 100%;
     min-height: 100vh;
@@ -140,48 +138,43 @@
     background-color: #000205;
   }
 
-  /* 主内容区 */
   .main-content {
     position: relative;
     width: 100%;
   }
 
-  /* 账号区域样式 - 确保背景色不透明，防止被其他元素干扰 */
   .account-area {
     position: relative;
     z-index: 5;
     display: flex;
     justify-content: center;
     min-height: 100vh;
-    padding: 80px 20px; /* 增加上下内边距 */
+    padding: 80px 20px;
     background-color: #0b0c10;
   }
 
-  /* 页面内容限制容器 */
   .page-container {
     width: 100%;
     max-width: 1200px;
   }
 
-  /* 标题组样式 */
   .section-title-group {
     margin-bottom: 80px;
     text-align: center;
   }
 
   .area-title {
-    /* 修正右间距导致的视觉偏移 */
     display: inline-block;
     margin: 0;
   }
 
   .title-content {
     width: auto;
-    margin-right: -1.5rem; /* 修正 letter-spacing 带来的末尾空白 */
+    margin-right: -1.5rem;
     font-size: 3rem;
     color: #fff;
-    letter-spacing: 1.5rem; /* 稍微减小间距以适配更多屏幕 */
-    white-space: nowrap; /* 禁用换行 */
+    letter-spacing: 1.5rem;
+    white-space: nowrap;
   }
 
   .area-subtitle {
@@ -192,7 +185,6 @@
     letter-spacing: 2px;
   }
 
-  /* 信息内容双列布局 */
   .info-content {
     display: flex;
     align-items: flex-start;
@@ -205,7 +197,7 @@
   }
 
   .social-column {
-    padding-right: 40px; /* 增加右侧间距 */
+    padding-right: 40px;
   }
 
   .stats-column {
@@ -220,7 +212,6 @@
     letter-spacing: 1px;
   }
 
-  /* 链接列表样式 */
   .link-list {
     display: flex;
     flex-direction: column;
@@ -229,7 +220,7 @@
 
   .social-link {
     display: flex;
-    align-items: center; /* 垂直居中 */
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     padding: 20px 0;
@@ -240,20 +231,64 @@
   }
 
   .social-link:hover {
-    padding-left: 10px; /* 整体右移效果替代 translateX，防止图标出界 */
-    background: linear-gradient(90deg, rgb(255 255 255 / 3%), transparent); /* 添加微弱背景交互 */
+    padding-left: 10px;
+    background: linear-gradient(90deg, rgb(255 255 255 / 3%), transparent);
     border-bottom-color: #d4af37;
   }
 
+  /* 修改：四宫格布局核心 */
+  .link-info {
+    display: grid;
+    flex: 1;
+
+    /* 两行布局 */
+    grid-template-rows: auto auto;
+
+    /* 第一列自适应内容宽度，第二列占据剩余空间 */
+    grid-template-columns: max-content auto;
+
+    /* 间距控制：列间距12px，行间距4px */
+    gap: 4px 12px;
+    align-items: center; /* 垂直居中 */
+    padding-right: 10px;
+  }
+
+  /* 强制指定每个元素的位置，确保对齐 */
+  .platform {
+    grid-row: 1;
+    grid-column: 1;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+
+  .platform-describe {
+    grid-row: 1;
+    grid-column: 2; /* 放在第二列，与下方的tag左对齐 */
+    justify-self: start; /* 靠左对齐 */
+    padding: 1px 5px;
+    font-size: 0.6em;
+    color: #eff0dc;
+    letter-spacing: 0.1em;
+    border: 1px solid #eff0dc;
+    border-radius: 5px;
+  }
+
   .username {
-    font-family: monospace; /* 用户名用等宽字体更有科技感 */
-    font-size: 0.8rem;
+    grid-row: 2;
+    grid-column: 1;
+    font-family: monospace;
+    font-size: 0.85rem;
     color: #888;
     transition: color 0.3s;
   }
 
   .tag {
-    margin-left: 10px;
+    grid-row: 2;
+    grid-column: 2; /* 放在第二列，与上方的标识左对齐 */
+    justify-self: start;
+    font-size: 0.75rem;
+    color: #666;
   }
 
   .arrow-icon {
@@ -268,53 +303,16 @@
 
   .social-link:hover .arrow-icon {
     color: #d4af37;
-    transform: translate(3px, -3px); /* 箭头向右上角微动 */
+    transform: translate(3px, -3px);
   }
 
-  .link-info {
-    display: flex;
-    flex: 1; /* 占满剩余宽度 */
-    flex-direction: column;
-    min-width: 0; /* 防止文本溢出 */
-    padding-right: 5px; /* 避免文字撞到箭头 */
-  }
-
-  .info-header {
-    display: flex;
-    flex-wrap: wrap; /* 防止手机端爆开 */
-    gap: 10px;
-    align-items: center; /* 垂直居中 */
-    margin-bottom: 4px;
-  }
-
-  .platform {
-    margin-bottom: 4px;
-    font-size: 1.1rem;
-    font-weight: bold;
-  }
-
-  .platform-describe {
-    display: inline-block; /* 为了让transform 生效 */
-    padding: 2px 5px;
-    margin-left: 5px;
-    font-size: 0.6em;
-    color: #eff0dc;
-    letter-spacing: 0.1em;
-    border: 1px solid #eff0dc;
-    border-radius: 5px;
-    transform: translateY(-2px);
-  }
-
-  /* 垂直分割线 */
   .vertical-divider {
-    /* 确保分割线高度跟随父容器 */
     align-self: stretch;
     width: 1px;
     margin: 0 20px;
     background: rgb(255 255 255 / 10%);
   }
 
-  /* 统计数据网格 */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -342,7 +340,6 @@
     letter-spacing: 1px;
   }
 
-  /* 移动端适配 */
   @media (width <= 768px) {
     .account-area {
       padding: 50px 20px;
@@ -355,29 +352,25 @@
     }
 
     .info-content {
-      flex-direction: column; /* 改为垂直排列 */
+      flex-direction: column;
       gap: 60px;
     }
 
     .social-column,
     .stats-column {
-      padding: 0; /* 移除内边距 */
+      padding: 0;
     }
 
     .social-column {
       width: 100%;
     }
 
-    .platform-describe {
-      margin-left: 13px;
-    }
-
     .vertical-divider {
-      display: none; /* 隐藏分割线 */
+      display: none;
     }
 
     .stats-grid {
-      grid-template-columns: repeat(2, 1fr); /* 统计改为两列 */
+      grid-template-columns: repeat(2, 1fr);
       gap: 40px 20px;
       margin-top: 0;
     }
