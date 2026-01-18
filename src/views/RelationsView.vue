@@ -30,7 +30,7 @@
                 <!-- 第一列空缺，固定宽度 -->
                 <th class="fixed-col"></th>
                 <th v-for="member in memberList" :key="member.id">
-                  <img :src="resolvePath(member.avatar)" class="avatar-square" />
+                  <img :src="resolvePath(member.avatar)" class="avatar-square" loading="lazy" />
                 </th>
               </tr>
               <!-- 组合行 -->
@@ -141,7 +141,7 @@
             <!-- 母亲层 -->
             <div class="parents-row">
               <div v-for="mom in family.mother" :key="mom.name" class="parent-node">
-                <img :src="resolvePath(mom.avatar)" class="avatar-round" />
+                <img :src="resolvePath(mom.avatar)" class="avatar-round" loading="lazy" />
                 <span class="name">{{ mom.name }}</span>
               </div>
             </div>
@@ -157,7 +157,7 @@
             <!-- 孩子层 -->
             <div class="child-row">
               <div v-for="child in family.child" :key="child.id" class="child-node">
-                <img :src="resolvePath(child.avatar)" class="avatar-round" />
+                <img :src="resolvePath(child.avatar)" class="avatar-round" loading="lazy" />
                 <span class="name">{{ child.name }}</span>
               </div>
             </div>

@@ -19,6 +19,7 @@
             :src="`${baseUrl}${member.image}`"
             @error="handStandImageError"
             class="stand-image"
+            loading="lazy"
           />
           <span class="stand-comment">一小段对图片的简短说明</span>
         </div>
@@ -31,6 +32,7 @@
               :src="`${baseUrl}${member.studentCard}`"
               @error="handleCardError"
               class="student-card-img"
+              loading="lazy"
             />
           </div>
         </div>
@@ -49,6 +51,7 @@
             <img
               :src="groupLogo || 'https://placehold.co/200x100/transparent/d4af37?text=LOGO'"
               class="band-logo-img"
+              loading="lazy"
             />
           </div>
         </div>

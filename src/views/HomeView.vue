@@ -1,3 +1,8 @@
+<!-- 
+ 手机适配问题：
+ 账号列表没填满宽度，应该需要把width 设置成100vw或者100%
+ 数据也没两侧对齐，宽度也不够适配
+-->
 <template>
   <div class="home-view">
     <main class="main-content">
@@ -101,12 +106,12 @@
 
   // 数据源：统计列表
   const statList = ref<StatData[]>([
-    { num: '200+', desc: '插画作品' },
     { num: '9', desc: '子世代角色' },
     { num: '2', desc: '原创乐队' },
-    { num: '700+', desc: '三创插画' },
-    { num: '200+', desc: '三创文章' },
-    { num: '∞', desc: '未完的故事' },
+    { num: '200+', desc: '插画作品' },
+    { num: '100+', desc: '未完的故事' },
+    { num: '70+', desc: '三创插画' },
+    { num: '50+', desc: '三创文章' },
   ])
 </script>
 

@@ -37,7 +37,12 @@
           >
             <!-- 图片区域 -->
             <div class="card-image-wrapper">
-              <img :src="resolvePath(member.image)" class="char-image" @error="onImageError" />
+              <img
+                :src="resolvePath(member.image)"
+                class="char-image"
+                @error="onImageError"
+                loading="lazy"
+              />
               <div v-if="member.codeName" class="code-name-badge">{{ member.codeName }}</div>
             </div>
 
