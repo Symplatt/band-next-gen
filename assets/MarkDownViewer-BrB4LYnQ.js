@@ -1,1 +1,0 @@
-import{d as r,M as s,l as c,c as a,e as d,_}from"./index-C5AbsVVU.js";const p=["innerHTML"],i=r({__name:"MarkDownViewer",props:{content:{}},setup(n){const e=n,t=new s({html:!0,linkify:!0,breaks:!0}),o=c(()=>e.content?t.render(e.content):"");return(l,m)=>(d(),a("div",{class:"markdown-body",innerHTML:o.value},null,8,p))}}),k=_(i,[["__scopeId","data-v-9812b330"]]);export{k as M};
