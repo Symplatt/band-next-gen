@@ -15,7 +15,7 @@
         <div class="line-right"></div>
       </div>
       <div class="sub-title">那美好的未来</div>
-      <div class="motto">EX-lilith ~ GO Rai</div>
+      <div class="motto">EX-lilith ~ GO Raiiii</div>
     </div>
 
     <!-- 如果 isScrollHintVisible 为 false (!true)，就加上 'hidden' 这个 CSS 类 -->
