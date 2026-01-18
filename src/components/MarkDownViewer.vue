@@ -1,12 +1,24 @@
 <template>
-  <div class="markdown-body" v-html="renderedContent"></div>
+  <div
+    class="markdown-body"
+    :style="{ '--para-indent': props.indent }"
+    v-html="renderedContent"
+  ></div>
 </template>
 
 <script setup lang="ts">
   import MarkdownIt from 'markdown-it'
   import { computed } from 'vue'
 
-  const props = defineProps<{ content: string }>()
+  const props = withDefaults(
+    defineProps<{
+      content: string
+      indent?: number // 每段开头空几个汉字
+    }>(),
+    {
+      indent: 0,
+    },
+  )
 
   const md = new MarkdownIt({
     html: true,
@@ -67,6 +79,7 @@
     line-height: 1.5; /* 增大行高，防止文字挤在一起 */
     color: #dcdcdc; /* 稍微提亮一点灰色，减少眼睛疲劳 */
     text-align: justify; /* 两端对齐，看起来更整齐 */
+    text-indent: calc(var(--para-indent, 0) * 1em);
   }
 
   /* 强调文本 (加粗) */
