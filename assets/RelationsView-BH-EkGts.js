@@ -1,1 +1,0 @@
-import{_ as a,c as t,f as s,e as c}from"./index-C1w9rq4-.js";const o={},n={class:"relations-view"};function r(i,e){return c(),t("div",n,[...e[0]||(e[0]=[s("div",{class:"page-container"},[s("div",{class:"abc"},"网页开发中")],-1)])])}const _=a(o,[["render",r],["__scopeId","data-v-60deeaf4"]]);export{_ as default};
