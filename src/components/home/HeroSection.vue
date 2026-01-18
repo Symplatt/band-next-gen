@@ -46,7 +46,7 @@
     emit('scroll-next')
   }
 
-  // 如果滚动距离小于50px，则为true，箭头图标正常显示
+  // 如果滚动距离小于50px，则为true，箭头图标将正常显示
   const handleScroll = () => {
     isScrollHintVisible.value = window.scrollY < SCROLL_THRESHOLD
   }
