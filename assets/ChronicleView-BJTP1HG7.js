@@ -1,1 +1,0 @@
-import{_ as o,c as s,f as c,e as n}from"./index-JoWpXFkc.js";const t={},r={class:"chronicle-view"};function a(l,e){return n(),s("div",r,[...e[0]||(e[0]=[c("p",null,"该模块用于呈现子世代完整时间轴，",-1),c("p",null,"具体内容暂且搁置，有待后续开发。",-1)])])}const i=o(t,[["render",a],["__scopeId","data-v-c3767b70"]]);export{i as default};
