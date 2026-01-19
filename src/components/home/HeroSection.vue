@@ -123,9 +123,7 @@
     );
     background-clip: text;
     background-size: 100% 300%;
-
-    /* 设置初始透明度为0，确保动画开始前不可见 */
-    opacity: 0;
+    opacity: 0; /* 设置初始透明度为0，确保动画开始前不可见 */
     filter: drop-shadow(0 0 12px rgb(142 45 226 / 50%)) drop-shadow(0 5px 2px rgb(0 0 0 / 80%));
 
     /* 组合多个动画：入场淡入 + 背景流动 + 悬浮效果 */
