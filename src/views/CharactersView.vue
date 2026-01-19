@@ -48,11 +48,9 @@
             <!-- 信息区域 -->
             <div class="card-info">
               <div class="name-group">
-                <!-- 名字与罗马音包裹层 -->
-                <div class="name-text-col">
-                  <h3 class="char-name">{{ member.name }}</h3>
-                  <span class="char-romaji">{{ member.romaji }}</span>
-                </div>
+                <!-- 名字与罗马音 -->
+                <h3 class="char-name">{{ member.name }}</h3>
+                <span class="char-romaji">{{ member.romaji }}</span>
               </div>
 
               <div class="meta-info">
@@ -182,7 +180,7 @@
 
   .divider {
     display: flex;
-    align-items: center;
+    align-items: center; /* 关键：确保子元素垂直居中对齐 */
     width: 100%;
     max-width: 600px;
     margin: 20px 0;
@@ -199,9 +197,9 @@
   .diamond {
     width: 8px;
     height: 8px;
-    margin-top: 15px;
+    margin: 0 10px; /* 移除原本的 margin-top，左右增加间距 */
     background: #d4af37;
-    transform: rotate(45deg);
+    transform: rotate(45deg); /* 旋转后垂直中心依然在几何中心，配合 align-items: center 即可对齐 */
   }
 
   .intro-text {
@@ -226,13 +224,21 @@
   .group-name {
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
-    color: #fff;
+    color: transparent; /* 文字透明，透出背景 */
     cursor: pointer;
-    transition: color 0.3s;
+
+    /* 核心修改：金色光粒飘飞效果实现 */
+    background: linear-gradient(120deg, #fff 0%, #fff 40%, #ffd700 50%, #fff 60%, #fff 100%);
+    background-clip: text;
+    background-size: 200% auto;
+    animation: shine-flow 2s linear infinite; /* 光影流动动画 */
   }
 
-  .group-name:hover {
-    color: #d4af37;
+  /* 定义光粒流动动画 */
+  @keyframes shine-flow {
+    to {
+      background-position: 200% center;
+    }
   }
 
   .group-desc {
@@ -303,19 +309,11 @@
     border: 1px solid #d4af37;
   }
 
-  /* 名字组：改为 Flex 布局以放置 Logo */
+  /* 名字组：恢复为普通块级或 Flex，已移除 Logo */
   .name-group {
-    display: flex;
-    align-items: center; /* 垂直居中对齐 */
-    justify-content: space-between;
     padding-bottom: 10px;
     margin-bottom: 15px;
     border-bottom: 1px solid rgb(255 255 255 / 10%);
-  }
-
-  .name-text-col {
-    display: flex;
-    flex-direction: column;
   }
 
   .char-name {
@@ -396,11 +394,6 @@
       aspect-ratio: 2 / 3;
     }
 
-    /* 手机端 Logo 隐藏，保持干净 */
-    .mini-band-logo {
-      display: none;
-    }
-
     /* 手机端沉浸式布局 */
     .card-info {
       position: absolute;
@@ -418,7 +411,6 @@
     }
 
     .name-group {
-      display: block; /* 手机端不需要 flex 左右布局 */
       padding-bottom: 0;
       margin-bottom: 2px;
       border-bottom: none;
