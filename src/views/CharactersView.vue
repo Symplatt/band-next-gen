@@ -222,22 +222,79 @@
   }
 
   .group-name {
+    position: relative;
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
-    color: transparent; /* 文字透明，透出背景 */
+
+    /* 文字透明，用背景显示 */
+    color: transparent;
     cursor: pointer;
 
-    /* 核心修改：金色光粒飘飞效果实现 */
-    background: linear-gradient(120deg, #fff 0%, #fff 40%, #ffd700 50%, #fff 60%, #fff 100%);
+    /* ===== 多层背景：光砂 + 金属光晕 ===== */
+    background-image:
+    /* 光砂层（细颗粒） */
+      repeating-radial-gradient(
+        circle at 20% 30%,
+        rgb(255 215 0 / 35%) 0,
+        rgb(255 215 0 / 35%) 1px,
+        transparent 2px,
+        transparent 4px
+      ),
+      /* 金属光晕层 */
+      linear-gradient(120deg, #cfa73a 0%, #fff2b0 45%, #ffd700 50%, #fff2b0 55%, #cfa73a 100%);
     background-clip: text;
-    background-size: 200% auto;
-    animation: shine-flow 2s linear infinite; /* 光影流动动画 */
+    background-size:
+      300% 300%,
+      /* 光砂 */ 200% auto; /* 光晕 */
+
+    /* 基础光晕气场 */
+    filter: drop-shadow(0 0 6px rgb(255 215 0 / 35%));
+
+    /* ===== 舞台级律动动画 ===== */
+    animation:
+      glitter-flow 32s ease-in-out infinite,
+      shine-flow 22s ease-in-out infinite alternate,
+      aura-pulse 28s ease-in-out infinite;
   }
 
-  /* 定义光粒流动动画 */
+  /* 光砂：极慢漂移，几乎不可察觉 */
+  @keyframes glitter-flow {
+    0% {
+      background-position:
+        0% 0%,
+        0% center;
+    }
+
+    100% {
+      background-position:
+        300% 300%,
+        0% center;
+    }
+  }
+
+  /* 光晕：缓慢往返律动，不消失 */
   @keyframes shine-flow {
-    to {
-      background-position: 200% center;
+    0% {
+      background-position: 180% center;
+    }
+
+    100% {
+      background-position: -180% center;
+    }
+  }
+
+  /* 气场：能量呼吸，不靠亮度 */
+  @keyframes aura-pulse {
+    0% {
+      filter: drop-shadow(0 0 4px rgb(255 215 0 / 25%));
+    }
+
+    50% {
+      filter: drop-shadow(0 0 10px rgb(255 215 0 / 45%));
+    }
+
+    100% {
+      filter: drop-shadow(0 0 4px rgb(255 215 0 / 25%));
     }
   }
 
