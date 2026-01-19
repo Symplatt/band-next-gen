@@ -1,5 +1,6 @@
 <template>
   <div class="home-view">
+    <OpeningIntro />
     <main class="main-content">
       <!-- 第一页：Hero 展示页 -->
       <HeroSection @scroll-next="handleScrollClick" />
@@ -71,8 +72,8 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  // 确保路径正确指向你的组件
   import HeroSection from '@/components/home/HeroSection.vue'
+  import OpeningIntro from '@/components/home/OpeningIntro.vue'
 
   const profileSectionRef = ref<HTMLElement | null>(null)
 
