@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-CC8uXOZv.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-Nq0TvGBD.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-Dhura6v-.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-C3hSRgrp.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -32,7 +32,7 @@ import{M as r}from"./MarkDownViewer-CC8uXOZv.js";import{d as a,c as o,f as n,h a
 \r
 由于项目文件托管于国外服务器，大陆用户无法稳定访问网站，请尽量“科学上网”。\r
 \r
-本网站不含18+内容。\r
+子世代的18+二创、三创内容不会在本网站呈现。\r
 \r
 GitHub地址：\\l[https://github.com/symplatt/band-next-gen](https://github.com/symplatt/band-next-gen)`,l=`## 免责声明\r
 \r
