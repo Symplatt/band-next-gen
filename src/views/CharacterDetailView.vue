@@ -21,7 +21,6 @@
             class="stand-image"
             loading="lazy"
           />
-          <span class="stand-comment">一小段对图片的简短说明</span>
         </div>
 
         <!-- images学生证 (固定比例 7:4) -->
