@@ -41,11 +41,7 @@ const router = createRouter({
       name: 'about',
       component: () => import('@/views/AboutView.vue'),
     },
-    {
-      path: '/theme',
-      name: 'theme',
-      component: () => import('@/views/ThemeTemptView.vue'),
-    },
+   
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
