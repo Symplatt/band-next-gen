@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-C0GzUOQA.js";import{d as e,c as a,f as n,h as c,p as o,e as i,_ as t}from"./index-DZyEBJIz.js";const s=`## 2020年，老团15，高一，动画的时间\r
+import{M as r}from"./MarkDownViewer-xfynXrew.js";import{d as e,c,f as n,h as a,p as o,e as i,_ as t}from"./index-CZD_jK-V.js";const s=`## 2020年，老团15，高一，动画的时间\r
 \r
 与初音同居之后，祥子和老登形成了心照不宣的平衡，我学商科学家业，但是你不要管我乐队的内务也不要试图再插手初音的人生，双方各退一步，至少在丰川的旁支面前能维持祖慈孙孝。相应的双方也在各自添堵，老登根本不派人去压制什么丰川家大小姐玩票的传言，祥子在给事务所挣钱方面也没开始那么拼命，事业是搞的但是通告可以选择性不去。\r
 \r
@@ -151,4 +151,4 @@ Ave Mujica的人气到达了最初演出之后的顶峰。托文春等一众小�
 >\r
 > 凑 羽希 24.9.21生日 温柔的孩子，比较像ykn\r
 >\r
-> 今井 澪 26.3.21生日 比较会发呆的孩子`,_={class:"chronicle-view"},u={class:"page-container"},d={class:"content-card"},l=e({__name:"ChronicleView",setup(m){return(p,v)=>(i(),a("div",_,[n("div",u,[n("article",d,[c(r,{content:o(s),indent:2},null,8,["content"])])])]))}}),h=t(l,[["__scopeId","data-v-3af3db54"]]);export{h as default};
+> 今井 澪 26.3.21生日 比较会发呆的孩子`,_={class:"chronicle-view"},u={class:"page-container"},d={class:"content-card"},l=e({__name:"ChronicleView",setup(m){return(p,v)=>(i(),c("div",_,[n("div",u,[n("article",d,[a(r,{content:o(s),indent:2},null,8,["content"])])])]))}}),h=t(l,[["__scopeId","data-v-94f9de30"]]);export{h as default};
