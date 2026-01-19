@@ -1,10 +1,10 @@
-import{M as r}from"./MarkDownViewer-DaZQyXXN.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-D8O1KvK6.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-CiK4X1MA.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-DqbFTTU_.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
 ### 世界观\r
 \r
-主线故事发生于Ave Mujica 动画剧情结束后二十余年后。在该时间线上，MyGO!!!!! 与 Ave Mujica 的十位成员各自组建家庭，拥有了共计 9 名孩子(其中高松雫为收养,其余为亲生)。详情可参见[关系 → 关系网](https://symplatt.github.io/band-next-gen/#/relations)。\r
+主线故事发生于Ave Mujica 动画剧情结束后二十余年后。在该时间线上，MyGO!!!!! 与 Ave Mujica 的十位成员各自组建家庭，拥有了共计 9 名孩子(其中高松雫为收养,其余为亲生)。详情可参见[关系 → 关系网](#/relations)。\r
 \r
 子世代成员组建了 **Ex-lilith** 与 **GoRai** 两支乐队，在继承母辈音乐精神与情感脉络的基础上，开启属于她们的崭新故事。\r
 \r
@@ -66,4 +66,4 @@ GitHub地址：\\l[https://github.com/symplatt/band-next-gen](https://github.com
 1. 本站不对因理解、解读或使用站内内容而产生的任何直接或间接后果承担责任。\r
 2. 用户应自行判断站内信息的创作属性与虚构性质。\r
 \r
-`,d={class:"about-view"},m={class:"page-container"},u={class:"content-card"},p={class:"footer-disclaimer"},_=a({__name:"AboutView",setup(h){return(g,f)=>(s(),o("div",d,[n("div",m,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",p,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),x=c(_,[["__scopeId","data-v-dc887e0d"]]);export{x as default};
+`,d={class:"about-view"},m={class:"page-container"},u={class:"content-card"},p={class:"footer-disclaimer"},_=a({__name:"AboutView",setup(h){return(f,g)=>(s(),o("div",d,[n("div",m,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",p,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),G=c(_,[["__scopeId","data-v-dc887e0d"]]);export{G as default};
