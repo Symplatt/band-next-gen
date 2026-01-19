@@ -93,6 +93,7 @@
 
         <!-- PC端显示的关系网图表 -->
         <div class="network-container desktop-only">
+          该模块正在制作中，当前仅演示初版效果：
           <div class="circle-layout">
             <svg class="lines-layer" viewBox="0 0 500 500">
               <line
