@@ -102,8 +102,7 @@
     width: 100%;
     padding: 0 20px; /* 增加左右内边距，防止手机端文字贴边 */
     text-align: center;
-
-    /* 移除固定的 height: 90vh 和 transform，改用 flex 居中更稳 */
+    transform: translateY(-10vh);
   }
 
   .main-title {
@@ -124,8 +123,14 @@
     );
     background-clip: text;
     background-size: 100% 300%;
+
+    /* 设置初始透明度为0，确保动画开始前不可见 */
+    opacity: 0;
     filter: drop-shadow(0 0 12px rgb(142 45 226 / 50%)) drop-shadow(0 5px 2px rgb(0 0 0 / 80%));
+
+    /* 组合多个动画：入场淡入 + 背景流动 + 悬浮效果 */
     animation:
+      main-enter 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
       flow-purple 15s ease-in-out infinite,
       title-float 6s ease-in-out infinite;
     -webkit-text-fill-color: transparent;
@@ -140,7 +145,14 @@
     background: linear-gradient(90deg, #734b16, #d4af37, #fef9e7, #d4af37, #734b16);
     background-clip: text;
     background-size: 200% auto;
-    animation: gold-sweep 7s linear infinite;
+
+    /* 初始透明度为0 */
+    opacity: 0;
+
+    /* 入场动画延迟0.4秒执行 */
+    animation:
+      fade-in-up 1s ease-out 0.4s forwards,
+      gold-sweep 7s linear infinite;
     -webkit-text-fill-color: transparent;
   }
 
@@ -153,6 +165,12 @@
     width: 100%;
     max-width: 900px;
     margin: 2.5rem 0;
+
+    /* 初始透明度为0 */
+    opacity: 0;
+
+    /* 入场动画延迟0.2秒执行 */
+    animation: fade-in-up 1s ease-out 0.2s forwards;
   }
 
   .line-left,
@@ -192,7 +210,10 @@
     color: #6a4c93;
     text-transform: uppercase;
     letter-spacing: 0.8rem;
-    opacity: 0.7;
+    opacity: 0;
+
+    /* 入场动画延迟0.6秒执行 */
+    animation: fade-in-up 1s ease-out 0.6s forwards;
   }
 
   /* 动画部分保持不变 */
@@ -224,20 +245,53 @@
     }
   }
 
+  /* 定义主标题的入场动画：从模糊和透明逐渐变得清晰 */
+  @keyframes main-enter {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+    }
+
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  /* 定义通用元素的入场动画：向上浮动并淡入 */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   /* 滚动提示 */
   .scroll-hint {
     position: absolute;
+    right: 0;
     bottom: 30px; /* 稍微抬高一点，适配不同下巴的手机 */
     left: 50%;
+
+    /* 滚动提示也参加入场动画，延迟0.8秒 */
+    left: 0;
     z-index: 20;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: fit-content; /* 不限制宽度margin auto不生效 */
+    margin: 0 auto;
     cursor: pointer;
-    transform: translateX(-50%);
+    opacity: 0;
     transition:
       opacity 0.5s ease,
       visibility 0.5s;
+    animation: fade-in-up 1s ease-out 0.8s forwards;
   }
 
   .hint-text {
@@ -259,7 +313,7 @@
   .scroll-hint.hidden {
     visibility: hidden;
     pointer-events: none;
-    opacity: 0;
+    opacity: 0 !important; /* 强制覆盖动画的opacity */
   }
 
   @keyframes arrow-bounce {

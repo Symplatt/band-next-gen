@@ -1,6 +1,5 @@
 <template>
   <div class="home-view">
-    <OpeningIntro />
     <main class="main-content">
       <!-- 第一页：Hero 展示页 -->
       <HeroSection @scroll-next="handleScrollClick" />
@@ -73,7 +72,6 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import HeroSection from '@/components/home/HeroSection.vue'
-  import OpeningIntro from '@/components/home/OpeningIntro.vue'
 
   const profileSectionRef = ref<HTMLElement | null>(null)
 
@@ -147,9 +145,10 @@
   .account-area {
     position: relative;
     z-index: 5;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 100vh; /* 至少一满屏 */
     padding: 80px 20px;
     background-color: #0b0c10;
   }
@@ -195,6 +194,7 @@
   .info-column {
     flex: 1;
     min-width: 0;
+    margin-bottom: 100px; /* 两个子容器，高者下边距100px */
   }
 
   .social-column {
@@ -269,9 +269,10 @@
     justify-self: start; /* 靠左对齐 */
     padding: 1px 5px;
     font-size: 0.6em;
-    color: #eff0dc;
+    color: #d4af37; /* 文字改为金色 */
     letter-spacing: 0.1em;
-    border: 1px solid #eff0dc;
+    background-color: rgb(212 175 55 / 10%); /* 背景改为透明金 */
+    border: 1px solid #d4af37; /* 边框改为金色 */
     border-radius: 5px;
   }
 
@@ -286,7 +287,7 @@
 
   .tag {
     grid-row: 2;
-    grid-column: 2; /* 放在第二列，与上方的标识左对齐 */
+    grid-column: 2;
     justify-self: start;
     font-size: 0.75rem;
     color: #666;
@@ -310,7 +311,7 @@
   .vertical-divider {
     align-self: stretch;
     width: 1px;
-    margin: 0 20px;
+    margin: 0 20px 100px; /* 100px是为了和两个info-column中更高的那个底对齐 */
     background: rgb(255 255 255 / 10%);
   }
 
@@ -355,6 +356,11 @@
     .info-content {
       flex-direction: column;
       gap: 60px;
+      margin-bottom: 0;
+    }
+
+    .info-column {
+      margin-bottom: 100px;
     }
 
     .social-column,
@@ -364,6 +370,7 @@
 
     .social-column {
       width: 100%;
+      margin-bottom: 0;
     }
 
     .vertical-divider {

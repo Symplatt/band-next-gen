@@ -35,7 +35,7 @@
               </tr>
               <!-- 组合行 -->
               <tr class="header-group">
-                <th class="fixed-col"><span class="group-label">所属组合</span></th>
+                <th class="fixed-col"><span class="group-label">所属乐队</span></th>
                 <th colspan="4" class="group-name lilith">Ex-Lilith</th>
                 <th colspan="4" class="group-name gorai">Go Raiiii</th>
                 <th colspan="1" class="group-name other">Other</th>
