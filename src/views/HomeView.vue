@@ -17,7 +17,7 @@
           <div class="info-content">
             <!-- 左侧：平台链接 -->
             <div class="info-column social-column">
-              <h3 class="column-title">Account / 画师账号</h3>
+              <h3 class="column-title social-title">Account / 画师账号</h3>
 
               <div class="link-list">
                 <a
@@ -54,7 +54,7 @@
 
             <!-- 右侧：数据统计 -->
             <div class="info-column stats-column">
-              <h3 class="column-title">Statistics / 数据统计</h3>
+              <h3 class="column-title stat-title">Statistics / 数据统计</h3>
               <div class="stats-grid">
                 <div class="stat-unit" v-for="item in statList" :key="item.desc">
                   <span class="stat-num">{{ item.num }}</span>
@@ -347,6 +347,10 @@
       padding: 50px 20px;
     }
 
+    .section-title-group {
+      margin-bottom: 40px;
+    }
+
     .title-content {
       margin-right: -0.8rem;
       font-size: 1.8rem;
@@ -370,7 +374,15 @@
 
     .social-column {
       width: 100%;
-      margin-bottom: 0;
+      margin-bottom: 40px;
+    }
+
+    .column-title {
+      text-align: center;
+    }
+
+    .social-title {
+      margin-bottom: 30px;
     }
 
     .vertical-divider {
