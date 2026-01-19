@@ -123,7 +123,7 @@
               @mouseleave="networkHoverId = null"
             >
               <div class="node-circle">
-                <span class="node-text">{{ char.name.slice(-2) }}</span>
+                <span class="node-text">{{ char.name.slice(-1) }}</span>
               </div>
             </div>
           </div>
