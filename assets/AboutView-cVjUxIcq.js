@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-DQPZqCc_.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-B4tu_EuZ.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-DBVCgBzg.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-CTxqVGuI.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -28,13 +28,13 @@ import{M as r}from"./MarkDownViewer-DQPZqCc_.js";import{d as a,c as o,f as n,h a
 \r
 ## 其他\r
 \r
-- 本网站适配电脑浏览器与手机浏览器，二者在界面布局上稍有不同，但不存在内容差异。\r
+① 本网站适配电脑浏览器与手机浏览器，二者在界面布局上稍有不同，但不存在内容差异。\r
 \r
-- 由于服务器位于海外，部分地区（如中国大陆）的访问速度可能较慢或不稳定。\r
+② 由于服务器位于海外，部分地区（如中国大陆）的访问速度可能较慢或不稳定。(预计2026年2月1日前，将完成国内服务器部署，届时所有用户均可稳定访问)\r
 \r
-- 本网站仅收录全年龄向内容。\r
+③ 本网站仅收录全年龄向内容。\r
 \r
-- GitHub地址：\\l[https://github.com/symplatt/band-next-gen](https://github.com/symplatt/band-next-gen)`,l=`## 免责声明\r
+④ GitHub地址：\\l[https://github.com/symplatt/band-next-gen](https://github.com/symplatt/band-next-gen)`,l=`## 免责声明\r
 \r
 本网站为非商业性质的二次创作同人展示站点，内容基于《BanG Dream! It's MyGO!!!!!》与《BanG Dream! Ave Mujica》原作世界观进行延伸创作，仅用于同人交流与作品展示目的。\r
 \r
