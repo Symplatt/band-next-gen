@@ -1,5 +1,3 @@
-<!-- 修改前 -->
-
 <template>
   <section class="hero-section">
     <div class="background-layer">
@@ -75,7 +73,7 @@
     height: calc(100dvh - var(--header-height, 0px));
     overflow: hidden;
 
-    /* 设置背景底色防止加载闪烁 */
+    /* 设置背景底色 */
     background-color: #000205;
   }
 
@@ -105,7 +103,7 @@
     justify-content: center;
     width: 100%;
 
-    /* 设置左右内边距防止文字贴边 */
+    /* 设置左右内边距 */
     padding: 0 20px;
     text-align: center;
     transform: translateY(-5vh);
@@ -134,22 +132,22 @@
     background-clip: text;
     background-size: 100% 300%;
 
-    /* 初始状态不可见 */
+    /* 初始透明度为0 */
     opacity: 0;
     filter: drop-shadow(0 0 12px rgb(142 45 226 / 50%)) drop-shadow(0 5px 2px rgb(0 0 0 / 80%));
 
-    /* 执行入场、流光和悬浮动画 */
+    /* 组合入场动画(1.5s)、流光动画和延迟的悬浮动画 */
     animation:
-      main-enter 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+      main-descend 1.5s ease-out forwards,
       flow-purple 15s ease-in-out infinite,
-      title-float 6s ease-in-out infinite;
+      title-float 6s ease-in-out 1.5s infinite;
     -webkit-text-fill-color: transparent;
   }
 
   .sub-title {
     margin-top: 1.2rem;
 
-    /* 修正字间距带来的右侧留白 */
+    /* 修正字间距 */
     margin-right: -2.5rem;
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
@@ -159,9 +157,9 @@
     background-size: 200% auto;
     opacity: 0;
 
-    /* 延迟执行入场和扫光动画 */
+    /* 纯透明渐变实化动画(1.5s) */
     animation:
-      fade-in-up 1s ease-out 0.4s forwards,
+      sub-solidify 1.5s ease-out forwards,
       gold-sweep 7s linear infinite;
     -webkit-text-fill-color: transparent;
   }
@@ -173,12 +171,8 @@
     width: 100%;
     max-width: 900px;
 
-    /* 减少顶部间距拉近标题，保留底部间距 */
+    /* 调整上下间距 */
     margin: 0.5rem 0 2.5rem;
-    opacity: 0;
-
-    /* 延迟执行入场动画 */
-    animation: fade-in-up 1s ease-out 0.2s forwards;
   }
 
   .line-left,
@@ -186,10 +180,24 @@
     flex-grow: 1;
     height: 1px;
     background: linear-gradient(to right, transparent, #ff2e63, #d4af37, transparent);
+
+    /* 初始横向缩放为0 */
+    transform: scaleX(0);
+
+    /* 线条延伸动画(2.0s) */
+    animation: line-grow 2s ease-out forwards;
+  }
+
+  .line-left {
+    /* 左侧线条从右向左延伸 */
+    transform-origin: right center;
   }
 
   .line-right {
     background: linear-gradient(to right, transparent, #d4af37, #ff2e63, transparent);
+
+    /* 右侧线条从左向右延伸 */
+    transform-origin: left center;
   }
 
   .diamond {
@@ -202,6 +210,8 @@
     border: 1px solid #d4af37;
     box-shadow: 0 0 15px #ff1e56;
     transform: rotate(45deg);
+
+    /* 菱形无动画，直接显示 */
   }
 
   .diamond::after {
@@ -220,8 +230,8 @@
     letter-spacing: 0.8rem;
     opacity: 0;
 
-    /* 延迟执行入场动画 */
-    animation: fade-in-up 1s ease-out 0.6s forwards;
+    /* 底部向上浮现动画(1.5s) */
+    animation: motto-ascend 1.5s ease-out forwards;
   }
 
   @keyframes flow-purple {
@@ -252,20 +262,57 @@
     }
   }
 
-  /* 标题从模糊透明到清晰可见 */
-  @keyframes main-enter {
+  /* 主标题：从上而下缓慢出现 */
+  @keyframes main-descend {
     from {
       opacity: 0;
       filter: blur(10px);
+      transform: translateY(-50px);
     }
 
     to {
       opacity: 1;
       filter: blur(0);
+      transform: translateY(0);
     }
   }
 
-  /* 通用元素向上浮动并淡入 */
+  /* 副标题：从透明逐渐实化 */
+  @keyframes sub-solidify {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* 补充文字：自下而上缓慢浮现 */
+  @keyframes motto-ascend {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 分割线：横向延伸 */
+  @keyframes line-grow {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* 通用向上浮入动画(用于滚动提示) */
   @keyframes fade-in-up {
     from {
       opacity: 0;
@@ -281,16 +328,12 @@
   .scroll-hint {
     position: absolute;
     right: 0;
-
-    /* 抬高底部距离适配不同设备 */
     bottom: 30px;
     left: 0;
     z-index: 20;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    /* 宽度自适应内容 */
     width: fit-content;
     margin: 0 auto;
     cursor: pointer;
@@ -299,7 +342,7 @@
       opacity 0.5s ease,
       visibility 0.5s;
 
-    /* 延迟执行入场动画 */
+    /* 滚动提示保持原有延迟 */
     animation: fade-in-up 1s ease-out 0.8s forwards;
   }
 
@@ -322,8 +365,6 @@
   .scroll-hint.hidden {
     visibility: hidden;
     pointer-events: none;
-
-    /* 强制隐藏 */
     opacity: 0 !important;
   }
 
@@ -364,10 +405,7 @@
     }
 
     .divider {
-      /* 限制移动端宽度 */
       width: 80%;
-
-      /* 移动端保持较小的间距 */
       margin: 1rem 0;
     }
 
