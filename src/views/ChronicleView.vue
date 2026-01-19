@@ -45,7 +45,7 @@
   @media (width <= 768px) {
     .chronicle-view {
       /* 移动端减小顶边距 */
-      margin-top: 20px;
+      margin-top: 0;
 
       /* 移动端减小字体基准大小 */
       font-size: 1rem;
