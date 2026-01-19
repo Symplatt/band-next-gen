@@ -21,7 +21,6 @@
       <!-- === 第一部分：称呼表 === -->
       <section id="section-table" class="section-block">
         <h2 class="section-title"><span>称呼表</span></h2>
-        <div class="table-description">表格可横向滚动，但更适合电脑浏览器查看</div>
         <div class="table-scroll-wrapper">
           <table class="call-table">
             <thead>
@@ -51,21 +50,25 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="caller in memberList" :key="caller.id">
+              <!-- 增加 rIndex 用于判断行位置 -->
+              <tr v-for="(caller, rIndex) in memberList" :key="caller.id">
                 <td
                   class="row-header fixed-col"
                   :class="{ 'highlight-row': hoverRow === caller.id }"
                 >
                   <div class="td-content">{{ caller.name }}</div>
                 </td>
+                <!-- 增加 cIndex 用于判断列位置 -->
                 <td
-                  v-for="target in memberList"
+                  v-for="(target, cIndex) in memberList"
                   :key="target.id"
                   class="cell"
                   :class="{
                     active: hoverRow === caller.id && hoverCol === target.id,
                     'cross-highlight': hoverRow === caller.id || hoverCol === target.id,
                     self: caller.id === target.id,
+                    'bg-lilith': rIndex < 4 && cIndex < 4,
+                    'bg-gorai': rIndex >= 4 && cIndex >= 4,
                   }"
                   @mouseenter="setHover(caller.id, target.id)"
                   @mouseleave="clearHover"
@@ -203,7 +206,7 @@
       const headerHeight = getComputedStyle(document.documentElement)
         .getPropertyValue('--header-height')
         .trim()
-      const navOffset = 0 // 手机端不显示目录轴，无需偏移
+      const navOffset = 0
       const baseOffset = parseInt(headerHeight || '0') + navOffset
       const elementPosition = el.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - baseOffset - 20
@@ -231,22 +234,19 @@
 
   onMounted(() => {
     window.addEventListener('scroll', handleScroll)
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible') // 添加动画类
-            observer.unobserve(entry.target) // 动画只执行一次
+            entry.target.classList.add('visible')
+            observer.unobserve(entry.target)
           }
         })
       },
       { threshold: 0.1 },
     )
-    // 开始监听所有标题
     document.querySelectorAll('.section-title').forEach((el) => observer.observe(el))
   })
-
   onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll)
   })
@@ -377,16 +377,11 @@
     transform: rotate(45deg) scale(1.5);
   }
 
-  .page-container {
-    padding-top: 50px;
-  }
-
   .section-block {
     margin-bottom: 150px;
     scroll-margin-top: 100px;
   }
 
-  /* 标题容器：保持 Flex 布局，移除之前的整体动画 */
   .section-title {
     display: flex;
     gap: 20px;
@@ -403,31 +398,28 @@
     border-bottom: none;
   }
 
-  /* 针对文字 span 的动画（淡入 + 上浮） */
   .section-title span {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-10px);
     transition:
       opacity 1.5s ease-out,
       transform 1.5s ease-out;
   }
 
-  /* 线条初始宽度为 0，添加宽度过渡动画 */
   .section-title::before,
   .section-title::after {
     display: block;
-    width: 0; /* 初始宽度为 0 */
+    width: 0;
     height: 1px;
     content: '';
     background: linear-gradient(90deg, transparent, rgb(185 153 48 / 50%));
-    transition: width 2s ease-out; /* 宽度缓慢伸长 */
+    transition: width 1.2s ease-out;
   }
 
   .section-title::after {
     background: linear-gradient(90deg, rgb(185 153 48 / 50%), transparent);
   }
 
-  /* 激活状态：文字浮现，线条变长 */
   .section-title.visible span {
     opacity: 1;
     transform: translateY(0);
@@ -435,15 +427,7 @@
 
   .section-title.visible::before,
   .section-title.visible::after {
-    width: 400px; /* 最终线条长度 */
-  }
-
-  .table-description {
-    display: none;
-    margin-bottom: 20px;
-    font-size: 0.7rem;
-    color: rgb(185 153 48 / 50%);
-    text-align: center;
+    width: 400px;
   }
 
   .table-scroll-wrapper {
@@ -537,6 +521,16 @@
 
   .corner-comment {
     font-size: 0.8rem;
+  }
+
+  /* Ex-Lilith 区域背景 (4x4) */
+  .bg-lilith {
+    background-color: rgb(255 77 77 / 6%);
+  }
+
+  /* Go Raiiii + Other 区域背景 (5x5) */
+  .bg-gorai {
+    background-color: rgb(255 174 0 / 6%);
   }
 
   .highlight-col,
@@ -656,7 +650,6 @@
     filter: grayscale(100%);
   }
 
-  /* 手机端网络图提示信息默认隐藏 */
   .mobile-network-msg {
     display: none;
     padding: 40px 20px;
@@ -679,7 +672,6 @@
     justify-content: center;
   }
 
-  /* 电脑端亲缘谱顺序调整: 羽月(1) 若叶(2) 高松(3) 长崎(4) 八幡(5) */
   .family-unit {
     display: flex;
     flex-direction: column;
@@ -693,17 +685,19 @@
 
   .family-unit:nth-child(2) {
     order: 5;
-  } /* 莉子移到最后 */
+  }
+
   .family-unit:nth-child(3) {
     order: 2;
-  } /* 若叶移到第二个 */
+  }
+
   .family-unit:nth-child(4) {
     order: 4;
   }
 
   .family-unit:nth-child(5) {
     order: 3;
-  } /* 高松移到第三个 */
+  }
 
   .parents-row,
   .child-row {
@@ -795,12 +789,10 @@
   }
 
   @media (width <= 768px) {
-    /* 隐藏目录轴 */
     .sidebar {
       display: none;
     }
 
-    /* 关系网适配: 隐藏图表，显示文字 */
     .desktop-only {
       display: none;
     }
@@ -811,54 +803,29 @@
 
     .section-title {
       gap: 10px;
-      font-size: 1.5rem;
-    }
-
-    .section-title::before,
-    .section-title::after {
-      width: 30px;
+      font-size: 1.8rem;
     }
 
     .section-title.visible::before,
     .section-title.visible::after {
-      width: 100px; /* 手机端线条较短 */
+      width: 30px;
     }
 
-    .table-description {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0;
-      font-size: 0.6rem;
-      transform: translateY(-3.5vh);
-    }
-
-    .table-scroll-wrapper {
-      border: rgb(255 215 0 / 10%) 1px solid;
-      border-radius: 5px;
-    }
-
-    .cell {
-      font-size: 0.8rem;
-    }
-
-    /* 亲缘谱容器修复: 移除内边距，确保居中，缩小Gap防止溢出 */
     .genealogy-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 30px 5px; /* 缩小列间距 */
-      justify-items: center; /* 修复右偏关键：强制内容在格子内居中 */
+      gap: 30px 5px;
+      justify-items: center;
       width: 100%;
-      padding: 0; /* 移除padding，完全交由Grid控制 */
+      padding: 0;
     }
 
     .family-unit {
-      /* 手机端重置order，使用GridArea布局 */
       order: unset !important;
       min-width: auto;
       transform: scale(0.9);
     }
 
-    /* 保持原来的手机端布局逻辑 */
     .family-unit:nth-child(1) {
       grid-area: 1 / 1 / 2 / 2;
     }
