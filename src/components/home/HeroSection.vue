@@ -46,7 +46,7 @@
     emit('scroll-next')
   }
 
-  // 如果滚动距离小于50px，则为true，箭头图标将正常显示
+  // 根据滚动距离控制箭头显示状态
   const handleScroll = () => {
     isScrollHintVisible.value = window.scrollY < SCROLL_THRESHOLD
   }
@@ -68,18 +68,20 @@
     justify-content: center;
     width: 100%;
 
-    /* 核心修改：优先使用 dvh (动态视口高度) 适配移动端地址栏伸缩，不支持则回退到 vh */
+    /* 优先使用动态视口高度适配移动端 */
     height: calc(100vh - var(--header-height, 0px));
     height: calc(100dvh - var(--header-height, 0px));
     overflow: hidden;
 
-    /* 防止背景在加载前闪白 */
+    /* 设置背景底色防止加载闪烁 */
     background-color: #000205;
   }
 
   .background-layer {
     position: absolute;
-    inset: 0; /* 简写 top/left/right/bottom: 0 */
+
+    /* 铺满父容器 */
+    inset: 0;
     z-index: 1;
     width: 100%;
     height: 100%;
@@ -100,15 +102,21 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 0 20px; /* 增加左右内边距，防止手机端文字贴边 */
+
+    /* 设置左右内边距防止文字贴边 */
+    padding: 0 20px;
     text-align: center;
-    transform: translateY(-10vh);
+    transform: translateY(-5vh);
   }
 
   .main-title {
-    margin-right: -1.5rem; /* 修正 letter-spacing 带来的右侧空白 */
+    display: flex;
 
-    /* 核心修改：使用 clamp 动态字体，或者在媒体查询中修改 */
+    /* 使用上外边距代替 transform 实现下移 */
+    margin-top: 5vh;
+
+    /* 修正字间距带来的右侧留白 */
+    margin-right: -1.5rem;
     font-size: 6rem;
     font-weight: 800;
     line-height: 1.1;
@@ -123,10 +131,12 @@
     );
     background-clip: text;
     background-size: 100% 300%;
-    opacity: 0; /* 设置初始透明度为0，确保动画开始前不可见 */
+
+    /* 初始状态不可见 */
+    opacity: 0;
     filter: drop-shadow(0 0 12px rgb(142 45 226 / 50%)) drop-shadow(0 5px 2px rgb(0 0 0 / 80%));
 
-    /* 组合多个动画：入场淡入 + 背景流动 + 悬浮效果 */
+    /* 执行入场、流光和悬浮动画 */
     animation:
       main-enter 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
       flow-purple 15s ease-in-out infinite,
@@ -136,18 +146,18 @@
 
   .sub-title {
     margin-top: 1.2rem;
-    margin-right: -2.5rem; /* 修正 letter-spacing */
+
+    /* 修正字间距带来的右侧留白 */
+    margin-right: -2.5rem;
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
     letter-spacing: 2.5rem;
     background: linear-gradient(90deg, #734b16, #d4af37, #fef9e7, #d4af37, #734b16);
     background-clip: text;
     background-size: 200% auto;
-
-    /* 初始透明度为0 */
     opacity: 0;
 
-    /* 入场动画延迟0.4秒执行 */
+    /* 延迟执行入场和扫光动画 */
     animation:
       fade-in-up 1s ease-out 0.4s forwards,
       gold-sweep 7s linear infinite;
@@ -158,16 +168,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /* 核心修改：移除固定宽度 900px，改为百分比 + 最大宽度 */
     width: 100%;
     max-width: 900px;
-    margin: 2.5rem 0;
 
-    /* 初始透明度为0 */
+    /* 减少顶部间距拉近标题，保留底部间距 */
+    margin: 0.5rem 0 2.5rem;
     opacity: 0;
 
-    /* 入场动画延迟0.2秒执行 */
+    /* 延迟执行入场动画 */
     animation: fade-in-up 1s ease-out 0.2s forwards;
   }
 
@@ -210,11 +218,10 @@
     letter-spacing: 0.8rem;
     opacity: 0;
 
-    /* 入场动画延迟0.6秒执行 */
+    /* 延迟执行入场动画 */
     animation: fade-in-up 1s ease-out 0.6s forwards;
   }
 
-  /* 动画部分保持不变 */
   @keyframes flow-purple {
     0%,
     100% {
@@ -243,7 +250,7 @@
     }
   }
 
-  /* 定义主标题的入场动画：从模糊和透明逐渐变得清晰 */
+  /* 标题从模糊透明到清晰可见 */
   @keyframes main-enter {
     from {
       opacity: 0;
@@ -256,7 +263,7 @@
     }
   }
 
-  /* 定义通用元素的入场动画：向上浮动并淡入 */
+  /* 通用元素向上浮动并淡入 */
   @keyframes fade-in-up {
     from {
       opacity: 0;
@@ -269,26 +276,28 @@
     }
   }
 
-  /* 滚动提示 */
   .scroll-hint {
     position: absolute;
     right: 0;
-    bottom: 30px; /* 稍微抬高一点，适配不同下巴的手机 */
-    left: 50%;
 
-    /* 滚动提示也参加入场动画，延迟0.8秒 */
+    /* 抬高底部距离适配不同设备 */
+    bottom: 30px;
     left: 0;
     z-index: 20;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: fit-content; /* 不限制宽度margin auto不生效 */
+
+    /* 宽度自适应内容 */
+    width: fit-content;
     margin: 0 auto;
     cursor: pointer;
     opacity: 0;
     transition:
       opacity 0.5s ease,
       visibility 0.5s;
+
+    /* 延迟执行入场动画 */
     animation: fade-in-up 1s ease-out 0.8s forwards;
   }
 
@@ -311,7 +320,9 @@
   .scroll-hint.hidden {
     visibility: hidden;
     pointer-events: none;
-    opacity: 0 !important; /* 强制覆盖动画的opacity */
+
+    /* 强制隐藏 */
+    opacity: 0 !important;
   }
 
   @keyframes arrow-bounce {
@@ -333,14 +344,16 @@
   }
 
   @media (width <= 768px) {
-    /* 1. 缩小主标题，减少间距 */
+    .content-overlay {
+      transform: translateY(-10vh);
+    }
+
     .main-title {
       margin-right: -0.5rem;
-      font-size: 3rem; /* 从 6rem 降到 3rem */
+      font-size: 3rem;
       letter-spacing: 0.5rem;
     }
 
-    /* 2. 缩小副标题 */
     .sub-title {
       margin-top: 1rem;
       margin-right: -0.8rem;
@@ -348,17 +361,18 @@
       letter-spacing: 0.8rem;
     }
 
-    /* 3. 调整分割线间距 */
     .divider {
-      width: 80%; /* 限制宽度 */
-      margin: 1.5rem 0;
+      /* 限制移动端宽度 */
+      width: 80%;
+
+      /* 移动端保持较小的间距 */
+      margin: 1rem 0;
     }
 
     .diamond {
       margin: 0 10px;
     }
 
-    /* 4. Motto 文字缩小 */
     .motto {
       margin-top: 2rem;
       font-size: 0.7rem;

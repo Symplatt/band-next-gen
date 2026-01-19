@@ -171,7 +171,6 @@
 <script lang="ts" setup>
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   import relationData from '@/assets/data/relations.json'
-  import BackToTop from '@/components/BackToTop.vue'
 
   // 基础路径
   const baseUrl = import.meta.env.BASE_URL
@@ -188,7 +187,6 @@
     return relationData.characters.flatMap((g) => g.members)
   })
 
-  const groupList = relationData.characters.map((g) => g.groupName)
   const callTable = relationData.callTable as Record<string, Record<string, string>>
 
   // --- 称呼表逻辑 ---
@@ -219,7 +217,17 @@
   const scrollToSection = (id: string) => {
     activeSection.value = id
     // block: 'start' 会让元素的顶部对齐视口顶部，加 scrollMarginTop 调整偏移
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById(id)
+    if (el) {
+      // 考虑头部高度进行偏移
+      const headerOffset = 80
+      const elementPosition = el.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      })
+    }
   }
 
   // 滚动监听函数
@@ -264,7 +272,7 @@
     return links
   })
 
-  // 计算圆周坐标
+  // 计算圆周坐标 (固定画布500x500中心250,250)
   const getNodePos = (id: string) => {
     const index = memberList.value.findIndex((m) => m.id === id)
     if (index === -1) return { x: 250, y: 250 }
@@ -314,8 +322,12 @@
 <style scoped>
   .relations-view {
     position: relative;
+    width: 100%;
     min-height: 100vh;
     padding-bottom: 100px;
+
+    /* 核心修改：强制隐藏页面级横向滚动 */
+    overflow-x: hidden;
     color: #fff;
     background-color: #0b0c10;
   }
@@ -386,47 +398,41 @@
   /* === 通用块 === */
   .section-block {
     margin-bottom: 150px;
-    scroll-margin-top: 100px; /* 关键：解决点击跳转被遮挡的问题 */
+    scroll-margin-top: 100px;
   }
 
   .section-title {
-    /* 布局 */
     display: flex;
-    gap: 20px; /* 文字和线条的间距 */
+    gap: 20px;
     align-items: center;
     justify-content: center;
-    width: 100%; /* 占满容器宽度以便居中 */
+    width: 100%;
     padding-bottom: 0;
     margin-bottom: 60px;
-
-    /* 文字样式 */
     font-family: 'Noto Serif SC', cursive;
     font-size: 2.5rem;
     color: #d4af37;
     letter-spacing: 4px;
     text-shadow: 0 0 10px rgb(212 175 55 / 30%);
-
-    /* 取消原来的下划线，改用伪元素做左右装饰 */
     border-bottom: none;
   }
 
-  /* 左侧线条装饰 */
   .section-title::before,
   .section-title::after {
     display: block;
-    width: 400px; /* 线条长度 */
-    height: 1px; /* 线条粗细 */
+    width: 400px;
+    height: 1px;
     content: '';
-    background: linear-gradient(90deg, transparent, rgb(185 153 48 / 50%)); /* 渐变金线 */
+    background: linear-gradient(90deg, transparent, rgb(185 153 48 / 50%));
   }
 
-  /* 右侧线条 (反向渐变) */
   .section-title::after {
     background: linear-gradient(90deg, rgb(185 153 48 / 50%), transparent);
   }
 
   /* === 称呼表 === */
   .table-scroll-wrapper {
+    /* 核心修改：表格容器允许横向滚动 */
     padding-bottom: 10px;
     overflow-x: auto;
   }
@@ -446,19 +452,16 @@
     border: 1px solid rgb(255 255 255 / 10%);
   }
 
-  /* --- 修复左列宽度的关键 CSS --- */
-
-  /* 给第一列（无论哪一行）都设置固定宽度 */
+  /* 第一列固定宽度 */
   .fixed-col {
     box-sizing: border-box;
-    width: 120px; /* 统一设为 120px，或者你想要的宽度 */
+    width: 120px;
     min-width: 120px;
     max-width: 120px;
   }
 
-  /* 头像行：左上角空格 */
   .header-avator .fixed-col {
-    height: 80px; /* 保持和头像高度一致 */
+    height: 80px;
     padding: 0;
   }
 
@@ -469,7 +472,6 @@
     background: rgb(255 255 255 / 2%);
   }
 
-  /* 头像单元格 */
   .header-avator th:not(.fixed-col) {
     box-sizing: border-box;
     width: 80px;
@@ -524,7 +526,6 @@
     font-size: 0.8rem;
   }
 
-  /* 表格高亮 */
   .highlight-col,
   .highlight-row {
     color: #fff !important;
@@ -541,11 +542,7 @@
     font-weight: bold;
     color: #000;
     background-color: #ffd700;
-
-    /* border: 2px solid #fff; */
     box-shadow: 0 0 20px rgb(0 0 0 / 50%);
-
-    /* transform: scale(1.1); */
   }
 
   .cell.active .romaji {
@@ -556,6 +553,8 @@
   .network-container {
     display: flex;
     justify-content: center;
+
+    /* 容器高度，移动端会自动缩放 */
     height: 600px;
   }
 
@@ -565,7 +564,6 @@
     height: 500px;
   }
 
-  /* 连线 */
   .lines-layer {
     position: absolute;
     top: 0;
@@ -593,7 +591,6 @@
     opacity: 0.1;
   }
 
-  /* 节点容器 */
   .node-wrapper {
     position: absolute;
     display: flex;
@@ -601,7 +598,7 @@
     justify-content: center;
     width: 70px;
     height: 70px;
-    margin-top: -35px; /* 居中 */
+    margin-top: -35px;
     margin-left: -35px;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -626,7 +623,6 @@
     color: #d4af37;
   }
 
-  /* 节点交互 */
   .node-wrapper:hover {
     z-index: 10;
     transform: scale(1.2);
@@ -650,12 +646,12 @@
     filter: grayscale(100%);
   }
 
-  /* === 亲缘谱 (修改为 inline-block/flex-wrap 布局) === */
+  /* === 亲缘谱 === */
   .genealogy-grid {
     display: flex;
-    flex-flow: row wrap; /* 修改：横向排列 */ /* 修改：允许换行 */
-    gap: 40px 60px; /* 行间距40，列间距60 */
-    justify-content: center; /* 居中显示 */
+    flex-flow: row wrap;
+    gap: 40px 60px;
+    justify-content: center;
   }
 
   .family-unit {
@@ -697,7 +693,6 @@
     color: #ccc;
   }
 
-  /* 连接线 */
   .connector {
     position: relative;
     display: flex;
@@ -730,41 +725,35 @@
     background: #d4af37;
   }
 
-  /* Stylelint 修复：调整 CSS 顺序，避免 no-descending-specificity 警告 */
-
-  /* 虚线样式 */
-
-  /* 1. 父母连接线 (上半部分)：只留底边 */
+  /* 虚线样式逻辑 */
   .dashed-line .connector-top {
     background: none;
-    border: none; /* 先清除原本可能存在的四边框 */
-    border-bottom: 1px dashed #d4af37; /* 重新指定：只有底边、虚线、金色 */
+    border: none;
+    border-bottom: 1px dashed #d4af37;
   }
 
-  /* 2. 孩子连接线 (下半部分)：只留顶边 */
   .dashed-line .connector-bottom {
-    position: relative; /* 确保伪元素定位正常 */
+    position: relative;
     background: none;
-    border: none; /* 先清除 */
-    border-top: 1px dashed #d4af37; /* 重新指定：只有顶边、虚线、金色 */
+    border: none;
+    border-top: 1px dashed #d4af37;
   }
 
-  /* 3. 垂直连接线：只留左边 */
   .dashed-line .connector-bottom::before {
     width: 0;
     content: '';
     background: none;
-    border: none; /* 先清除 */
-    border-left: 1px dashed #d4af37; /* 重新指定：只有左边、虚线、金色 */
+    border: none;
+    border-left: 1px dashed #d4af37;
   }
 
-  /* 单孩特殊样式，必须放在最后以覆盖 */
   .child-row:has(.child-node:only-child) + .connector .connector-bottom {
     border-top: none;
   }
 
-  /* 手机适配微调 */
+  /* === 移动端/窄屏适配 (Media Query) === */
   @media (width <= 768px) {
+    /* 标题适配 */
     .section-title {
       gap: 10px;
       font-size: 1.8rem;
@@ -774,11 +763,107 @@
     .section-title::after {
       width: 30px;
     }
-  }
 
-  @media (width <= 1200px) {
+    /* 核心修改：目录轴手机端适配 - 横向吸顶 */
     .sidebar {
-      display: none;
+      position: sticky; /* 超过头部高度后吸附 */
+      top: var(--header-height, 60px); /* 配合Header高度 */
+      left: 0;
+      z-index: 100;
+      width: 100%;
+      height: auto;
+      padding: 10px 0;
+      background-color: #0b0c10; /* 添加背景防止透明穿透 */
+      border-bottom: 1px solid rgb(212 175 55 / 30%);
+      transform: none; /* 取消垂直居中偏移 */
+    }
+
+    .nav-line {
+      display: none; /* 隐藏竖线 */
+    }
+
+    .nav-list {
+      flex-direction: row; /* 横向排列 */
+      gap: 30px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .nav-item .dot {
+      display: none; /* 简化样式，隐藏点 */
+    }
+
+    .nav-item.active {
+      border-bottom: 2px solid #d4af37; /* 激活态改为下划线 */
+    }
+
+    /* 核心修改：关系网手机端适配 - 缩小防错位 */
+    .network-container {
+      height: auto;
+      aspect-ratio: 1/1; /* 保持正方形容器 */
+      overflow: hidden;
+    }
+
+    .circle-layout {
+      /* 水平居中 */
+      margin: 0 auto;
+
+      /* 使用scale缩小整体画布适应屏幕，基于中心缩放 */
+      transform: scale(0.65);
+      transform-origin: center center;
+    }
+
+    /* 核心修改：亲缘谱手机端适配 - Grid布局指定位置 */
+    .genealogy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 两列 */
+      gap: 30px 10px;
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    /* 依据 JSON 顺序控制位置 */
+
+    /* 缩小手机端亲缘谱卡片尺寸以防溢出 */
+    .family-unit {
+      min-width: auto;
+      transform: scale(0.9);
+    }
+
+    /* Index 0: 羽月 (Row 1 Col 1) */
+    .family-unit:nth-child(1) {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+
+    /* Index 1: 莉子 (Row 1 Col 2) */
+    .family-unit:nth-child(2) {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+
+    /* Index 2: 若叶家 (Row 2 Col 1-2 居中) */
+    .family-unit:nth-child(3) {
+      grid-area: 2 / 1 / 3 / 3;
+      justify-self: center;
+    }
+
+    /* Index 3: 长崎家 (Row 3 Col 1) */
+    .family-unit:nth-child(4) {
+      grid-area: 3 / 1 / 4 / 2;
+    }
+
+    /* Index 4: 高松家 (Row 3 Col 2) */
+    .family-unit:nth-child(5) {
+      grid-area: 3 / 2 / 4 / 3;
+    }
+
+    .parent-node,
+    .child-node {
+      width: 60px;
+    }
+
+    .avatar-round {
+      width: 50px;
+      height: 50px;
     }
   }
 </style>
