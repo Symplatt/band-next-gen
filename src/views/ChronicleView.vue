@@ -1,4 +1,4 @@
-// views/CharactersView.vue
+<!-- stc/views/ChronicleView.vue -->
 
 <template>
   <div class="chronicle-view">
