@@ -107,7 +107,6 @@ band-next-gen
 │     ├─ ChronicleView.vue
 │     ├─ HomeView.vue
 │     ├─ NotFound.vue
-│     ├─ RelationsView.vue
 │     └─ ThemeTemptView.vue
 ├─ tsconfig.app.json
 ├─ tsconfig.json
