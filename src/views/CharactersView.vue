@@ -15,7 +15,6 @@
     </div>
 
     <div class="page-container">
-      <!-- 循环渲染乐队分组 -->
       <section
         v-for="group in characterData"
         :key="group.groupKey"
@@ -49,23 +48,25 @@
             <!-- 信息区域 -->
             <div class="card-info">
               <div class="name-group">
-                <h3 class="char-name">{{ member.name }}</h3>
-                <span class="char-romaji">{{ member.romaji }}</span>
+                <!-- 名字与罗马音包裹层 -->
+                <div class="name-text-col">
+                  <h3 class="char-name">{{ member.name }}</h3>
+                  <span class="char-romaji">{{ member.romaji }}</span>
+                </div>
               </div>
 
-              <!-- 内容在左，标题在右 -->
               <div class="meta-info">
-                <div class="meta-row">
-                  <span class="value highlight">{{ member.position }}</span
-                  ><span class="label">POSITION</span>
+                <!-- 职位行 -->
+                <div class="meta-row position-row">
+                  <span class="label">POSITION</span>
+                  <span class="value highlight">{{ member.position }}</span>
                 </div>
-                <div class="meta-row">
-                  <span class="value">{{ member.school }}</span
-                  ><span class="label">SCHOOL</span>
+                <!-- 学院行：手机端隐藏 -->
+                <div class="meta-row school-row">
+                  <span class="label">SCHOOL</span>
+                  <span class="value">{{ member.school }}</span>
                 </div>
               </div>
-
-              <p class="char-intro">{{ member.profile.shortIntro }}</p>
             </div>
           </div>
         </div>
@@ -80,52 +81,46 @@
   import rawData from '@/assets/data/characters.json'
 
   interface Mother {
-    /* src\assets\data\characters.json 中的Mother字段 */
     name: string
     id: string
   }
 
   interface Profile {
-    /* src\assets\data\characters.json 中的Profile字段 */
     height: string
     birthday: string
-    mbti?: string // 可选：只有 Lilith/Gorai 有这个字段
-    shortIntro: string // 在/character页面的角色卡中显示的短简介
-    longIntro: string // 在/character/characterdetail页显示的长简介
-    mothers: Mother[] // 母亲数组
+    mbti?: string
+    shortIntro: string
+    longIntro: string
+    mothers: Mother[]
   }
 
   interface Member {
-    /* src\assets\data\characters.json 中的members字段 */
     id: string
-    route: string // 路由路径名，跳转/characterdetail时的子路径
+    route: string
     name: string
     romaji: string
-    codeName?: string // 可选：Lilith/Mujica 专有
+    codeName?: string
     position: string
     school: string
     image: string
-    studentCard?: string // 可选，学生证图片路径，仅子世代拥有
-    specialNote?: string // 可选：特殊标注，如《蝉鸣蟋音》致敬了《鼓手余命十日谭》
-    profile: Profile // 嵌套的 profile 对象
+    studentCard?: string
+    specialNote?: string
+    profile: Profile
   }
 
   interface Group {
-    /* src\assets\data\characters.json 中的直接字段 */
     groupKey: string
     groupName: string
-    bandLogo?: string // 可选：Other 组可能为空
+    bandLogo?: string
     description: string
-    members: Member[] // 不再用 any，使用上面定义的 Member[]
+    members: Member[]
   }
 
   const characterData = ref<Group[]>(rawData as Group[])
   const groupRefMap = ref<Record<string, HTMLElement | null>>({})
   const router = useRouter()
-  // 基础路径
   const baseUrl = import.meta.env.BASE_URL
 
-  // 辅助函数：处理图片路径
   const resolvePath = (path: string) => {
     if (!path) return ''
     const cleanPath = path.startsWith('/') ? path.slice(1) : path
@@ -152,7 +147,6 @@
   function scrollClick(groupKey: string) {
     const target = groupRefMap.value[groupKey]
     if (target) {
-      // 增加 scroll-margin-top 避免标题被吸顶导航栏遮住
       target.style.scrollMarginTop = '40px'
       target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -218,13 +212,6 @@
     color: #c5c6c7;
   }
 
-  .comment {
-    margin-top: 5px;
-    font-size: 12px;
-    color: #535353;
-    letter-spacing: 1px;
-  }
-
   /* --- 乐队分组区域 --- */
   .group-section {
     margin-bottom: 100px;
@@ -240,12 +227,12 @@
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
     color: #fff;
-    cursor: pointer; /* 增加手型，提示可点击 */
+    cursor: pointer;
     transition: color 0.3s;
   }
 
   .group-name:hover {
-    color: #d4af37; /* 悬停变色 */
+    color: #d4af37;
   }
 
   .group-desc {
@@ -258,11 +245,11 @@
   /* --- 卡片网格布局 --- */
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 
-  /* --- 角色卡片设计 --- */
+  /* --- 角色卡片 (电脑端) --- */
   .char-card {
     position: relative;
     overflow: hidden;
@@ -273,7 +260,6 @@
   }
 
   .char-card:hover {
-    background: rgb(212 175 55 / 5%);
     border-color: #d4af37;
     box-shadow: 0 10px 30px rgb(0 0 0 / 50%);
     transform: translateY(-5px);
@@ -282,7 +268,7 @@
   .card-image-wrapper {
     position: relative;
     width: 100%;
-    height: 350px;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
   }
 
@@ -298,28 +284,38 @@
     transform: scale(1.05);
   }
 
+  .card-info {
+    position: relative;
+    padding: 20px 25px;
+    background: none;
+  }
+
   .code-name-badge {
     position: absolute;
     top: 15px;
     right: 15px;
     padding: 2px 6px;
-    font-family: 'Playfair Display', 'Times New Roman', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 0.9rem;
     font-weight: 500;
     color: #aa8c2b;
-    letter-spacing: 0.8px;
     background: rgb(0 0 0 / 80%);
     border: 1px solid #d4af37;
   }
 
-  .card-info {
-    padding: 25px;
+  /* 名字组：改为 Flex 布局以放置 Logo */
+  .name-group {
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+    justify-content: space-between;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
   }
 
-  .name-group {
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgb(255 255 255 / 10%);
+  .name-text-col {
+    display: flex;
+    flex-direction: column;
   }
 
   .char-name {
@@ -341,14 +337,12 @@
     font-size: 0.9rem;
   }
 
-  /* 修改：Label 稍微调暗一点，因为它现在在右边作为辅助信息 */
   .label {
     font-family: 'Share Tech Mono', monospace;
     color: #555;
-    text-align: right; /* 确保文字靠右 */
+    text-align: right;
   }
 
-  /* 修改：Value 在左边，左对齐 */
   .value {
     color: #ccc;
     text-align: left;
@@ -357,37 +351,6 @@
   .value.highlight {
     font-weight: bold;
     color: #ff2e63;
-  }
-
-  .char-intro {
-    display: -webkit-box;
-    margin-top: 15px;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #aaa;
-    -webkit-box-orient: vertical;
-  }
-
-  .tribute-footer {
-    padding-top: 20px;
-    margin-top: 60px;
-    text-align: right;
-    border-top: 1px solid rgb(255 255 255 / 10%);
-  }
-
-  .tribute-text {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 0.9rem;
-    color: #888;
-  }
-
-  .citation {
-    margin-left: 10px;
-    font-style: italic;
-    color: #d4af37;
   }
 
   @keyframes fade-in-down {
@@ -402,17 +365,102 @@
     }
   }
 
+  /* --- 手机端适配 --- */
   @media (width <= 768px) {
     .main-title {
       font-size: 2.5rem;
     }
 
+    .group-name {
+      font-size: 1.6rem;
+    }
+
+    .group-header {
+      padding-left: 15px;
+      margin-bottom: 25px;
+      line-height: 1.2;
+      border-left-width: 3px;
+    }
+
     .cards-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .char-card {
+      background: #000;
+      border: 1px solid rgb(212 175 55 / 28%); /* 28%的不透明效果是目前最完美的 */
     }
 
     .card-image-wrapper {
-      height: 300px;
+      aspect-ratio: 2 / 3;
+    }
+
+    /* 手机端 Logo 隐藏，保持干净 */
+    .mini-band-logo {
+      display: none;
+    }
+
+    /* 手机端沉浸式布局 */
+    .card-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 40px 12px 12px;
+      background: linear-gradient(
+        to top,
+        rgb(0 0 0 / 100%) 0%,
+        rgb(0 0 0 / 80%) 40%,
+        transparent 100%
+      );
+      border: none;
+    }
+
+    .name-group {
+      display: block; /* 手机端不需要 flex 左右布局 */
+      padding-bottom: 0;
+      margin-bottom: 2px;
+      border-bottom: none;
+    }
+
+    .char-name {
+      font-size: 1.1rem;
+      text-shadow: 0 2px 4px rgb(0 0 0 / 90%);
+    }
+
+    .char-romaji {
+      font-size: 0.7rem;
+      color: #ddd;
+    }
+
+    .school-row {
+      display: none !important;
+    }
+
+    .position-row {
+      justify-content: flex-start;
+      margin-bottom: 0;
+    }
+
+    .position-row .label {
+      display: none;
+    }
+
+    .position-row .value {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .code-name-badge {
+      top: 8px;
+      right: 8px;
+      padding: 1px 6px;
+      font-size: 0.75rem;
+      color: #ffd700;
+      background: rgb(0 0 0 / 50%);
+      border-color: #ffd700;
+      backdrop-filter: blur(2px);
     }
   }
 </style>
