@@ -1,6 +1,6 @@
 <template>
   <div class="relations-view">
-    <!-- 目录轴 (Sidebar) -->
+    <!-- 目录轴：移动端完全隐藏，仅PC端显示 -->
     <nav class="sidebar">
       <div class="nav-line"></div>
       <ul class="nav-list">
@@ -17,30 +17,26 @@
       </ul>
     </nav>
 
-    <!-- 页面内容 -->
     <div class="page-container">
-      <!-- === 第一部分：称呼表 (Call Table) === -->
+      <!-- === 第一部分：称呼表 === -->
       <section id="section-table" class="section-block">
-        <h2 class="section-title">称呼表</h2>
+        <h2 class="section-title"><span>称呼表</span></h2>
+        <div class="table-description">表格可横向滚动，但更适合电脑浏览器查看</div>
         <div class="table-scroll-wrapper">
           <table class="call-table">
             <thead>
-              <!-- 头像行 -->
               <tr class="header-avator">
-                <!-- 第一列空缺，固定宽度 -->
                 <th class="fixed-col"></th>
                 <th v-for="member in memberList" :key="member.id">
                   <img :src="resolvePath(member.avatar)" class="avatar-square" loading="lazy" />
                 </th>
               </tr>
-              <!-- 组合行 -->
               <tr class="header-group">
                 <th class="fixed-col"><span class="group-label">所属乐队</span></th>
                 <th colspan="4" class="group-name lilith">Ex-Lilith</th>
                 <th colspan="4" class="group-name gorai">Go Raiiii</th>
                 <th colspan="1" class="group-name other">Other</th>
               </tr>
-              <!-- 名字行 -->
               <tr class="header-char">
                 <th class="corner-header fixed-col">
                   <span class="corner-comment">称呼→被称呼</span>
@@ -56,14 +52,12 @@
             </thead>
             <tbody>
               <tr v-for="caller in memberList" :key="caller.id">
-                <!-- 第一列：行头 -->
                 <td
                   class="row-header fixed-col"
                   :class="{ 'highlight-row': hoverRow === caller.id }"
                 >
                   <div class="td-content">{{ caller.name }}</div>
                 </td>
-                <!-- 单元格 -->
                 <td
                   v-for="target in memberList"
                   :key="target.id"
@@ -90,12 +84,13 @@
         </div>
       </section>
 
-      <!-- === 第二部分：关系网 (Network) === -->
+      <!-- === 第二部分：关系网 === -->
       <section id="section-network" class="section-block">
-        <h2 class="section-title">关系网</h2>
-        <div class="network-container">
+        <h2 class="section-title"><span>关系网</span></h2>
+
+        <!-- PC端显示的关系网图表 -->
+        <div class="network-container desktop-only">
           <div class="circle-layout">
-            <!-- 连线层 (SVG) -->
             <svg class="lines-layer" viewBox="0 0 500 500">
               <line
                 v-for="(link, index) in networkLinks"
@@ -111,8 +106,6 @@
                 }"
               />
             </svg>
-
-            <!-- 节点层 -->
             <div
               v-for="(char, index) in memberList"
               :key="char.id"
@@ -131,30 +124,28 @@
             </div>
           </div>
         </div>
+
+        <!-- 手机端显示的提示文字 -->
+        <div class="mobile-network-msg">
+          <p>正在进行手机端适配，暂不显示，请使用电脑端浏览器查看。</p>
+        </div>
       </section>
 
-      <!-- === 第三部分：亲缘谱 (Family Tree) === -->
+      <!-- === 第三部分：亲缘谱 === -->
       <section id="section-family" class="section-block">
-        <h2 class="section-title">亲缘谱</h2>
+        <h2 class="section-title"><span>亲缘谱</span></h2>
         <div class="genealogy-grid">
           <div v-for="(family, index) in normalizedFamilyData" :key="index" class="family-unit">
-            <!-- 母亲层 -->
             <div class="parents-row">
               <div v-for="mom in family.mother" :key="mom.name" class="parent-node">
                 <img :src="resolvePath(mom.avatar)" class="avatar-round" loading="lazy" />
                 <span class="name">{{ mom.name }}</span>
               </div>
             </div>
-
-            <!-- 连接线结构 (全金色) -->
             <div class="connector" :class="{ 'dashed-line': family.type === 'adopt' }">
-              <!-- 上半部分：连接父母 -->
               <div class="connector-top"></div>
-              <!-- 下半部分：连接孩子 -->
               <div class="connector-bottom"></div>
             </div>
-
-            <!-- 孩子层 -->
             <div class="child-row">
               <div v-for="child in family.child" :key="child.id" class="child-node">
                 <img :src="resolvePath(child.avatar)" class="avatar-round" loading="lazy" />
@@ -172,27 +163,20 @@
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   import relationData from '@/assets/data/relations.json'
 
-  // 基础路径
   const baseUrl = import.meta.env.BASE_URL
-
-  // 辅助函数：处理图片路径
   const resolvePath = (path: string) => {
     if (!path) return ''
     const cleanPath = path.startsWith('/') ? path.slice(1) : path
     return `${baseUrl}${cleanPath}`
   }
 
-  // 扁平化所有成员列表
   const memberList = computed(() => {
     return relationData.characters.flatMap((g) => g.members)
   })
-
   const callTable = relationData.callTable as Record<string, Record<string, string>>
 
-  // --- 称呼表逻辑 ---
   const hoverRow = ref<string | null>(null)
   const hoverCol = ref<string | null>(null)
-
   const setHover = (r: string, c: string) => {
     hoverRow.value = r
     hoverCol.value = c
@@ -201,12 +185,10 @@
     hoverRow.value = null
     hoverCol.value = null
   }
-
   const getCallName = (callerId: string, targetId: string) => {
     return callTable[callerId]?.[targetId] || '?'
   }
 
-  // --- 目录轴逻辑 ---
   const activeSection = ref('section-table')
   const navItems = [
     { id: 'section-table', label: '称呼表' },
@@ -216,13 +198,15 @@
 
   const scrollToSection = (id: string) => {
     activeSection.value = id
-    // block: 'start' 会让元素的顶部对齐视口顶部，加 scrollMarginTop 调整偏移
     const el = document.getElementById(id)
     if (el) {
-      // 考虑头部高度进行偏移
-      const headerOffset = 80
+      const headerHeight = getComputedStyle(document.documentElement)
+        .getPropertyValue('--header-height')
+        .trim()
+      const navOffset = 0 // 手机端不显示目录轴，无需偏移
+      const baseOffset = parseInt(headerHeight || '0') + navOffset
       const elementPosition = el.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+      const offsetPosition = elementPosition + window.pageYOffset - baseOffset - 20
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth',
@@ -230,17 +214,14 @@
     }
   }
 
-  // 滚动监听函数
   const handleScroll = () => {
-    // 阈值：滚动到距离顶部 300px 的位置时判定为进入该区域
     const threshold = 300
     const scrollY = window.scrollY
-
     for (const item of navItems) {
       const section = document.getElementById(item.id)
       if (section) {
+        if (window.innerWidth <= 768 && item.id === 'section-network') continue
         const { offsetTop, offsetHeight } = section
-        // 如果当前滚动位置在 (section顶部 - 阈值) 和 (section底部 - 阈值) 之间
         if (scrollY >= offsetTop - threshold && scrollY < offsetTop + offsetHeight - threshold) {
           activeSection.value = item.id
         }
@@ -250,20 +231,30 @@
 
   onMounted(() => {
     window.addEventListener('scroll', handleScroll)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible') // 添加动画类
+            observer.unobserve(entry.target) // 动画只执行一次
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+    // 开始监听所有标题
+    document.querySelectorAll('.section-title').forEach((el) => observer.observe(el))
   })
 
   onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll)
   })
 
-  // --- 关系网逻辑 ---
   const networkHoverId = ref<string | null>(null)
-
-  // 定义连线数据
   const networkLinks = computed(() => {
     const links: { source: string; target: string }[] = []
     const ids = memberList.value.map((m) => m.id)
-
     ids.forEach((id, i) => {
       if (i < ids.length - 1) links.push({ source: id, target: ids[i + 1]! })
       if (i < ids.length - 2) links.push({ source: id, target: ids[i + 2]! })
@@ -272,11 +263,9 @@
     return links
   })
 
-  // 计算圆周坐标 (固定画布500x500中心250,250)
   const getNodePos = (id: string) => {
     const index = memberList.value.findIndex((m) => m.id === id)
     if (index === -1) return { x: 250, y: 250 }
-
     const total = memberList.value.length
     const radius = 180
     const angle = (360 / total) * index - 90
@@ -286,14 +275,12 @@
       y: 250 + Math.sin(radian) * radius,
     }
   }
-
   const getCircleStyle = (index: number, total: number) => {
     const m = memberList.value[index]
     if (!m) return {}
     const pos = getNodePos(m.id)
     return { left: `${pos.x}px`, top: `${pos.y}px` }
   }
-
   const isNodeActive = (id: string) => {
     if (!networkHoverId.value) return true
     const isSelf = id === networkHoverId.value
@@ -304,13 +291,11 @@
     )
     return isSelf || isConnected
   }
-
   const isLinkActive = (link: { source: string; target: string }) => {
     if (!networkHoverId.value) return true
     return link.source === networkHoverId.value || link.target === networkHoverId.value
   }
 
-  // --- 亲缘谱数据处理 ---
   const normalizedFamilyData = computed(() => {
     return relationData.familyTree.map((item: any) => ({
       ...item,
@@ -325,14 +310,11 @@
     width: 100%;
     min-height: 100vh;
     padding-bottom: 100px;
-
-    /* 核心修改：强制隐藏页面级横向滚动 */
     overflow-x: hidden;
     color: #fff;
     background-color: #0b0c10;
   }
 
-  /* === 目录轴 === */
   .sidebar {
     position: fixed;
     top: 50%;
@@ -395,12 +377,16 @@
     transform: rotate(45deg) scale(1.5);
   }
 
-  /* === 通用块 === */
+  .page-container {
+    padding-top: 50px;
+  }
+
   .section-block {
     margin-bottom: 150px;
     scroll-margin-top: 100px;
   }
 
+  /* 标题容器：保持 Flex 布局，移除之前的整体动画 */
   .section-title {
     display: flex;
     gap: 20px;
@@ -417,22 +403,50 @@
     border-bottom: none;
   }
 
+  /* 针对文字 span 的动画（淡入 + 上浮） */
+  .section-title span {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition:
+      opacity 1.5s ease-out,
+      transform 1.5s ease-out;
+  }
+
+  /* 线条初始宽度为 0，添加宽度过渡动画 */
   .section-title::before,
   .section-title::after {
     display: block;
-    width: 400px;
+    width: 0; /* 初始宽度为 0 */
     height: 1px;
     content: '';
     background: linear-gradient(90deg, transparent, rgb(185 153 48 / 50%));
+    transition: width 2s ease-out; /* 宽度缓慢伸长 */
   }
 
   .section-title::after {
     background: linear-gradient(90deg, rgb(185 153 48 / 50%), transparent);
   }
 
-  /* === 称呼表 === */
+  /* 激活状态：文字浮现，线条变长 */
+  .section-title.visible span {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-title.visible::before,
+  .section-title.visible::after {
+    width: 400px; /* 最终线条长度 */
+  }
+
+  .table-description {
+    display: none;
+    margin-bottom: 20px;
+    font-size: 0.7rem;
+    color: rgb(185 153 48 / 50%);
+    text-align: center;
+  }
+
   .table-scroll-wrapper {
-    /* 核心修改：表格容器允许横向滚动 */
     padding-bottom: 10px;
     overflow-x: auto;
   }
@@ -452,7 +466,6 @@
     border: 1px solid rgb(255 255 255 / 10%);
   }
 
-  /* 第一列固定宽度 */
   .fixed-col {
     box-sizing: border-box;
     width: 120px;
@@ -549,12 +562,9 @@
     color: #333;
   }
 
-  /* === 关系网 === */
   .network-container {
     display: flex;
     justify-content: center;
-
-    /* 容器高度，移动端会自动缩放 */
     height: 600px;
   }
 
@@ -646,7 +656,22 @@
     filter: grayscale(100%);
   }
 
-  /* === 亲缘谱 === */
+  /* 手机端网络图提示信息默认隐藏 */
+  .mobile-network-msg {
+    display: none;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .mobile-network-msg p {
+    padding: 20px;
+    font-size: 1rem;
+    color: #d4af37;
+    letter-spacing: 1px;
+    border: 1px dashed #d4af37;
+    border-radius: 8px;
+  }
+
   .genealogy-grid {
     display: flex;
     flex-flow: row wrap;
@@ -654,12 +679,31 @@
     justify-content: center;
   }
 
+  /* 电脑端亲缘谱顺序调整: 羽月(1) 若叶(2) 高松(3) 长崎(4) 八幡(5) */
   .family-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-width: 300px;
   }
+
+  .family-unit:nth-child(1) {
+    order: 1;
+  }
+
+  .family-unit:nth-child(2) {
+    order: 5;
+  } /* 莉子移到最后 */
+  .family-unit:nth-child(3) {
+    order: 2;
+  } /* 若叶移到第二个 */
+  .family-unit:nth-child(4) {
+    order: 4;
+  }
+
+  .family-unit:nth-child(5) {
+    order: 3;
+  } /* 高松移到第三个 */
 
   .parents-row,
   .child-row {
@@ -725,7 +769,6 @@
     background: #d4af37;
   }
 
-  /* 虚线样式逻辑 */
   .dashed-line .connector-top {
     background: none;
     border: none;
@@ -751,12 +794,24 @@
     border-top: none;
   }
 
-  /* === 移动端/窄屏适配 (Media Query) === */
   @media (width <= 768px) {
-    /* 标题适配 */
+    /* 隐藏目录轴 */
+    .sidebar {
+      display: none;
+    }
+
+    /* 关系网适配: 隐藏图表，显示文字 */
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-network-msg {
+      display: block;
+    }
+
     .section-title {
       gap: 10px;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
 
     .section-title::before,
@@ -764,96 +819,65 @@
       width: 30px;
     }
 
-    /* 核心修改：目录轴手机端适配 - 横向吸顶 */
-    .sidebar {
-      position: sticky; /* 超过头部高度后吸附 */
-      top: var(--header-height, 60px); /* 配合Header高度 */
-      left: 0;
-      z-index: 100;
-      width: 100%;
-      height: auto;
-      padding: 10px 0;
-      background-color: #0b0c10; /* 添加背景防止透明穿透 */
-      border-bottom: 1px solid rgb(212 175 55 / 30%);
-      transform: none; /* 取消垂直居中偏移 */
+    .section-title.visible::before,
+    .section-title.visible::after {
+      width: 100px; /* 手机端线条较短 */
     }
 
-    .nav-line {
-      display: none; /* 隐藏竖线 */
-    }
-
-    .nav-list {
-      flex-direction: row; /* 横向排列 */
-      gap: 30px;
+    .table-description {
+      display: flex;
       justify-content: center;
-      width: 100%;
+      margin-bottom: 0;
+      font-size: 0.6rem;
+      transform: translateY(-3.5vh);
     }
 
-    .nav-item .dot {
-      display: none; /* 简化样式，隐藏点 */
+    .table-scroll-wrapper {
+      border: rgb(255 215 0 / 10%) 1px solid;
+      border-radius: 5px;
     }
 
-    .nav-item.active {
-      border-bottom: 2px solid #d4af37; /* 激活态改为下划线 */
+    .cell {
+      font-size: 0.8rem;
     }
 
-    /* 核心修改：关系网手机端适配 - 缩小防错位 */
-    .network-container {
-      height: auto;
-      aspect-ratio: 1/1; /* 保持正方形容器 */
-      overflow: hidden;
-    }
-
-    .circle-layout {
-      /* 水平居中 */
-      margin: 0 auto;
-
-      /* 使用scale缩小整体画布适应屏幕，基于中心缩放 */
-      transform: scale(0.65);
-      transform-origin: center center;
-    }
-
-    /* 核心修改：亲缘谱手机端适配 - Grid布局指定位置 */
+    /* 亲缘谱容器修复: 移除内边距，确保居中，缩小Gap防止溢出 */
     .genealogy-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* 两列 */
-      gap: 30px 10px;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px 5px; /* 缩小列间距 */
+      justify-items: center; /* 修复右偏关键：强制内容在格子内居中 */
       width: 100%;
-      padding: 0 10px;
+      padding: 0; /* 移除padding，完全交由Grid控制 */
     }
 
-    /* 依据 JSON 顺序控制位置 */
-
-    /* 缩小手机端亲缘谱卡片尺寸以防溢出 */
     .family-unit {
+      /* 手机端重置order，使用GridArea布局 */
+      order: unset !important;
       min-width: auto;
       transform: scale(0.9);
     }
 
-    /* Index 0: 羽月 (Row 1 Col 1) */
+    /* 保持原来的手机端布局逻辑 */
     .family-unit:nth-child(1) {
       grid-area: 1 / 1 / 2 / 2;
     }
 
-    /* Index 1: 莉子 (Row 1 Col 2) */
     .family-unit:nth-child(2) {
-      grid-area: 1 / 2 / 2 / 3;
+      grid-area: 3 / 2 / 4 / 3;
     }
 
-    /* Index 2: 若叶家 (Row 2 Col 1-2 居中) */
     .family-unit:nth-child(3) {
       grid-area: 2 / 1 / 3 / 3;
       justify-self: center;
     }
 
-    /* Index 3: 长崎家 (Row 3 Col 1) */
     .family-unit:nth-child(4) {
       grid-area: 3 / 1 / 4 / 2;
     }
 
-    /* Index 4: 高松家 (Row 3 Col 2) */
     .family-unit:nth-child(5) {
-      grid-area: 3 / 2 / 4 / 3;
+      grid-area: 1 / 2 / 2 / 3;
     }
 
     .parent-node,
