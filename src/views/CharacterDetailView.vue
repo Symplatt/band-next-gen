@@ -511,6 +511,14 @@
       width: 100%;
     }
 
+    .char-name {
+      font-size: 2rem;
+    }
+
+    .char-romaji {
+      font-size: 0.9rem;
+    }
+
     .data-grid {
       grid-template-columns: 1fr; /* 手机上一行一个数据 */
     }
