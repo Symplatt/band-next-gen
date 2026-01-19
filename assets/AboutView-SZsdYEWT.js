@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-DBVCgBzg.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-CTxqVGuI.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-CjNuXtAx.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-Cihp0rJm.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -6,7 +6,7 @@ import{M as r}from"./MarkDownViewer-DBVCgBzg.js";import{d as a,c as o,f as n,h a
 \r
 主线故事发生于Ave Mujica 动画剧情结束后二十余年后。在该时间线上，MyGO!!!!! 与 Ave Mujica 的十位成员各自组建家庭，拥有了共计 9 名孩子(其中高松雫为收养,其余为亲生)。详情可参见[关系 → 关系网](#/relations)。\r
 \r
-子世代成员组建了 **Ex-lilith** 与 **GoRai** 两支乐队，在继承母辈音乐精神与情感脉络的基础上，开启属于她们的崭新故事。\r
+子世代成员组建了 **Ex-lilith** 与 **GoRai** 两支乐队，在继承母辈音乐精神与情感脉络的基础上，开启了属于她们的崭新故事。\r
 \r
 ### 作品形式\r
 \r
