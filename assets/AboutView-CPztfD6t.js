@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-CIm_J5KK.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-mwiCXUV3.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-BLiA4P-2.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-1e40koJK.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -12,7 +12,7 @@ import{M as r}from"./MarkDownViewer-CIm_J5KK.js";import{d as a,c as o,f as n,h a
 \r
 该系列二次创作涵盖插画、漫画、手书、短篇小说等多种形式，相关作品发布于画师本人运营的各平台账号（如首页所示）及 QQ 粉丝群中，Lofter为主要更新平台，拥有最全面设定信息。\r
 \r
-其中，由画师本人创作，或经其明确认可、符合其所构建时间线与世界观设定的作品，可视为该系列的**主要创作内容**，并统一收录于 Lofter「[[共创\\] 乐队子世代——那美好的未来](https://www.lofter.com/front/blog/collection/share?collectionId=22881169&incantation=hjoTvd7LiZIh)」合集内。\r
+其中，由画师本人创作，或经其明确认可、符合其所构建时间线与世界观设定的作品，可视为该系列的**主要创作内容**，并统一收录于 Lofter「[\\[共创\\] 乐队子世代——那美好的未来](https://www.lofter.com/front/blog/collection/share?collectionId=22881169&incantation=hjoTvd7LiZIh)」合集内。\r
 \r
 其余基于该系列的个人延伸创作），不构成该系列的主要叙事内容，仅作为粉丝向表达存在。\r
 \r
