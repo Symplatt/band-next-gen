@@ -789,6 +789,10 @@
   }
 
   @media (width <= 768px) {
+    .page-container {
+      padding: 0 20px;
+    }
+
     .sidebar {
       display: none;
     }
@@ -808,7 +812,11 @@
 
     .section-title.visible::before,
     .section-title.visible::after {
-      width: 30px;
+      width: 30vw;
+    }
+
+    .section-title span {
+      transform: translateY(-5px);
     }
 
     .genealogy-grid {
