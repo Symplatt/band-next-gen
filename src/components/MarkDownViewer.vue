@@ -12,8 +12,8 @@
 
   const props = withDefaults(
     defineProps<{
-      content: string // md文件
-      indent?: number // 每段开头空几个汉字
+      content: string
+      indent?: number
     }>(),
     {
       indent: 0,
@@ -21,21 +21,24 @@
   )
 
   const md = new MarkdownIt({
-    html: true,
+    html: true, // 必须开启 HTML 解析
     linkify: true,
     breaks: true,
   })
 
   const renderedContent = ref('')
 
-  // md文件懒加载
   onMounted(() => {
+    // 预处理：将 \l 替换为带样式的 br 标签
+    // 注意：JS中反斜杠需要转义，所以正则里是 \\l
+    const preProcessed = props.content.replace(/\\l/g, '<br class="mobile-break" />')
+
     requestIdleCallback
       ? requestIdleCallback(() => {
-          renderedContent.value = md.render(props.content)
+          renderedContent.value = md.render(preProcessed)
         })
       : setTimeout(() => {
-          renderedContent.value = md.render(props.content)
+          renderedContent.value = md.render(preProcessed)
         }, 0)
   })
 </script>
@@ -174,11 +177,33 @@
   .small-text :deep(h1) {
     margin-bottom: 1em;
     font-size: 1.5rem;
+
+    /* 修改：强制标题左对齐，去除阴影，使其更像小节标题 */
+    text-align: left;
+    text-shadow: none;
   }
 
   .small-text :deep(p) {
     font-size: 0.85rem;
     color: #888;
-    text-align: center;
+
+    /* 修改：改为左对齐（或者使用 inherit 继承上方 justify），此处强制 left 以确保不乱跑 */
+    text-align: left;
+  }
+
+  /* --- 特殊换行符 \l 的处理 --- */
+
+  /* 电脑端默认：完全隐藏（不占位，直接消失） */
+  .markdown-body :deep(.mobile-break) {
+    display: none;
+
+    /* 如果希望电脑端变成空格而不是完全消失，改为 content: ' '; */
+  }
+
+  /* 手机端：强制显示为换行 */
+  @media (width <= 768px) {
+    .markdown-body :deep(.mobile-break) {
+      display: inline; /* br 标签默认为 inline 元素 */
+    }
   }
 </style>

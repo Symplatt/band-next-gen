@@ -31,8 +31,8 @@
   /* 核心布局：限制阅读宽度，模拟“文章”感觉 */
   .content-card {
     max-width: 860px; /* 黄金阅读宽度 */
-    padding: 0 80px;
-    margin: 0 auto 60px; /* 居中，底部留白 */
+    padding: 0 80px 40px;
+    margin: 0 auto;
     background: linear-gradient(180deg, rgb(255 255 255 / 3%) 0%, rgb(255 255 255 / 0%) 100%);
     border: 1px solid rgb(212 175 55 / 10%);
     border-radius: 4px;
@@ -40,8 +40,12 @@
 
   /* 底部免责声明区域 */
   .footer-disclaimer {
-    max-width: 800px;
-    padding: 80px;
+    /* 修改：与上方卡片保持相同的最大宽度和水平居中，确保对齐 */
+    max-width: 860px;
+
+    /* 修改：水平内边距改为80px，与上方卡片padding保持一致，垂直padding独立设置 */
+    padding: 40px 80px;
+    margin: 0 auto;
     opacity: 0.6; /* 让免责声明看起来弱一点，不抢视觉 */
     transition: opacity 0.3s;
   }
@@ -61,6 +65,11 @@
       margin: 0 0 40px;
       background: none;
       border: none; /* 手机端去掉边框，减少拥挤感 */
+    }
+
+    /* 修改：手机端同步调整padding，防止错位 */
+    .footer-disclaimer {
+      padding: 20px 0;
     }
   }
 </style>
