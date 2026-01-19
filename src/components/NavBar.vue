@@ -3,7 +3,10 @@
 <template>
   <header class="site-header">
     <div class="header-inner">
-      <div class="brand-logo">Band Next Generation</div>
+      <RouterLink to="/" class="brand-logo-link"
+        ><div class="brand-logo">Band Next Generation</div></RouterLink
+      >
+
       <nav class="main-nav">
         <RouterLink
           v-for="item in navList"
@@ -49,6 +52,12 @@
     height: 100%;
     padding: 0 40px;
     margin: 0 auto;
+  }
+
+  .brand-logo-link {
+    color: inherit; /* 继承父元素文字颜色（可选，让颜色和普通文本一致） */
+    text-decoration: none; /* 移除下划线 */
+    cursor: pointer; /* 保持点击指针（可选） */
   }
 
   .brand-logo {
