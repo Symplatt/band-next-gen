@@ -31,8 +31,6 @@
   /* 核心布局：限制阅读宽度，模拟“文章”感觉 */
   .content-card {
     max-width: 860px; /* 黄金阅读宽度 */
-
-    /* 可选：加一个极淡的背景，让文字不那么“飘” */
     padding: 0 80px;
     margin: 0 auto 60px; /* 居中，底部留白 */
     background: linear-gradient(180deg, rgb(255 255 255 / 3%) 0%, rgb(255 255 255 / 0%) 100%);
@@ -43,8 +41,7 @@
   /* 底部免责声明区域 */
   .footer-disclaimer {
     max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+    padding: 80px;
     opacity: 0.6; /* 让免责声明看起来弱一点，不抢视觉 */
     transition: opacity 0.3s;
   }
@@ -55,9 +52,13 @@
 
   /* 手机端适配 */
   @media (width <= 768px) {
+    .about-view {
+      padding: 0 0 80px;
+    }
+
     .content-card {
       padding: 0;
-      margin: 0 10px 40px;
+      margin: 0 0 40px;
       background: none;
       border: none; /* 手机端去掉边框，减少拥挤感 */
     }
