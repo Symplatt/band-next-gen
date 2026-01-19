@@ -1,3 +1,5 @@
+<!-- 修改前 -->
+
 <template>
   <section class="hero-section">
     <div class="background-layer">
