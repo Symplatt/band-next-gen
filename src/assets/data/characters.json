@@ -14,6 +14,7 @@
         "position": "键盘手 / 主唱",
         "school": "月之森女子学园",
         "image": "images/stand-image/hazuki.png",
+        "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": "images/cards/hazuki-card.png",
         "profile": {
           "height": "待更新",
@@ -42,6 +43,7 @@
         "position": "贝斯手",
         "school": "月之森女子学园",
         "image": "images/stand-image/riko.png",
+        "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": "images/cards/riko-card.png",
         "profile": {
           "height": "待更新",
@@ -70,6 +72,7 @@
         "position": "鼓手",
         "school": "月之森女子学园",
         "image": "images/stand-image/ameha.png",
+        "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": "images/cards/ameha-card.png",
         "profile": {
           "height": "待更新",
@@ -98,6 +101,7 @@
         "position": "吉他手",
         "school": "月之森女子学园",
         "image": "images/stand-image/wakaho.png",
+        "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": "images/cards/wakaho-card.png",
         "profile": {
           "height": "待更新",
@@ -133,6 +137,7 @@
         "position": "吉他手 / 主唱",
         "school": "花咲川女子学园",
         "image": "images/stand-image/mirei.png",
+        "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": "images/cards/mirei-card.png",
         "profile": {
           "height": "待更新",
@@ -160,6 +165,7 @@
         "position": "吉他手",
         "school": "羽丘女子学园",
         "image": "images/stand-image/shizuku.png",
+        "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": "images/cards/shizuku-card.png",
         "profile": {
           "height": "待更新",
@@ -187,6 +193,7 @@
         "position": "贝斯手",
         "school": "羽丘女子学园",
         "image": "images/stand-image/anna.png",
+        "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": "images/cards/anna-card.png",
         "profile": {
           "height": "待更新",
@@ -214,6 +221,7 @@
         "position": "鼓手",
         "school": "月之森女子学园",
         "image": "images/stand-image/muna.png",
+        "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": "images/cards/muna-card.png",
         "profile": {
           "height": "待更新",
