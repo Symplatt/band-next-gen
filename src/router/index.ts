@@ -1,11 +1,5 @@
-// 引入路由
+// router/index.ts
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue' // 首页
-import CharactersView from '@/views/CharactersView.vue' // 角色
-import RelationsView from '@/views/RelationsView.vue' // 关系
-import ChronicleView from '@/views/ChronicleView.vue' // 纪事
-import AboutView from '@/views/AboutView.vue' // 关于
-import NotFound from '@/views/NotFound.vue' // 页面不存在
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -13,49 +7,57 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      // 路由懒加载：只有访问该路由时才加载对应文件
       component: () => import('@/views/HomeView.vue'),
+      meta: { keepAlive: true } // 标记需要缓存的页面
     },
     {
       path: '/characters',
       name: 'characters',
-      component: () => import('@/views/CharactersView.vue')
+      component: () => import('@/views/CharactersView.vue'),
+      meta: { keepAlive: true }
     },
     {
-        path: '/char-detail/:id',
-        name: 'char-detail',
-        component: () => import('@/views/CharacterDetailView.vue'),
-        props: true
+      path: '/char-detail/:id',
+      name: 'char-detail',
+      component: () => import('@/views/CharacterDetailView.vue'),
+      props: true
+      // 详情页通常不需要缓存，或者需要根据ID缓存，这里暂不开启
     },
     {
       path: '/relations',
       name: 'relations',
       component: () => import('@/views/RelationsView.vue'),
+      meta: { keepAlive: true }
     },
     {
       path: '/chronicle',
       name: 'chronicle',
       component: () => import('@/views/ChronicleView.vue'),
+      meta: { keepAlive: true }
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue'),
+      meta: { keepAlive: true }
     },
-   
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('@/views/NotFound.vue'),
       meta: {
         title: '404',
-        description: '页面不存在',
         hideFooter: true,
       }
     }
-
   ],
-  scrollBehavior(to, from, savedPosition ){
-    return savedPosition  || { top: 0 }
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
   }
 })
 

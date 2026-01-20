@@ -13,7 +13,7 @@
 
 /* WebKit (Chrome / Edge / Safari) */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 2px;
 }
 
 ::-webkit-scrollbar-track {

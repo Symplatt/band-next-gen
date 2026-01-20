@@ -1,11 +1,13 @@
-/* src/components/NavBar.vue */
-
 <template>
   <header class="site-header">
     <div class="header-inner">
-      <RouterLink to="/" class="brand-logo-link"
-        ><div class="brand-logo">Band Next Generation</div></RouterLink
-      >
+      <RouterLink to="/" class="brand-logo-link">
+        <div class="brand-logo-father-div">
+          <!-- 电脑端和手机端显示的logo文字不一样，前者英文，后者中文 -->
+          <div class="brand-logo-pc">Band Next Generation</div>
+          <div class="brand-logo-mobile">子世代</div>
+        </div>
+      </RouterLink>
 
       <nav class="main-nav">
         <RouterLink
@@ -55,17 +57,21 @@
   }
 
   .brand-logo-link {
-    color: inherit; /* 继承父元素文字颜色（可选，让颜色和普通文本一致） */
+    color: inherit; /* 继承父元素文字颜色 */
     text-decoration: none; /* 移除下划线 */
-    cursor: pointer; /* 保持点击指针（可选） */
+    cursor: pointer; /* 保持点击指针 */
   }
 
-  .brand-logo {
+  .brand-logo-pc {
     font-family: 'Cinzel Decorative', cursive;
     font-size: 1.5rem;
     font-weight: 700;
     color: #d4af37;
     letter-spacing: 2px;
+  }
+
+  .brand-logo-mobile {
+    display: none;
   }
 
   .main-nav {
@@ -87,12 +93,21 @@
   }
 
   @media (width <= 768px) {
-    .brand-logo {
+    .brand-logo-pc {
       display: none;
     }
 
+    .brand-logo-mobile {
+      display: block;
+      font-family: 'Noto Serif SC', serif; /* 仅保留中文字体设置，避免被后方样式覆盖 */
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: 2px;
+    }
+
     .main-nav {
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
     }
   }
