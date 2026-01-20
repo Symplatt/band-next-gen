@@ -1,3 +1,5 @@
+<!-- src/views/CharacterView.vue -->
+
 <template>
   <div class="characters-view">
     <!-- 顶部标题区 -->
