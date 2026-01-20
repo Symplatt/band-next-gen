@@ -21,6 +21,7 @@
       <!-- === 第一部分：称呼表 === -->
       <section id="section-table" class="section-block">
         <h2 class="section-title"><span>称呼表</span></h2>
+
         <div class="table-scroll-wrapper">
           <table class="call-table">
             <thead>
@@ -85,6 +86,7 @@
             </tbody>
           </table>
         </div>
+        <div class="section-comment">头像尚未导入，暂时以圆圈名字替代</div>
       </section>
 
       <!-- === 第二部分：关系网 === -->
@@ -158,6 +160,7 @@
             </div>
           </div>
         </div>
+        <div class="section-comment">头像尚未导入，暂时以圆圈名字替代</div>
       </section>
     </div>
   </div>
@@ -429,6 +432,14 @@
   .section-title.visible::before,
   .section-title.visible::after {
     width: 400px;
+  }
+
+  .section-comment {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: rgb(185 153 48 / 50%);
   }
 
   .table-scroll-wrapper {
@@ -864,6 +875,11 @@
     .avatar-round {
       width: 50px;
       height: 50px;
+    }
+
+    .name {
+      font-size: 0.75rem;
+      color: #ccc;
     }
   }
 </style>

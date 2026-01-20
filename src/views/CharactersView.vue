@@ -10,7 +10,8 @@
       </div>
       <p class="intro-text">
         MyGO!!!!! 与 Ave Mujica 已各自组建家庭。<br />
-        这是子辈们继往开来的崭新故事。
+        这是子辈们继往开来的崭新故事。 <br />
+        <b>当前所用立绘并非最终版本，仅为展示页面效果而呈现</b>
       </p>
     </div>
 
@@ -339,7 +340,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: top center;
     transition: transform 0.6s ease;
   }
 
