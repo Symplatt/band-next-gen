@@ -2,7 +2,7 @@
 
 <template>
   <div class="notfound-container">此页面不存在</div>
-  <p>都说了不存在了，别翻了呗</p>
+  <p>都说了此页面不存在，还翻！</p>
 </template>
 
 <script lang="ts" setup></script>
@@ -11,6 +11,7 @@
   .notfound-container {
     height: 90vh;
     margin-top: 200px;
+    margin-bottom: 1000vh;
     font-family: 'Noto Serif SC', serif;
     font-size: 5rem;
     color: #fff;
