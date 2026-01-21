@@ -86,7 +86,6 @@
         </tbody>
       </table>
     </div>
-    <div class="section-comment">头像尚未导入，暂时以圆圈名字替代</div>
   </section>
 </template>
 
@@ -197,15 +196,6 @@
   .section-title.visible::before,
   .section-title.visible::after {
     width: 400px;
-  }
-
-  /* 底部注释文字样式 */
-  .section-comment {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    font-size: 0.8rem;
-    color: rgb(185 153 48 / 50%);
   }
 
   /* 表格横向滚动容器 */
