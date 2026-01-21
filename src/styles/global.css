@@ -4,6 +4,11 @@
   --header-height: 72px;
 }
 
+/* 禁止移动端点击时出现的高亮色块 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* 控制滚动条样式 */
 /* Firefox */
 * {
