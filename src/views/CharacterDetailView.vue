@@ -109,7 +109,7 @@
 
           <!-- 家庭关系 -->
           <div class="family-section" v-if="hasFamily">
-            <h3 class="section-title-normal">FAMILY RELATIONS</h3>
+            <h3 class="section-title-normal">BLOOD RELATIONS</h3>
             <div class="family-cards-grid">
               <template v-if="member.family?.mothers">
                 <div
@@ -476,8 +476,9 @@
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.9rem;
     font-weight: bold;
-    color: #000;
-    background: #d4af37;
+    color: rgb(255 215 0 / 80%);
+    background: rgb(255 255 255 / 10%);
+    border: 1px solid rgb(255 215 0);
     border-radius: 2px;
   }
 
