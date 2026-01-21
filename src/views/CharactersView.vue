@@ -39,11 +39,13 @@
           >
             <!-- 图片区域 -->
             <div class="card-image-wrapper">
+              <!-- 使用 resolvePath 解析完整路径，加 || '' 防止数组越界报错 -->
               <img
-                :src="resolvePath(member.image)"
+                :src="resolvePath(member.image[0] || '')"
                 class="char-image"
                 @error="onImageError"
                 loading="lazy"
+                :alt="member.name"
               />
               <div v-if="member.codeName" class="code-name-badge">{{ member.codeName }}</div>
             </div>
@@ -51,18 +53,15 @@
             <!-- 信息区域 -->
             <div class="card-info">
               <div class="name-group">
-                <!-- 名字与罗马音 -->
                 <h3 class="char-name">{{ member.name }}</h3>
                 <span class="char-romaji">{{ member.romaji }}</span>
               </div>
 
               <div class="meta-info">
-                <!-- 职位行 -->
                 <div class="meta-row position-row">
                   <span class="label">POSITION</span>
                   <span class="value highlight">{{ member.position }}</span>
                 </div>
-                <!-- 学院行：手机端隐藏 -->
                 <div class="meta-row school-row">
                   <span class="label">SCHOOL</span>
                   <span class="value">{{ member.school }}</span>
@@ -81,20 +80,35 @@
   import { useRouter } from 'vue-router'
   import rawData from '@/assets/data/characters.json'
 
+  // 类型定义保持不变
   interface Mother {
     name: string
     id: string
   }
-
+  interface Sister {
+    name: string
+    id: string
+  }
+  interface Kid {
+    name: string
+    id: string
+  }
+  interface Family {
+    mothers?: Mother[]
+    sisters?: Sister[]
+    kids?: Kid[]
+  }
+  interface IntroSegment {
+    introTitle: string
+    content: string[]
+  }
   interface Profile {
     height: string
     birthday: string
+    constellation: string
     mbti?: string
-    shortIntro: string
-    longIntro: string
-    mothers: Mother[]
+    longIntro: IntroSegment[]
   }
-
   interface Member {
     id: string
     route: string
@@ -103,12 +117,12 @@
     codeName?: string
     position: string
     school: string
-    image: string
-    studentCard?: string
+    image: string[]
+    studentCard?: string[]
     specialNote?: string
     profile: Profile
+    family?: Family
   }
-
   interface Group {
     groupKey: string
     groupName: string
@@ -120,29 +134,42 @@
   const characterData = ref<Group[]>(rawData as Group[])
   const groupRefMap = ref<Record<string, HTMLElement | null>>({})
   const router = useRouter()
+
+  // 获取 Vite 配置中的 base 路径 (即 /band-next-gen/)
   const baseUrl = import.meta.env.BASE_URL
 
+  // 路径解析函数
   const resolvePath = (path: string) => {
     if (!path) return ''
+
+    // 如果 JSON 中的路径已经是绝对路径 (http开头)，直接返回
+    if (path.startsWith('http')) return path
+
+    // 移除路径开头的 /，防止拼接时出现双斜杠 (如 /band-next-gen//images)
     const cleanPath = path.startsWith('/') ? path.slice(1) : path
+
+    // 拼接 base 路径和文件路径
+    // 最终结果类似: /band-next-gen/images/stand-image/hazuki.png
     return `${baseUrl}${cleanPath}`
   }
 
+  // 图片加载失败处理
   const onImageError = (e: Event) => {
     const img = e.target as HTMLImageElement
-    img.src = 'https://placehold.co/400x500/1a1a1a/d4af37?text=Default+Image'
+    // 如果加载失败，尝试加载本地的默认立绘 (根据你的截图存在这个文件)
+    // 防止默认图也加载失败导致的死循环
+    const defaultPath = `${baseUrl}images/stand-image/default-stand-image.png`
+    if (img.src !== window.location.origin + defaultPath) {
+      img.src = defaultPath
+    }
   }
 
   function goToDetailPage(routeKey: string) {
-    router.push({
-      name: 'char-detail',
-      params: { id: routeKey },
-    })
+    router.push({ name: 'char-detail', params: { id: routeKey } })
   }
+
   function setGroupRef(el: HTMLElement | null, groupKey: string) {
-    if (el) {
-      groupRefMap.value[groupKey] = el
-    }
+    if (el) groupRefMap.value[groupKey] = el
   }
 
   function scrollClick(groupKey: string) {
@@ -183,7 +210,7 @@
 
   .divider {
     display: flex;
-    align-items: center; /* 关键：确保子元素垂直居中对齐 */
+    align-items: center;
     width: 100%;
     max-width: 600px;
     margin: 20px 0;
@@ -200,9 +227,9 @@
   .diamond {
     width: 8px;
     height: 8px;
-    margin: 0 10px; /* 移除原本的 margin-top，左右增加间距 */
+    margin: 0 10px;
     background: #d4af37;
-    transform: rotate(45deg); /* 旋转后垂直中心依然在几何中心，配合 align-items: center 即可对齐 */
+    transform: rotate(45deg);
   }
 
   .intro-text {
@@ -228,14 +255,9 @@
     position: relative;
     font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
-
-    /* 文字透明，用背景显示 */
     color: transparent;
     cursor: pointer;
-
-    /* ===== 多层背景：光砂 + 金属光晕 ===== */
     background-image:
-    /* 光砂层（细颗粒） */
       repeating-radial-gradient(
         circle at 20% 30%,
         rgb(255 215 0 / 35%) 0,
@@ -243,24 +265,18 @@
         transparent 2px,
         transparent 4px
       ),
-      /* 金属光晕层 */
       linear-gradient(120deg, #cfa73a 0%, #fff2b0 45%, #ffd700 50%, #fff2b0 55%, #cfa73a 100%);
     background-clip: text;
     background-size:
       300% 300%,
-      /* 光砂 */ 200% auto; /* 光晕 */
-
-    /* 基础光晕气场 */
+      200% auto;
     filter: drop-shadow(0 0 6px rgb(255 215 0 / 35%));
-
-    /* ===== 舞台级律动动画 ===== */
     animation:
       glitter-flow 32s ease-in-out infinite,
       shine-flow 22s ease-in-out infinite alternate,
       aura-pulse 28s ease-in-out infinite;
   }
 
-  /* 光砂：极慢漂移，几乎不可察觉 */
   @keyframes glitter-flow {
     0% {
       background-position:
@@ -275,7 +291,6 @@
     }
   }
 
-  /* 光晕：缓慢往返律动，不消失 */
   @keyframes shine-flow {
     0% {
       background-position: 180% center;
@@ -286,7 +301,6 @@
     }
   }
 
-  /* 气场：能量呼吸，不靠亮度 */
   @keyframes aura-pulse {
     0% {
       filter: drop-shadow(0 0 4px rgb(255 215 0 / 25%));
@@ -369,7 +383,6 @@
     border: 1px solid #d4af37;
   }
 
-  /* 名字组：恢复为普通块级或 Flex，已移除 Logo */
   .name-group {
     padding-bottom: 10px;
     margin-bottom: 15px;
@@ -447,14 +460,13 @@
 
     .char-card {
       background: #000;
-      border: 1px solid rgb(212 175 55 / 28%); /* 28%的不透明效果是目前最完美的 */
+      border: 1px solid rgb(212 175 55 / 28%);
     }
 
     .card-image-wrapper {
       aspect-ratio: 2 / 3;
     }
 
-    /* 手机端沉浸式布局 */
     .card-info {
       position: absolute;
       bottom: 0;
