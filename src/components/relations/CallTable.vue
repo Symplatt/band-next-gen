@@ -11,8 +11,15 @@
             <!-- 左上角固定空白格 -->
             <th class="fixed-col"></th>
             <!-- 循环渲染所有成员头像 -->
-            <th v-for="member in memberList" :key="member.id">
-              <img :src="resolvePath(member.avatar)" class="avatar-square" loading="lazy" />
+            <th v-for="(member, index) in memberList" :key="member.id">
+              <!-- 图片添加加载事件监听和动态类名 -->
+              <img
+                :src="resolvePath(member.avatar)"
+                class="avatar-square"
+                :class="{ loaded: loadedImages.has(member.id) }"
+                loading="lazy"
+                @load="handleImageLoad(member.id)"
+              />
             </th>
           </tr>
           <!-- 第二行：乐队分组行 -->
@@ -79,7 +86,7 @@
         </tbody>
       </table>
     </div>
-    <!-- <div class="section-comment">头像尚未导入，暂时以圆圈名字替代</div> -->
+    <div class="section-comment">头像尚未导入，暂时以圆圈名字替代</div>
   </section>
 </template>
 
@@ -95,11 +102,19 @@
   // 获取基础路径用于图片加载
   const baseUrl = import.meta.env.BASE_URL
 
+  // 记录已加载完成的图片ID集合
+  const loadedImages = ref(new Set<string>())
+
   // 处理图片路径，确保以 base url 开头
   const resolvePath = (path: string) => {
     if (!path) return ''
     const cleanPath = path.startsWith('/') ? path.slice(1) : path
     return `${baseUrl}${cleanPath}`
+  }
+
+  // 图片加载完成的回调函数
+  const handleImageLoad = (id: string) => {
+    loadedImages.value.add(id)
   }
 
   // 当前鼠标悬停的行ID
@@ -185,14 +200,13 @@
   }
 
   /* 底部注释文字样式 */
-
-  /* .section-comment {
+  .section-comment {
     display: flex;
     justify-content: center;
     margin-top: 10px;
     font-size: 0.8rem;
     color: rgb(185 153 48 / 50%);
-  } */
+  }
 
   /* 表格横向滚动容器 */
   .table-scroll-wrapper {
@@ -250,6 +264,21 @@
     object-fit: cover;
     border: none;
     border-radius: 0;
+
+    /* 初始状态：完全透明且稍微缩小 */
+    opacity: 0;
+    transform: scale(0.8);
+
+    /* 过渡效果：透明度平滑变化，大小带弹簧效果 */
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  }
+
+  /* 加载完成状态：不透明且恢复原大小 */
+  .avatar-square.loaded {
+    opacity: 1;
+    transform: scale(1);
   }
 
   /* 乐队分组颜色定义 */
