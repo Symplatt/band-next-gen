@@ -15,11 +15,16 @@ interface Kid {
 
 }
 
+export interface IntroSegment {
+  introTitle: string; // 段落标题
+  content: string;    // 段落正文
+}
+
 interface Profile {
   height: string
   mbti?: string
   birthday: string
-  constellation?: string
+  constellation: string
   shortIntro: string
   longIntro: string
   mothers: Mother[]
