@@ -2,19 +2,19 @@
 
 <template>
   <div class="char-detail-view" v-if="member">
-    <!-- 背景层 -->
+    <!-- 背景层：z-index设为-1，置于最底层，不遮挡Footer -->
     <div
       class="bg-layer"
       :style="{ backgroundImage: `url(${resolvePath(member.image[0] || '')})` }"
     ></div>
     <div class="bg-overlay"></div>
 
-    <!-- 1. 电脑端 Back 按钮：独立于 page-container 之外，悬浮定位 -->
+    <!-- 1. 电脑端 Back 按钮：悬浮于左上角 -->
     <button class="back-btn pc-back-btn" @click="goBack"><span class="arrow">←</span> BACK</button>
 
-    <!-- 6. 使用 page-container 作为结构容器 -->
+    <!-- 6. 结构容器 -->
     <div class="page-container">
-      <!-- 4. 手机端 Back 按钮：保留在流内，但调整间距 -->
+      <!-- 4. 手机端 Back 按钮：调整顶部间距 -->
       <div class="mobile-back-wrapper">
         <button class="back-btn mobile-back-btn" @click="goBack">
           <span class="arrow">←</span> BACK
@@ -25,6 +25,7 @@
         <!-- 左侧：立绘 + 学生证 -->
         <div class="left-column">
           <div class="tachie-container">
+            <!-- 2. 立绘：宽度固定(100%容器)，高度自适应 -->
             <img
               :src="resolvePath(member.image[0] || '')"
               class="main-tachie"
@@ -34,7 +35,7 @@
             <div v-if="member.codeName" class="codename-vertical">{{ member.codeName }}</div>
           </div>
 
-          <!-- 3. 学生证：Grid布局，左右对齐，一行两个 -->
+          <!-- 3. 学生证：Grid布局，左右贴边对齐 -->
           <div class="student-card-section" v-if="hasStudentCards">
             <h3 class="section-title-normal">STUDENT ID CARD</h3>
             <div class="cards-gallery">
@@ -57,17 +58,14 @@
 
         <!-- 右侧：详细信息 -->
         <div class="right-column">
-          <!-- 5. 头部区域：Logo高度与文字高度相等 -->
+          <!-- 5. 头部区域：限制Logo大小并对齐 -->
           <div class="header-area">
-            <!-- 文本块 -->
             <div class="header-text-group">
               <div class="school-badge">{{ member.school }} / {{ member.position }}</div>
-              <div class="name-romaji-wrapper">
-                <h1 class="char-name-large">{{ member.name }}</h1>
-                <h2 class="char-romaji-large">{{ member.romaji }}</h2>
-              </div>
+              <h1 class="char-name-large">{{ member.name }}</h1>
+              <h2 class="char-romaji-large">{{ member.romaji }}</h2>
             </div>
-            <!-- Logo块：Flex stretch 保证高度一致 -->
+            <!-- 1. & 3. Logo：限制宽高，右对齐 -->
             <div class="band-logo-box" v-if="currentGroupLogo">
               <img :src="resolvePath(currentGroupLogo)" class="band-logo-img" alt="Band Logo" />
             </div>
@@ -109,7 +107,7 @@
             </div>
           </div>
 
-          <!-- 2. 家庭关系：增加 margin-top -->
+          <!-- 2. 家庭关系 -->
           <div class="family-section" v-if="hasFamily">
             <h3 class="section-title-normal">FAMILY RELATIONS</h3>
             <div class="family-cards-grid">
@@ -172,7 +170,6 @@
   import { useRoute, useRouter } from 'vue-router'
   import rawData from '@/assets/data/characters.json'
 
-  // 接口定义保持不变
   interface IntroSegment {
     introTitle: string
     content: string[]
@@ -282,7 +279,6 @@
 </script>
 
 <style scoped>
-  /* 业务容器 */
   .char-detail-view {
     position: relative;
     min-height: 100vh;
@@ -291,7 +287,7 @@
     background-color: #0b0c10;
   }
 
-  /* 6. Page Container 结构容器 */
+  /* 结构容器 */
   .page-container {
     box-sizing: border-box;
     width: 100%;
@@ -308,12 +304,12 @@
     }
   }
 
-  /* 背景层 */
+  /* 4. 背景层：z-index -1 解决Footer遮挡问题 */
   .bg-layer {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: -1;
     width: 100%;
     height: 100%;
     background-position: center top;
@@ -325,7 +321,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: -1;
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -337,7 +333,7 @@
     );
   }
 
-  /* --- Back 按钮样式 --- */
+  /* Back 按钮 */
   .back-btn {
     display: inline-flex;
     gap: 8px;
@@ -357,16 +353,16 @@
     background: #d4af37;
   }
 
-  /* 1. 电脑端 Back：固定定位，位于左上角，不占空间 */
+  /* 电脑端 Back 按钮：悬浮于左上角 */
   .pc-back-btn {
-    position: absolute; /* 相对于 .char-detail-view 定位 */
-    top: 90px; /* 避开导航栏 */
+    position: absolute;
+    top: 90px;
     left: 40px;
     z-index: 100;
   }
 
   .mobile-back-wrapper {
-    display: none; /* 电脑端隐藏移动端按钮容器 */
+    display: none;
   }
 
   .content-wrapper {
@@ -390,14 +386,13 @@
     position: relative;
     display: flex;
     justify-content: center;
-    max-height: 85vh;
+    width: 100%;
   }
 
+  /* 2. 立绘：宽度固定撑满容器，高度自适应 */
   .main-tachie {
-    width: auto;
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    max-height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgb(0 0 0 / 60%));
   }
@@ -427,22 +422,25 @@
     border-bottom: 1px solid rgb(212 175 55 / 30%);
   }
 
-  /* 3. 学生证 Grid 布局：一行两个，左右对齐 */
+  /* 3. 学生证 Grid 布局 */
   .cards-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
   }
 
-  .student-card-wrapper {
-    /* 默认 align-items: stretch，图片会自动填满格子宽度 */
-    display: flex;
-    width: 100%;
+  /* 偶数左对齐，奇数右对齐 (实现左右贴边) */
+  .student-card-wrapper:nth-child(odd) {
+    justify-self: start;
   }
 
-  /* 偶数个向右对齐，奇数个向左对齐 (默认Grid就是这样，这里确保图片宽度撑满) */
+  .student-card-wrapper:nth-child(even) {
+    justify-self: end;
+  }
+
   .student-card-img {
     width: 100%;
+    max-width: 280px; /* 限制单张卡片最大宽度 */
     height: auto;
     border: 1px solid rgb(255 255 255 / 20%);
     border-radius: 4px;
@@ -459,10 +457,9 @@
     padding-top: 0;
   }
 
-  /* 5. 头部 Flex 布局 */
   .header-area {
     display: flex;
-    align-items: stretch; /* 关键：使 Logo 容器与文本容器等高 */
+    align-items: flex-end; /* 底部对齐 */
     justify-content: space-between;
     margin-bottom: 30px;
   }
@@ -470,7 +467,7 @@
   .header-text-group {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* 内容靠下，与Logo底部对齐 */
+    justify-content: flex-end;
   }
 
   .school-badge {
@@ -502,21 +499,28 @@
     color: rgb(255 255 255 / 50%);
   }
 
-  /* Logo 容器 */
+  /* 1. Logo 盒子限制与对齐 */
   .band-logo-box {
     display: flex;
-    align-items: flex-end; /* Logo 图标沉底对齐 */
-    margin-left: 20px;
+    align-items: flex-end;
 
-    /* 容器高度被 align-items: stretch 强制拉伸至左侧文本块相同高度 */
+    /* 限制最大宽度，防止挤占文字空间 */
+    max-width: 240px;
+
+    /* 限制高度大致等于名字区域高度 */
+    max-height: 8rem;
+    margin-left: 20px;
   }
 
   .band-logo-img {
     width: auto;
-
-    /* 高度设为 100%，即填满“名字+罗马音”的高度区域 */
-    height: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
     object-fit: contain;
+
+    /* 3. 确保Logo贴右底对齐 */
+    object-position: right bottom;
     opacity: 0.9;
     filter: drop-shadow(0 0 5px rgb(255 255 255 / 20%));
   }
@@ -571,9 +575,9 @@
     text-align: justify;
   }
 
-  /* 2. 家庭关系：增加 Margin Top */
+  /* 2. 家庭关系：增加间距 */
   .family-section {
-    margin-top: 60px; /* 增加间距 */
+    margin-top: 60px;
   }
 
   .family-cards-grid {
@@ -651,18 +655,16 @@
       padding-top: 60px;
     }
 
-    /* 隐藏 PC Back 按钮 */
     .pc-back-btn {
       display: none;
     }
 
-    /* 显示 Mobile Back 容器 */
     .mobile-back-wrapper {
       display: block;
 
-      /* 4. 手机端 Back 按钮：距离顶部更近 */
-      margin-top: -10px;
-      margin-bottom: 10px;
+      /* 4. 手机端 Back 按钮距离顶部更近 */
+      margin-top: -15px;
+      margin-bottom: 15px;
     }
 
     .content-wrapper {
@@ -672,7 +674,6 @@
     }
 
     .main-tachie {
-      max-height: 60vh;
       overflow: hidden;
       border-radius: 12px;
     }
@@ -681,17 +682,17 @@
       position: relative;
     }
 
-    /* 手机端 Logo 特殊处理：绝对定位右上角 */
+    /* 手机端 Logo 绝对定位 */
     .band-logo-box {
       position: absolute;
-      top: 30px; /* 调整至名字附近 */
+      top: 35px;
       right: 0;
-      align-items: center;
-      height: 60px; /* 固定高度 */
+      height: 50px;
+      margin: 0;
     }
 
     .char-name-large {
-      margin-right: 60px; /* 给Logo留位置 */
+      margin-right: 60px; /* 避让Logo */
       font-size: 2.2rem;
     }
 
@@ -699,7 +700,6 @@
       grid-template-columns: 1fr 1fr;
     }
 
-    /* 手机端 Grid 改为间距更小 */
     .cards-gallery {
       gap: 10px;
     }
