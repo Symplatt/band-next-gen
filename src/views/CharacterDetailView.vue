@@ -1,128 +1,198 @@
+<!-- src/views/CharacterDetail.vue -->
+
 <template>
-  <div class="detail-view">
-    <!-- 返回按钮 -->
-    <button class="back-btn" @click="goBack"><span class="arrow">←</span> BACK</button>
+  <div class="char-detail-view" v-if="member">
+    <!-- 背景层 -->
+    <div
+      class="bg-layer"
+      :style="{ backgroundImage: `url(${resolvePath(member.image[0] || '')})` }"
+    ></div>
+    <div class="bg-overlay"></div>
 
-    <!-- 如果找不到角色（比如乱输URL），显示提示 -->
-    <div v-if="!member" class="not-found">
-      <h2>Character Not Found</h2>
-      <p>未找到该角色的档案信息。</p>
-    </div>
+    <!-- 1. 电脑端 Back 按钮：独立于 page-container 之外，悬浮定位 -->
+    <button class="back-btn pc-back-btn" @click="goBack"><span class="arrow">←</span> BACK</button>
 
-    <!-- 角色详情容器 -->
-    <div v-else class="detail-container">
-      <!-- === 左侧视觉区 === -->
-      <div class="visual-column">
-        <!-- images角色大立绘 -->
-        <div class="stand-image-box">
-          <img
-            :src="`${baseUrl}${member.image}`"
-            @error="handStandImageError"
-            class="stand-image"
-            loading="lazy"
-          />
-        </div>
-
-        <!-- images学生证 (固定比例 7:4) -->
-        <div class="student-card-box" v-if="member.studentCard">
-          <div class="card-label">STUDENT CARD</div>
-          <div class="card-aspect-ratio">
-            <img
-              :src="`${baseUrl}${member.studentCard}`"
-              @error="handleCardError"
-              class="student-card-img"
-              loading="lazy"
-            />
-          </div>
-        </div>
+    <!-- 6. 使用 page-container 作为结构容器 -->
+    <div class="page-container">
+      <!-- 4. 手机端 Back 按钮：保留在流内，但调整间距 -->
+      <div class="mobile-back-wrapper">
+        <button class="back-btn mobile-back-btn" @click="goBack">
+          <span class="arrow">←</span> BACK
+        </button>
       </div>
 
-      <!-- === 右侧信息区 === -->
-      <div class="info-column">
-        <!-- 顶部：乐队 Logo (比例 2:1) + 名字 -->
-        <div class="info-header">
-          <div class="header-left">
-            <h1 class="char-name">{{ member.name }}</h1>
-            <div class="char-romaji">{{ member.romaji }}</div>
-          </div>
-          <!-- 乐队 Logo -->
-          <div class="band-logo-box">
+      <div class="content-wrapper">
+        <!-- 左侧：立绘 + 学生证 -->
+        <div class="left-column">
+          <div class="tachie-container">
             <img
-              :src="groupLogo || 'https://placehold.co/200x100/transparent/d4af37?text=LOGO'"
-              class="band-logo-img"
-              loading="lazy"
+              :src="resolvePath(member.image[0] || '')"
+              class="main-tachie"
+              @error="onImageError"
+              alt="Character Tachie"
             />
+            <div v-if="member.codeName" class="codename-vertical">{{ member.codeName }}</div>
           </div>
-        </div>
 
-        <!-- 这是一条剪切线 -->
-        <div class="divider"></div>
-
-        <!-- 关键数据网格 -->
-        <div class="data-grid">
-          <div class="data-item">
-            <span class="label">POSITION</span>
-            <span class="value highlight">{{ member.position }}</span>
-          </div>
-          <div class="data-item">
-            <span class="label">SCHOOL</span>
-            <span class="value">{{ member.school }}</span>
-          </div>
-          <div class="data-item">
-            <span class="label">BIRTHDAY</span>
-            <span class="value">{{ member.profile.birthday }}</span>
-          </div>
-          <div class="data-item">
-            <span class="label">HEIGHT</span>
-            <span class="value">{{ member.profile.height }}</span>
-          </div>
-          <div class="data-item" v-if="member.profile.mbti">
-            <span class="label">MBTI</span>
-            <span class="value">{{ member.profile.mbti }}</span>
-          </div>
-        </div>
-
-        <!-- 个人简介 (长文本) -->
-        <div class="intro-section">
-          <h3 class="section-title">PROFILE</h3>
-          <p class="long-intro">{{ member.profile.longIntro }}</p>
-          <!-- 特殊引注 -->
-          <p v-if="member.specialNote" class="special-note">* {{ member.specialNote }}</p>
-        </div>
-
-        <!-- 亲缘关系 (点击跳转) -->
-        <div class="mothers-section" v-if="member.profile.mothers.length > 0">
-          <h3 class="section-title">PARENTS</h3>
-          <div class="mothers-list">
-            <div
-              v-for="mom in member.profile.mothers"
-              :key="mom.id"
-              class="mother-tag"
-              :class="{ clickable: mom.id }"
-              @click="goToMother(mom.id)"
-            >
-              <span class="role">Guardian</span>
-              <span class="name">{{ mom.name }}</span>
-              <span v-if="mom.id" class="link-arrow">↗</span>
+          <!-- 3. 学生证：Grid布局，左右对齐，一行两个 -->
+          <div class="student-card-section" v-if="hasStudentCards">
+            <h3 class="section-title-normal">STUDENT ID CARD</h3>
+            <div class="cards-gallery">
+              <div
+                v-for="(cardPath, index) in member.studentCard"
+                :key="index"
+                class="student-card-wrapper"
+              >
+                <img
+                  :src="resolvePath(cardPath)"
+                  class="student-card-img"
+                  @error="onCardError"
+                  loading="lazy"
+                  alt="Student Card"
+                />
+              </div>
             </div>
+          </div>
+        </div>
+
+        <!-- 右侧：详细信息 -->
+        <div class="right-column">
+          <!-- 5. 头部区域：Logo高度与文字高度相等 -->
+          <div class="header-area">
+            <!-- 文本块 -->
+            <div class="header-text-group">
+              <div class="school-badge">{{ member.school }} / {{ member.position }}</div>
+              <div class="name-romaji-wrapper">
+                <h1 class="char-name-large">{{ member.name }}</h1>
+                <h2 class="char-romaji-large">{{ member.romaji }}</h2>
+              </div>
+            </div>
+            <!-- Logo块：Flex stretch 保证高度一致 -->
+            <div class="band-logo-box" v-if="currentGroupLogo">
+              <img :src="resolvePath(currentGroupLogo)" class="band-logo-img" alt="Band Logo" />
+            </div>
+          </div>
+
+          <!-- 基础档案 -->
+          <div class="profile-grid">
+            <div class="profile-item">
+              <span class="label">HEIGHT</span>
+              <span class="value">{{ member.profile.height }}</span>
+            </div>
+            <div class="profile-item">
+              <span class="label">BIRTHDAY</span>
+              <span class="value">{{ member.profile.birthday }}</span>
+            </div>
+            <div class="profile-item">
+              <span class="label">CONSTELLATION</span>
+              <span class="value">{{ member.profile.constellation }}</span>
+            </div>
+            <div class="profile-item" v-if="member.profile.mbti">
+              <span class="label">MBTI</span>
+              <span class="value">{{ member.profile.mbti }}</span>
+            </div>
+          </div>
+
+          <div class="divider-line"></div>
+
+          <!-- 介绍文本 -->
+          <div class="intro-section">
+            <div
+              v-for="(segment, idx) in member.profile.longIntro"
+              :key="idx"
+              class="intro-segment"
+            >
+              <h3 class="intro-title">{{ segment.introTitle }}</h3>
+              <p v-for="(para, pIdx) in segment.content" :key="pIdx" class="intro-text">
+                {{ para }}
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. 家庭关系：增加 margin-top -->
+          <div class="family-section" v-if="hasFamily">
+            <h3 class="section-title-normal">FAMILY RELATIONS</h3>
+            <div class="family-cards-grid">
+              <template v-if="member.family?.mothers">
+                <div
+                  v-for="m in member.family?.mothers"
+                  :key="'mom-' + m.id"
+                  class="rel-card"
+                  @click="goToRel(m.id)"
+                >
+                  <div class="rel-label">GUARDIAN</div>
+                  <div class="rel-name">{{ m.name }}</div>
+                  <div class="rel-arrow"></div>
+                </div>
+              </template>
+              <template v-if="member.family?.sisters">
+                <div
+                  v-for="s in member.family?.sisters"
+                  :key="'sis-' + s.id"
+                  class="rel-card"
+                  @click="goToRel(s.id)"
+                >
+                  <div class="rel-label">SISTER</div>
+                  <div class="rel-name">{{ s.name }}</div>
+                  <div class="rel-arrow"></div>
+                </div>
+              </template>
+              <template v-if="member.family?.kids">
+                <div
+                  v-for="k in member.family?.kids"
+                  :key="'kid-' + k.id"
+                  class="rel-card"
+                  @click="goToRel(k.id)"
+                >
+                  <div class="rel-label">KID</div>
+                  <div class="rel-name">{{ k.name }}</div>
+                  <div class="rel-arrow"></div>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <!-- 特殊注释 -->
+          <div class="special-note-box" v-if="member.specialNote">
+            <span class="note-symbol">✱</span> {{ member.specialNote }}
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div v-else class="not-found">
+    <h2>Character Not Found</h2>
+    <button @click="goBack">Return</button>
+  </div>
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
-  import { useRouter, useRoute } from 'vue-router'
+  import { computed, watch } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
   import rawData from '@/assets/data/characters.json'
 
-  const baseUrl = import.meta.env.BASE_URL
-  // 即使 props 没传过来，useRoute().params.id 也是保底方案
-  const route = useRoute()
-  const router = useRouter()
-
-  // images类型定义 (保持和 CharactersView 一致)
+  // 接口定义保持不变
+  interface IntroSegment {
+    introTitle: string
+    content: string[]
+  }
+  interface Profile {
+    height: string
+    birthday: string
+    constellation: string
+    mbti?: string
+    longIntro: IntroSegment[]
+  }
+  interface SimpleRel {
+    name: string
+    id: string
+  }
+  interface Family {
+    mothers?: SimpleRel[]
+    sisters?: SimpleRel[]
+    kids?: SimpleRel[]
+  }
   interface Member {
     id: string
     route: string
@@ -131,395 +201,507 @@
     codeName?: string
     position: string
     school: string
-    image: string
-    studentCard: string
+    image: string[]
+    studentCard?: string[]
     specialNote?: string
-    profile: {
-      height: string
-      birthday: string
-      mbti?: string
-      longIntro: string
-      mothers: { name: string; id: string }[]
-    }
+    profile: Profile
+    family?: Family
+  }
+  interface Group {
+    groupKey: string
+    bandLogo?: string
+    members: Member[]
   }
 
-  const DEFAULT_STAND_IMAGE = 'images/stand-image/default-stand-image.png'
-  const DEFAULT_STUDENT_CARD = 'images/card/default-card.png'
+  const route = useRoute()
+  const router = useRouter()
+  const baseUrl = import.meta.env.BASE_URL
 
-  // images查找当前角色逻辑
   const member = computed(() => {
-    // 当前 URL 里的 id (例如 'tomori')
-    const currentId = route.params.id as string
-
-    // 遍历 JSON 里的所有分组，找到 route 匹配的那个成员
-    for (const group of rawData) {
-      const found = group.members.find((m: any) => m.route === currentId)
-      if (found) return found as Member
+    const targetId = route.params.id as string
+    for (const group of rawData as Group[]) {
+      const found = group.members.find((m) => m.route === targetId || m.id === targetId)
+      if (found) return found
     }
     return null
   })
 
-  // images获取当前角色的乐队 Logo
-  const groupLogo = computed(() => {
-    const currentId = route.params.id as string
-    const group = rawData.find((g) => g.members.some((m: any) => m.route === currentId))
-    return group ? group.bandLogo : ''
+  const currentGroupLogo = computed(() => {
+    if (!member.value) return ''
+    const group = (rawData as Group[]).find((g) => g.members.some((m) => m.id === member.value?.id))
+    return group?.bandLogo || ''
   })
 
-  // images跳转逻辑
-  const goBack = () => {
-    if (window.history.state.back) {
-      router.back()
-    }
-    return router.replace('/characters')
+  const hasStudentCards = computed(() => {
+    return member.value?.studentCard && member.value.studentCard.length > 0
+  })
+
+  const hasFamily = computed(() => {
+    const f = member.value?.family
+    return f && (f.mothers?.length || f.sisters?.length || f.kids?.length)
+  })
+
+  const resolvePath = (path: string) => {
+    if (!path) return ''
+    if (path.startsWith('http')) return path
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path
+    return `${baseUrl}${cleanPath}`
   }
 
-  const goToMother = (motherId: string) => {
-    if (!motherId) return // 如果是“待定”这种没ID的，不跳转
+  const onImageError = (e: Event) => {
+    const img = e.target as HTMLImageElement
+    const defaultPath = `${baseUrl}images/stand-image/default-stand-image.png`
+    if (img.src !== window.location.origin + defaultPath) {
+      img.src = defaultPath
+    }
+  }
 
-    // 根据 motherId (例如 mg-01) 找到对应的 route (例如 tomori)
-    let targetRoute = ''
-    for (const group of rawData) {
-      const found = group.members.find((m: any) => m.id === motherId)
+  const onCardError = (e: Event) => {
+    const img = e.target as HTMLImageElement
+    img.src = `${baseUrl}images/card/default-card.png`
+  }
+
+  const goBack = () => router.back()
+
+  const goToRel = (id: string) => {
+    for (const group of rawData as Group[]) {
+      const found = group.members.find((m) => m.id === id)
       if (found) {
-        targetRoute = found.route
-        break
+        router.push({ name: 'char-detail', params: { id: found.route } })
+        return
       }
     }
-
-    if (targetRoute) {
-      router.push({ name: 'char-detail', params: { id: targetRoute } })
-    }
   }
 
-  const handStandImageError = (e: Event) => {
-    const img = e.target as HTMLImageElement
-    // 如果图片加载失败，则用默认图片替换
-    if (img.src !== DEFAULT_STAND_IMAGE) {
-      img.src = DEFAULT_STAND_IMAGE
-    }
-  }
-
-  const handleCardError = (e: Event) => {
-    const img = e.target as HTMLImageElement
-    // 如果图片加载失败，则用默认图片替换
-    if (img.src !== DEFAULT_STUDENT_CARD) {
-      img.src = DEFAULT_STUDENT_CARD
-    }
-  }
+  watch(
+    () => route.params.id,
+    () => {
+      window.scrollTo(0, 0)
+    },
+  )
 </script>
 
 <style scoped>
-  .detail-view {
+  /* 业务容器 */
+  .char-detail-view {
     position: relative;
-    box-sizing: border-box;
-    min-height: calc(100vh - var(--header-heright));
-    padding: 0 40px;
-    padding-bottom: 100px;
+    min-height: 100vh;
+    padding-top: 80px;
     color: #fff;
     background-color: #0b0c10;
   }
 
-  /* 返回按钮 */
-  .back-btn {
-    position: fixed;
-    top: 100px; /* 避开 header */
-    left: 40px;
-    z-index: 50;
-    padding: 8px 16px;
-    font-family: 'Share Tech Mono', monospace;
-    color: #888;
-    cursor: pointer;
-    background: none;
-    border: 1px solid rgb(255 255 255 / 20%);
-    transition: all 0.3s;
-  }
-
-  .back-btn:hover {
-    padding-left: 10px; /* 简单的位移动画 */
-    color: #d4af37;
-    border-color: #d4af37;
-  }
-
-  .not-found {
-    text-align: center;
-  }
-
-  /* 布局容器 */
-  .detail-container {
-    display: flex;
-    gap: 60px;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 40px auto 0;
-  }
-
-  /* === 左侧视觉区 === */
-  .visual-column {
-    display: flex;
-    flex: 5; /* 占 5/12 */
-    flex-direction: column;
-    gap: 30px;
-    padding-top: 5px; /* 为了和旁边的角色名完美顶端对齐 */
-  }
-
-  .stand-image-box {
-    position: relative;
+  /* 6. Page Container 结构容器 */
+  .page-container {
     box-sizing: border-box;
     width: 100%;
-    height: 600px;
-    overflow: hidden;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-    border: 1px solid rgb(255 255 255 / 5%);
-    border-radius: 4px;
+    max-width: 1400px;
+    padding: 0 40px;
+    margin: 0 auto;
   }
 
-  .stand-image {
+  @media (width >= 768px) {
+    .page-container {
+      box-sizing: border-box;
+      width: 100vw;
+      padding: 0 40px;
+    }
+  }
+
+  /* 背景层 */
+  .bg-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top center;
+    background-position: center top;
+    background-size: cover;
+    filter: blur(20px) opacity(0.3);
   }
 
-  .stand-comment {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    padding: 2px 10px;
-    font-size: 12px;
-    color: #fff;
-    background: rgb(0 0 0 / 60%);
-    border: 2px solid rgb(255 255 255 / 10%);
-    border-radius: 8px;
-  }
-
-  /* 代号浮层 */
-  .code-overlay {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    font-family: 'Pinyon Script', cursive;
-    font-size: 3rem;
-    color: rgb(212 175 55 / 30%);
+  .bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgb(11 12 16 / 95%) 0%,
+      rgb(11 12 16 / 85%) 50%,
+      rgb(11 12 16 / 60%) 100%
+    );
   }
 
-  /* 学生证区域 */
-  .student-card-box {
-    width: 100%;
-  }
-
-  .card-label {
-    margin-bottom: 8px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    color: #555;
-    letter-spacing: 2px;
-  }
-
-  /* 核心：7:4 比例容器 */
-  .card-aspect-ratio {
-    display: flex;
+  /* --- Back 按钮样式 --- */
+  .back-btn {
+    display: inline-flex;
+    gap: 8px;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    aspect-ratio: 7 / 4; /* CSS原生比例控制 */
-    overflow: hidden;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 8px;
-  }
-
-  .student-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 保证卡片完整显示，不裁切 */
-  }
-
-  /* === 右侧信息区 === */
-  .info-column {
-    flex: 7; /* 占 7/12 */
-  }
-
-  .info-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-  }
-
-  .char-name {
-    margin: 0;
-    font-family: 'Noto Serif SC', serif;
-    font-size: 3rem;
-    line-height: 1.2;
-    color: #fff;
-  }
-
-  .char-romaji {
-    font-family: 'Cinzel Decorative', cursive;
-    font-size: 1.2rem;
-    color: #d4af37;
-    letter-spacing: 2px;
-  }
-
-  /* 核心：2:1 比例 Logo */
-  .band-logo-box {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 160px; /* 给定一个基准宽度 */
-    aspect-ratio: 2 / 1;
-  }
-
-  .band-logo-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 0 5px rgb(212 175 55 / 50%));
-  }
-
-  .divider {
-    width: 100%;
-    height: 1px;
-    margin: 20px 0 30px;
-    background: linear-gradient(90deg, #d4af37, transparent);
-  }
-
-  /* 数据网格 */
-  .data-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 两列 */
-    gap: 20px 40px;
-    margin-bottom: 40px;
-  }
-
-  .data-item {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .data-item .label {
-    margin-bottom: 4px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    color: #666;
-  }
-
-  .data-item .value {
-    padding-bottom: 4px;
-    font-size: 1.1rem;
-    color: #ccc;
-    border-bottom: 1px solid rgb(255 255 255 / 10%);
-  }
-
-  .data-item .highlight {
-    font-weight: bold;
-    color: #ff2e63;
-  }
-
-  /* 简介 */
-  .section-title {
-    padding-left: 10px;
-    margin-bottom: 15px;
+    padding: 6px 16px;
     font-family: 'Share Tech Mono', monospace;
     font-size: 1rem;
     color: #d4af37;
-    border-left: 3px solid #d4af37;
+    cursor: pointer;
+    background: rgb(0 0 0 / 40%);
+    border: 1px solid rgb(212 175 55 / 30%);
+    transition: all 0.3s ease;
   }
 
-  .long-intro {
-    margin-bottom: 10px;
-    line-height: 1.8;
-    color: #aaa;
-    text-align: justify;
-    white-space: pre-wrap;
+  .back-btn:hover {
+    color: #000;
+    background: #d4af37;
   }
 
-  .special-note {
-    margin-top: 10px;
-    font-size: 0.85rem;
-    font-style: italic;
-    color: #666;
+  /* 1. 电脑端 Back：固定定位，位于左上角，不占空间 */
+  .pc-back-btn {
+    position: absolute; /* 相对于 .char-detail-view 定位 */
+    top: 90px; /* 避开导航栏 */
+    left: 40px;
+    z-index: 100;
   }
 
-  /* 亲缘关系 */
-  .mothers-section {
-    padding-top: 30px;
-    margin-top: 40px;
-    border-top: 1px dashed rgb(255 255 255 / 10%);
+  .mobile-back-wrapper {
+    display: none; /* 电脑端隐藏移动端按钮容器 */
   }
 
-  .mothers-list {
+  .content-wrapper {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    gap: 40px;
+    align-items: start;
+    margin-top: 20px;
+  }
+
+  /* --- 左侧区域 --- */
+  .left-column {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .tachie-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    max-height: 85vh;
+  }
+
+  .main-tachie {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgb(0 0 0 / 60%));
+  }
+
+  .codename-vertical {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 3.5rem;
+    color: rgb(255 255 255 / 10%);
+    pointer-events: none;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* --- 学生证区域 --- */
+  .student-card-section {
+    width: 100%;
+  }
+
+  .section-title-normal {
+    margin-bottom: 15px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #d4af37;
+    border-bottom: 1px solid rgb(212 175 55 / 30%);
+  }
+
+  /* 3. 学生证 Grid 布局：一行两个，左右对齐 */
+  .cards-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
   }
 
-  .mother-tag {
+  .student-card-wrapper {
+    /* 默认 align-items: stretch，图片会自动填满格子宽度 */
     display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 8px 16px;
-    background: rgb(255 255 255 / 5%);
-    border: 1px solid transparent;
+    width: 100%;
+  }
+
+  /* 偶数个向右对齐，奇数个向左对齐 (默认Grid就是这样，这里确保图片宽度撑满) */
+  .student-card-img {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(255 255 255 / 20%);
     border-radius: 4px;
-    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
+    transition: transform 0.3s ease;
   }
 
-  .mother-tag.clickable {
+  .student-card-img:hover {
+    transform: scale(1.05);
+  }
+
+  /* --- 右侧区域 --- */
+  .right-column {
+    padding-top: 0;
+  }
+
+  /* 5. 头部 Flex 布局 */
+  .header-area {
+    display: flex;
+    align-items: stretch; /* 关键：使 Logo 容器与文本容器等高 */
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  .header-text-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 内容靠下，与Logo底部对齐 */
+  }
+
+  .school-badge {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+    background: #d4af37;
+    border-radius: 2px;
+  }
+
+  .char-name-large {
+    margin: 0;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 3.2rem;
+    line-height: 1.1;
+    text-shadow: 0 0 10px rgb(212 175 55 / 30%);
+  }
+
+  .char-romaji-large {
+    margin: 5px 0 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: rgb(255 255 255 / 50%);
+  }
+
+  /* Logo 容器 */
+  .band-logo-box {
+    display: flex;
+    align-items: flex-end; /* Logo 图标沉底对齐 */
+    margin-left: 20px;
+
+    /* 容器高度被 align-items: stretch 强制拉伸至左侧文本块相同高度 */
+  }
+
+  .band-logo-img {
+    width: auto;
+
+    /* 高度设为 100%，即填满“名字+罗马音”的高度区域 */
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 5px rgb(255 255 255 / 20%));
+  }
+
+  /* 档案 Grid */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .profile-item {
+    padding: 8px 12px;
+    background: rgb(255 255 255 / 5%);
+    border-left: 3px solid #d4af37;
+  }
+
+  .profile-item .label {
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: #aaa;
+  }
+
+  .profile-item .value {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .divider-line {
+    width: 100%;
+    height: 1px;
+    margin: 30px 0;
+    background: linear-gradient(to right, #d4af37, transparent);
+    opacity: 0.3;
+  }
+
+  .intro-title {
+    margin-bottom: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #d4af37;
+  }
+
+  .intro-text {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #ccc;
+    text-align: justify;
+  }
+
+  /* 2. 家庭关系：增加 Margin Top */
+  .family-section {
+    margin-top: 60px; /* 增加间距 */
+  }
+
+  .family-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+  }
+
+  .rel-card {
+    position: relative;
+    padding: 12px 15px;
     cursor: pointer;
+    background: linear-gradient(135deg, rgb(30 30 30 / 90%) 0%, rgb(10 10 10 / 90%) 100%);
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-left: 3px solid #d4af37;
+    transition: all 0.3s ease;
   }
 
-  .mother-tag.clickable:hover {
-    background: rgb(212 175 55 / 10%);
+  .rel-card:hover {
+    background: rgb(50 50 50 / 90%);
     border-color: #d4af37;
+    transform: translateX(5px);
   }
 
-  .mother-tag .role {
+  .rel-label {
+    margin-bottom: 4px;
+    font-family: 'Share Tech Mono', monospace;
     font-size: 0.7rem;
-    color: #555;
+    color: #d4af37;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
-  .mother-tag .name {
+  .rel-name {
+    font-size: 1rem;
     font-weight: bold;
     color: #fff;
   }
 
-  .link-arrow {
-    font-size: 0.9rem;
+  .rel-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 0;
+    height: 0;
+    margin-top: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid #555;
+    transition: border-left-color 0.3s;
+  }
+
+  .rel-card:hover .rel-arrow {
+    border-left-color: #d4af37;
+  }
+
+  .special-note-box {
+    padding-top: 10px;
+    margin-top: 40px;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #666;
+    text-align: right;
+    border-top: 1px dashed rgb(255 255 255 / 10%);
+  }
+
+  .note-symbol {
+    margin-right: 5px;
     color: #d4af37;
   }
 
-  /* 手机适配 */
-  @media (width <= 900px) {
-    .detail-container {
-      flex-direction: column;
+  /* --- 手机端适配 --- */
+  @media (width <= 768px) {
+    .char-detail-view {
+      padding-top: 60px;
     }
 
-    .back-btn {
+    /* 隐藏 PC Back 按钮 */
+    .pc-back-btn {
+      display: none;
+    }
+
+    /* 显示 Mobile Back 容器 */
+    .mobile-back-wrapper {
+      display: block;
+
+      /* 4. 手机端 Back 按钮：距离顶部更近 */
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
+    .content-wrapper {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-top: 0;
+    }
+
+    .main-tachie {
+      max-height: 60vh;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .header-area {
+      position: relative;
+    }
+
+    /* 手机端 Logo 特殊处理：绝对定位右上角 */
+    .band-logo-box {
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 30px; /* 调整至名字附近 */
+      right: 0;
+      align-items: center;
+      height: 60px; /* 固定高度 */
     }
 
-    .visual-column,
-    .info-column {
-      flex: none;
-      width: 100%;
+    .char-name-large {
+      margin-right: 60px; /* 给Logo留位置 */
+      font-size: 2.2rem;
     }
 
-    .char-name {
-      font-size: 2rem;
+    .profile-grid {
+      grid-template-columns: 1fr 1fr;
     }
 
-    .char-romaji {
-      font-size: 0.9rem;
-    }
-
-    .data-grid {
-      grid-template-columns: 1fr; /* 手机上一行一个数据 */
+    /* 手机端 Grid 改为间距更小 */
+    .cards-gallery {
+      gap: 10px;
     }
   }
 </style>

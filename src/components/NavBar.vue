@@ -41,10 +41,9 @@
 </script>
 
 <style scoped>
-  /* 导航栏容器，负责吸顶与背景效果 */
+  /* 导航栏容器，设置为相对定位使其随页面滚动 */
   .site-header {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 1000;
     width: 100%;
     height: var(--header-height, 64px);
