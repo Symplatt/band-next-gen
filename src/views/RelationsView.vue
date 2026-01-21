@@ -1,6 +1,6 @@
 <template>
   <div class="relations-view">
-    <!-- 目录轴：移动端完全隐藏，仅PC端显示 -->
+    <!-- 目录轴 -->
     <nav class="sidebar">
       <div class="nav-line"></div>
       <ul class="nav-list">
