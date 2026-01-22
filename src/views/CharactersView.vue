@@ -1,4 +1,5 @@
 <!-- src/views/CharacterView.vue -->
+<!-- 不规范 -->
 
 <template>
   <div class="characters-view">
