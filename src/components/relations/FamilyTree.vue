@@ -4,7 +4,7 @@
     <div class="genealogy-grid">
       <!-- 循环渲染每一个家庭单元 -->
       <div v-for="(family, index) in normalizedFamilyData" :key="index" class="family-unit">
-        <!-- 父母层 -->
+        <!-- 家长层 -->
         <div class="parents-row">
           <div v-for="mom in family.mother" :key="mom.name" class="parent-node">
             <img :src="resolvePath(mom.avatar)" class="avatar-round" loading="lazy" />
