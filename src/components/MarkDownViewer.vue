@@ -178,7 +178,7 @@
     margin-bottom: 1em;
     font-size: 1.5rem;
 
-    /* 修改：强制标题左对齐，去除阴影，使其更像小节标题 */
+    /* 强制标题左对齐，去除阴影，使其更像小节标题 */
     text-align: left;
     text-shadow: none;
   }
@@ -187,21 +187,18 @@
     font-size: 0.85rem;
     color: #888;
 
-    /* 修改：改为左对齐（或者使用 inherit 继承上方 justify），此处强制 left 以确保不乱跑 */
+    /* 此处强制 left 以确保不乱跑 */
     text-align: left;
   }
 
   /* --- 特殊换行符 \l 的处理 --- */
-
-  /* 电脑端默认：完全隐藏（不占位，直接消失） */
   .markdown-body :deep(.mobile-break) {
+    /* 电脑端默认：完全隐藏（不占位，直接消失） */
     display: none;
-
-    /* 如果希望电脑端变成空格而不是完全消失，改为 content: ' '; */
   }
 
-  /* 手机端：强制显示为换行 */
   @media (width <= 768px) {
+    /* 手机端：强制显示为换行 */
     .markdown-body :deep(.mobile-break) {
       display: inline; /* br 标签默认为 inline 元素 */
     }
