@@ -16,12 +16,14 @@
             class="parent-node interactive-node"
             @click="goToDetail(mom.id)"
           >
+            <!-- 头像图片 -->
             <img :src="resolvePath(mom.avatar)" class="avatar-round" loading="lazy" />
+            <!-- 成员名字 -->
             <span class="name">{{ mom.name }}</span>
           </div>
         </div>
 
-        <!-- 连接线结构，adopt类型显示虚线 -->
+        <!-- 连接线结构 -->
         <div class="connector" :class="{ 'dashed-line': family.type === 'adopt' }">
           <div class="connector-top"></div>
           <div class="connector-bottom"></div>
@@ -48,25 +50,25 @@
   import { computed } from 'vue'
   import { useRouter } from 'vue-router'
 
-  // 定义组件接收的属性：家庭数据数组
+  // 定义组件接收的属性
   const props = defineProps<{
     familyData: any[]
   }>()
 
-  // 获取路由实例用于页面跳转
+  // 获取路由实例
   const router = useRouter()
 
-  // 获取环境变量中的基础路径
+  // 获取基础路径
   const baseUrl = import.meta.env.BASE_URL
 
-  // 处理静态资源路径
+  // 处理路径
   const resolvePath = (path: string) => {
     if (!path) return ''
     const cleanPath = path.startsWith('/') ? path.slice(1) : path
     return `${baseUrl}${cleanPath}`
   }
 
-  // 点击头像跳转至详情页的方法
+  // 跳转详情页
   const goToDetail = (id: string) => {
     if (id) {
       router.push({
@@ -76,7 +78,7 @@
     }
   }
 
-  // 格式化家庭数据
+  // 格式化数据
   const normalizedFamilyData = computed(() => {
     return props.familyData.map((item: any) => ({
       ...item,
@@ -86,13 +88,13 @@
 </script>
 
 <style scoped>
-  /* 板块基础外边距设置 */
+  /* 板块基础外边距 */
   .section-block {
     margin-bottom: 150px;
     scroll-margin-top: 100px;
   }
 
-  /* 标题容器布局 */
+  /* 标题样式 */
   .section-title {
     display: flex;
     gap: 20px;
@@ -109,7 +111,7 @@
     border-bottom: none;
   }
 
-  /* 标题文字动画 */
+  /* 标题动画初始状态 */
   .section-title span {
     opacity: 0;
     transform: translateY(-10px);
@@ -133,7 +135,7 @@
     background: linear-gradient(90deg, rgb(185 153 48 / 50%), transparent);
   }
 
-  /* 动画触发状态 */
+  /* 标题可见状态 */
   .section-title.visible span {
     opacity: 1;
     transform: translateY(0);
@@ -144,12 +146,12 @@
     width: 400px;
   }
 
-  /* PC端网格布局：强制3列，显式定位防止错位 */
+  /* PC端网格布局：强制3列 */
   .genealogy-grid {
     display: grid;
-    grid-template-rows: auto auto; /* 两行高度自适应 */
-    grid-template-columns: repeat(3, 1fr); /* 3等分列 */
-    gap: 60px 20px; /* 增加行间距，保持列间距 */
+    grid-template-rows: auto auto; /* 两行自适应高度 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px 0; /* 行间距60px，列间距为0(靠对齐方式控制) */
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -163,44 +165,42 @@
     min-width: 300px;
   }
 
-  /* PC端显式定位：第一行 [丰川] [若叶] [高松] */
+  /* === PC端定位：第一行 === */
 
-  /* 第1个：丰川 -> 第1行 第1列 */
+  /* 丰川(1) -> 第1列 */
   .family-unit:nth-child(1) {
     grid-row: 1;
     grid-column: 1;
   }
 
-  /* 第3个：若叶 -> 第1行 第2列 */
+  /* 若叶(3) -> 第2列 */
   .family-unit:nth-child(3) {
     grid-row: 1;
     grid-column: 2;
   }
 
-  /* 第4个：高松 -> 第1行 第3列 */
-  .family-unit:nth-child(4) {
+  /* 长崎(5) -> 第3列 (与高松互换位置) */
+  .family-unit:nth-child(5) {
     grid-row: 1;
     grid-column: 3;
   }
 
-  /* PC端显式定位：第二行 [八幡] [长崎] (居中错落布局) */
+  /* === PC端定位：第二行 (彻底解决重叠) === */
 
-  /* 第2个：八幡 -> 第2行，跨越1-2列居中 */
+  /* 八幡(2) -> 放在第1列，但是靠右对齐 */
   .family-unit:nth-child(2) {
     grid-row: 2;
-    grid-column: 1 / 3; /* 占据第1到第3条网格线之间(即前两列) */
-    justify-self: center; /* 在该区域内居中 */
-
-    /* 视觉上位于 丰川(1) 和 若叶(3) 中间 */
+    grid-column: 1;
+    justify-self: end; /* 靠右对齐，靠近中间 */
+    margin-right: -100px; /* 向右微调，伸入第2列的空白区 */
   }
 
-  /* 第5个：长崎 -> 第2行，跨越2-3列居中 */
-  .family-unit:nth-child(5) {
+  /* 高松(4) -> 放在第3列，但是靠左对齐 (与长崎互换位置) */
+  .family-unit:nth-child(4) {
     grid-row: 2;
-    grid-column: 2 / 4; /* 占据第2到第4条网格线之间(即后两列) */
-    justify-self: center;
-
-    /* 视觉上位于 若叶(3) 和 高松(4) 中间 */
+    grid-column: 3;
+    justify-self: start; /* 靠左对齐，靠近中间 */
+    margin-left: -100px; /* 向左微调，伸入第2列的空白区 */
   }
 
   /* 父母行与子女行布局 */
@@ -213,7 +213,7 @@
     justify-content: center;
   }
 
-  /* 可交互节点样式 */
+  /* 交互节点样式 */
   .interactive-node {
     display: flex;
     flex-direction: column;
@@ -223,25 +223,23 @@
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
-  /* 节点悬停放大效果 */
+  /* 悬停效果 */
   .interactive-node:hover {
     transform: translateY(-5px) scale(1.1);
   }
 
-  /* 节点悬停时头像发光 */
   .interactive-node:hover .avatar-round {
     border-color: #ffd700;
     box-shadow: 0 0 15px #d4af37;
   }
 
-  /* 节点悬停时名字高亮 */
   .interactive-node:hover .name {
     font-weight: bold;
     color: #fff;
     text-shadow: 0 0 5px #d4af37;
   }
 
-  /* 圆形头像基础样式 */
+  /* 头像样式 */
   .avatar-round {
     width: 60px;
     height: 60px;
@@ -253,7 +251,7 @@
     transition: all 0.3s ease;
   }
 
-  /* 名字基础样式 */
+  /* 名字样式 */
   .name {
     font-size: 0.85rem;
     color: #ccc;
@@ -271,14 +269,13 @@
     opacity: 0.6;
   }
 
-  /* 连接线上半部分横竖线 */
+  /* 连接线绘制 */
   .connector-top {
     width: 60%;
     height: 20px;
     border-bottom: 1px solid #d4af37;
   }
 
-  /* 连接线下半部分横竖线 */
   .connector-bottom {
     position: relative;
     width: 60%;
@@ -286,7 +283,6 @@
     border-top: 1px solid #d4af37;
   }
 
-  /* 连接线垂直部分伪元素 */
   .connector-bottom::before {
     position: absolute;
     top: -20px;
@@ -297,34 +293,29 @@
     background: #d4af37;
   }
 
-  /* 虚线样式适配 */
+  /* 虚线样式 */
   .dashed-line .connector-top {
-    background: none;
     border: none;
     border-bottom: 1px dashed #d4af37;
   }
 
   .dashed-line .connector-bottom {
-    position: relative;
-    background: none;
     border: none;
     border-top: 1px dashed #d4af37;
   }
 
   .dashed-line .connector-bottom::before {
     width: 0;
-    content: '';
     background: none;
-    border: none;
     border-left: 1px dashed #d4af37;
   }
 
-  /* 独生子女去除顶部多余横线 */
+  /* 独生子女特殊处理 */
   .child-row:has(.child-node:only-child) + .connector .connector-bottom {
     border-top: none;
   }
 
-  /* 移动端适配 */
+  /* --- 移动端适配 --- */
   @media (width <= 768px) {
     .section-title {
       gap: 10px;
@@ -342,51 +333,63 @@
 
     /* 手机端 Grid 布局配置 */
     .genealogy-grid {
+      box-sizing: border-box;
       display: grid;
       grid-template-rows: auto auto auto; /* 三行 */
-      grid-template-columns: 1fr 1fr; /* 两列布局 */
-      gap: 30px 5px;
+      grid-template-columns: 1fr 1fr; /* 两列 */
+      gap: 30px 10px;
       justify-items: center;
       width: 100%;
       padding: 0;
     }
 
-    /* 重置样式，防止 PC 端样式干扰 */
+    /* 重置样式 */
     .family-unit {
-      grid-row: auto !important;
-      grid-column: auto !important;
-      justify-self: center !important;
+      grid-row: auto !important; /* 清除PC端行定义 */
+      grid-column: auto !important; /* 清除PC端列定义 */
+      justify-self: center !important; /* 清除PC端对齐 */
       order: unset !important;
-      min-width: auto;
+      width: 100%;
+      min-width: 0;
+      margin: 0 !important; /* 清除PC端边距 */
       transform: scale(0.9);
     }
 
-    /* 第一行：丰川(1) 左，高松(4) 右 */
+    /* === 手机端强制定位 === */
+
+    /* 第一行左：丰川(1) */
     .family-unit:nth-child(1) {
-      grid-area: 1 / 1 / 2 / 2;
+      grid-row: 1;
+      grid-column: 1;
     }
 
+    /* 第一行右：高松(4) */
     .family-unit:nth-child(4) {
-      grid-area: 1 / 2 / 2 / 3;
+      grid-row: 1;
+      grid-column: 2;
     }
 
-    /* 第二行：若叶(3) 独占一行居中 */
+    /* 第二行全宽：若叶(3) */
     .family-unit:nth-child(3) {
-      grid-area: 2 / 1 / 3 / 3;
+      grid-row: 2;
+      grid-column: 1 / 3; /* 跨两列 */
       justify-self: center;
     }
 
-    /* 第三行：八幡(2) 左，长崎(5) 右 */
+    /* 第三行左：八幡(2) */
     .family-unit:nth-child(2) {
-      grid-area: 3 / 1 / 4 / 2;
+      grid-row: 3;
+      grid-column: 2;
     }
 
+    /* 第三行左：长崎(右) */
     .family-unit:nth-child(5) {
-      grid-area: 3 / 2 / 4 / 3;
+      grid-row: 3;
+      grid-column: 1;
     }
 
     .interactive-node {
-      width: 70px;
+      width: 60px;
     }
 
     .avatar-round {

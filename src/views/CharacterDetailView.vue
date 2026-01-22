@@ -394,6 +394,7 @@
     width: 100%;
     height: auto;
     object-fit: contain;
+    border-radius: 5px;
     filter: drop-shadow(0 0 15px rgb(0 0 0 / 60%));
   }
 
