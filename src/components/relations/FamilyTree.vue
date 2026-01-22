@@ -228,17 +228,6 @@
     transform: translateY(-5px) scale(1.1);
   }
 
-  .interactive-node:hover .avatar-round {
-    border-color: #ffd700;
-    box-shadow: 0 0 15px #d4af37;
-  }
-
-  .interactive-node:hover .name {
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 0 5px #d4af37;
-  }
-
   /* 头像样式 */
   .avatar-round {
     width: 60px;
@@ -251,11 +240,22 @@
     transition: all 0.3s ease;
   }
 
+  .interactive-node:hover .avatar-round {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px #d4af37;
+  }
+
   /* 名字样式 */
   .name {
     font-size: 0.85rem;
     color: #ccc;
     transition: color 0.3s ease;
+  }
+
+  .interactive-node:hover .name {
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px #d4af37;
   }
 
   /* 连接线容器 */

@@ -119,8 +119,8 @@
     {
       "child": [{ "id": "hazuki", "name": "丰川羽月", "avatar": "images/avatar/hazuki.png" }],
       "mother": [
-        { "name": "丰川祥子", "avatar": "images/avatar/sakiko.png" },
-        { "name": "三角初华", "avatar": "images/avatar/uika.png" }
+        { "id": "sakiko", "name": "丰川祥子", "avatar": "images/avatar/sakiko.png" },
+        { "id": "uika", "name": "三角初华", "avatar": "images/avatar/uika.png" }
       ],
       "type": "birth"
     },
@@ -130,8 +130,8 @@
         { "id": "mirei", "name": "椎名美铃", "avatar": "images/avatar/mirei.png" }
       ],
       "mother": [
-        { "name": "八幡海铃", "avatar": "images/avatar/umiri.png" },
-        { "name": "椎名立希", "avatar": "images/avatar/taki.png" }
+        { "id": "umiri", "name": "八幡海铃", "avatar": "images/avatar/umiri.png" },
+        { "id": "rikki", "name": "椎名立希", "avatar": "images/avatar/taki.png" }
       ],
       "type": "birth"
     },
@@ -143,8 +143,8 @@
         { "id": "muna", "name": "若叶梦那", "avatar": "images/avatar/muna.png" }
       ],
       "mother": [
-        { "name": "祐天寺若麦", "avatar": "images/avatar/nyamu.png" },
-        { "name": "若叶睦", "avatar": "images/avatar/mutsumi.png" }
+        { "id": "nyamu", "name": "祐天寺若麦", "avatar": "images/avatar/nyamu.png" },
+        { "id": "mutsumi", "name": "若叶睦", "avatar": "images/avatar/mutsumi.png" }
       ],
       "type": "birth"
     },
@@ -155,8 +155,8 @@
         { "id": "sora", "name": "千早空", "avatar": "images/avatar/sora.png" }
       ],
       "mother": [
-        { "name": "长崎素世", "avatar": "images/avatar/soyo.png" },
-        { "name": "千早爱音", "avatar": "images/avatar/anon.png" }
+        { "id": "soyo", "name": "长崎素世", "avatar": "images/avatar/soyo.png" },
+        { "id": "anon", "name": "千早爱音", "avatar": "images/avatar/anon.png" }
       ],
       "type": "birth"
     },
@@ -164,8 +164,8 @@
     {
       "child": { "id": "shizuku", "name": "高松雫", "avatar": "images/avatar/shizuku.png" },
       "mother": [
-        { "name": "高松灯", "avatar": "images/avatar/tomori.png" },
-        { "name": "要乐奈", "avatar": "images/avatar/rana.png" }
+        { "id": "tomori", "name": "高松灯", "avatar": "images/avatar/tomori.png" },
+        { "id": "rana", "name": "要乐奈", "avatar": "images/avatar/rana.png" }
       ],
       "type": "adopt"
     }
