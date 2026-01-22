@@ -18,6 +18,7 @@ declare module 'vue' {
     HeroSection: typeof import('./src/components/home/HeroSection.vue')['default']
     MarkDownViewer: typeof import('./src/components/MarkDownViewer.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
+    NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
     RelationNetwork: typeof import('./src/components/relations/RelationNetwork.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
