@@ -694,5 +694,19 @@
     .cards-gallery {
       gap: 10px;
     }
+
+    .school-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 2px 7px;
+      margin-bottom: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: bold;
+      color: rgb(255 215 0 / 80%);
+      background: rgb(255 255 255 / 10%);
+      border: 1px solid rgb(255 215 0);
+      border-radius: 2px;
+    }
   }
 </style>

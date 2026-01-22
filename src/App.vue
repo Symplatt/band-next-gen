@@ -22,7 +22,7 @@
 <script setup lang="ts" name="App">
   import { computed } from 'vue'
   import { useRoute } from 'vue-router'
-  import NavigationBar from './components/NavBar.vue'
+  import NavigationBar from './components/NavigationBar.vue'
   import Footer from './components/Footer.vue'
   import BackToTop from './components/BackToTop.vue'
 

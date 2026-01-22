@@ -785,8 +785,8 @@
         "image": ["images/stand-image/mana1.png"],
         "profile": {
           "height": "???",
-          "birthday": "???",
-          "constellation": "???",
+          "birthday": "10月2日",
+          "constellation": "天秤座",
           "longIntro": [
             {
               "introTitle": "简介",

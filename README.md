@@ -90,7 +90,7 @@ band-next-gen
 │  │  │  ├─ HeroSection.vue
 │  │  │  └─ StarryBackground.vue
 │  │  ├─ MarkDownViewer.vue
-│  │  └─ NavBar.vue
+│  │  └─ NavigationBar.vue
 │  ├─ content
 │  │  ├─ 主题试用.md
 │  │  ├─ 免责声明.md
