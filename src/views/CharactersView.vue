@@ -1,4 +1,5 @@
 <!-- src/views/CharacterView.vue -->
+<!-- 角色页 -->
 
 <template>
   <div class="characters-view">

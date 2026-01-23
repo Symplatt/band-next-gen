@@ -1,4 +1,5 @@
 <!-- src/views/CharacterDetail.vue -->
+<!-- 个人详情页 -->
 
 <template>
   <div class="char-detail-view" v-if="member">
