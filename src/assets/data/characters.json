@@ -374,10 +374,10 @@
         "image": ["images/stand-image/sora1.png"],
         "studentCard": ["images/cards/sora-1.png", "images/cards/sora-2.png"],
         "profile": {
-          "height": "待更新",
-          "birthday": "待更新",
-          "constellation": "待更新",
-          "mbti": "待更新",
+          "height": "未设定",
+          "birthday": "未设定",
+          "constellation": "未设定",
+          "mbti": "未设定",
           "longIntro": [
             {
               "introTitle": "简介",

@@ -60,7 +60,6 @@
 </script>
 
 <style scoped>
-  /* 基础标题样式容器 */
   .section-title {
     /* 使用Flex布局使线条和文字垂直居中 */
     display: flex;
