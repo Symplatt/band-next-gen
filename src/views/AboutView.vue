@@ -1,3 +1,6 @@
+<!-- 「关于」页 -->
+<!-- src/views/AboutView.vue -->
+
 <template>
   <div class="about-view">
     <div class="page-container">

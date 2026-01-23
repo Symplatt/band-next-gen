@@ -16,7 +16,8 @@
     "deploy": "npm run build && gh-pages -d dist",
     "release": "git add . && git commit -m \"update\" && git push && npm run deploy",
     "cloc": "cloc src --exclude-dir=node_modules,dist,.git",
-    "ship": "node scripts/release.js"
+    "ship": "node scripts/release.js",
+    "cmt": "git add . && git commit -m \"update\" "
   },
   "dependencies": {
     "axios": "^1.13.2",
