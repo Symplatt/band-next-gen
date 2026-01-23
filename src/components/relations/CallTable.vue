@@ -143,10 +143,18 @@
     scroll-margin-top: 100px;
   }
 
-  /* 表格横向滚动容器 */
+  /* .table-scroll-wrapper的两个CSS样式是为了让滚动轴出现在表格顶部 */
   .table-scroll-wrapper {
-    padding-bottom: 10px;
+    padding-bottom: 10px; /* 注意：翻转后这个 padding 会视觉上出现在顶部 */
     overflow-x: auto;
+
+    /* 沿X轴翻转180度 */
+    transform: rotateX(180deg);
+  }
+
+  /* 容器的内容：必须把里面的内容翻转回来，否则文字是倒着的 */
+  .table-scroll-wrapper > * {
+    transform: rotateX(180deg);
   }
 
   .call-table {
