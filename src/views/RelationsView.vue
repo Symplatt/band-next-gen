@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
   import { ref, computed, onMounted, onUnmounted } from 'vue'
-  // 引入拆分后的子组件
+  // 引入子组件
   import SidebarNav from '@/components/relations/SidebarNav.vue'
   import CallTable from '@/components/relations/CallTable.vue'
   import RelationNetwork from '@/components/relations/RelationNetwork.vue'
