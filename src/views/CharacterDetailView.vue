@@ -1,4 +1,5 @@
 <!-- src/views/CharacterDetail.vue -->
+<!-- zgit -->
 
 <template>
   <div class="char-detail-view" v-if="member">
