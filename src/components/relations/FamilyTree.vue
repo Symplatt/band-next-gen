@@ -277,7 +277,7 @@
       grid-column: 2;
     }
 
-    /* 第二行全宽：若叶(第3个family) */
+    /* 第二行全宽：三个小若叶一个gird格子塞不下 */
     .family-unit:nth-child(2) {
       grid-row: 2;
       grid-column: 1 / span 2;

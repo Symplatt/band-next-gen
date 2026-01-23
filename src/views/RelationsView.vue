@@ -1,6 +1,7 @@
 <template>
   <div class="relations-view">
     <!-- 左侧目录导航组件，传入配置和当前激活状态 -->
+    <!-- 目录轴暂不考虑手机端适配，毕设的前端部分用不到这个 -->
     <SidebarNav :navItems="navItems" :activeSection="activeSection" @scrollTo="handleScrollTo" />
 
     <div class="page-container">
@@ -138,12 +139,5 @@
     overflow-x: hidden;
     color: #fff;
     background-color: #0b0c10;
-  }
-
-  /* 移动端适配 */
-  @media (width <= 768px) {
-    .page-container {
-      padding: 0 20px;
-    }
   }
 </style>

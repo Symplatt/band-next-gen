@@ -28,4 +28,11 @@
     margin-right: 5px;
     color: #d4af37;
   }
+
+  @media (width < 768px) {
+    .special-note-box {
+      margin-top: 150px;
+      font-size: 0.6rem;
+    }
+  }
 </style>
