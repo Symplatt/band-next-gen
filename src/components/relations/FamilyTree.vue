@@ -262,7 +262,7 @@
     .genealogy-grid {
       grid-template-rows: repeat(3, auto);
       grid-template-columns: repeat(2, auto); /* 两列 */
-      gap: 3.5rem 3rem;
+      gap: 2.5rem 2rem;
     }
 
     /* 重置样式 */
@@ -308,8 +308,8 @@
     }
 
     .avatar-round {
-      width: 3.5rem;
-      height: 3.5rem;
+      width: 3rem;
+      height: 3rem;
     }
 
     .name {

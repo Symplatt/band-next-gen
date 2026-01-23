@@ -153,7 +153,12 @@
       gap: 10px;
 
       /* 缩小字体 */
-      font-size: 1.8rem;
+      font-size: 1.6rem;
+    }
+
+    .section-title span {
+      /* 初始位置向上偏移 */
+      transform: translateY(-2px);
     }
 
     /* 移动端线条动画目标宽度调整 */
@@ -164,7 +169,7 @@
 
       to {
         /* 手机端使用视口单位自适应宽度 */
-        width: 30vw;
+        width: 25vw;
       }
     }
   }

@@ -1,6 +1,7 @@
 <!-- App.vue -->
 <template>
   <div class="app">
+    <!-- 导航栏 -->
     <NavigationBar />
 
     <RouterView v-slot="{ Component }">
@@ -23,6 +24,7 @@
   import { computed } from 'vue'
   import { useRoute } from 'vue-router'
   import NavigationBar from './components/NavigationBar.vue'
+  import CustomCursor from './components/CustomCursor.vue'
   import Footer from './components/Footer.vue'
   import BackToTop from './components/BackToTop.vue'
 
@@ -38,14 +40,17 @@
   #app {
     height: 100%;
     margin: 0;
-
-    /* 全局深色背景 */
-    background: #0b0c10;
+    background: #0b0c10; /* 全局深色背景 */
   }
 
   .app {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+  }
+
+  a,
+  button {
+    cursor: pointer;
   }
 </style>
