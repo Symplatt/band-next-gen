@@ -22,6 +22,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SidebarNav: typeof import('./src/components/relations/SidebarNav.vue')['default']
+    SpecialNoteBox: typeof import('./src/components/SpecialNoteBox.vue')['default']
     StarryBackground: typeof import('./src/components/home/StarryBackground.vue')['default']
   }
 }

@@ -12,6 +12,9 @@
 
       <!-- 第三部分：亲缘谱子组件 -->
       <FamilyTree id="section-family" :familyData="familyData" />
+
+      <!-- 特殊注释 -->
+      <SpecialNoteBox note-content="本页面所展示的立绘皆截取自鹤星发布于各平台的作品" />
     </div>
   </div>
 </template>
@@ -131,12 +134,6 @@
     overflow-x: hidden;
     color: #fff;
     background-color: #0b0c10;
-  }
-
-  /* 内容限制容器 */
-  .page-container {
-    max-width: 1200px; /* 限制内容最大宽度，避免大屏拉伸 */
-    margin: 0 auto; /* 居中显示 */
   }
 
   /* 移动端适配 */

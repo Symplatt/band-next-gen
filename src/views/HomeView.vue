@@ -10,7 +10,7 @@
           <!-- 标题区 -->
           <div class="section-title-group">
             <h2 class="area-title"><span class="title-content">创作档案</span></h2>
-            <p class="area-subtitle">Portfolio</p>
+            <p class="area-subtitle">Creative Archive</p>
             <p class="extra-describe"></p>
           </div>
 
@@ -182,7 +182,7 @@
     font-size: 0.9rem;
     color: #d4af37;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
   }
 
   .info-content {

@@ -72,9 +72,7 @@
       </section>
 
       <!-- 特殊注释 -->
-      <div class="special-note-box">
-        <span class="note-symbol">✱</span>本页面所展示的立绘皆截取自鹤星发布于各平台的作品
-      </div>
+      <SpecialNoteBox note-content="本页面所展示的立绘皆截取自鹤星发布于各平台的作品" />
     </div>
   </div>
 </template>
@@ -83,6 +81,7 @@
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import rawData from '@/assets/data/characters.json'
+  import SpecialNoteBox from '@/components/SpecialNoteBox.vue'
 
   // 类型定义保持不变
   interface Mother {
@@ -426,20 +425,6 @@
   .value.highlight {
     font-weight: bold;
     color: #ff2e63;
-  }
-
-  .special-note-box {
-    margin-top: 40px;
-    font-size: 0.85rem;
-    font-style: italic;
-    color: #666;
-    text-align: right;
-    border-top: 1px dashed rgb(255 255 255 / 10%);
-  }
-
-  .note-symbol {
-    margin-right: 5px;
-    color: #d4af37;
   }
 
   @keyframes fade-in-down {
