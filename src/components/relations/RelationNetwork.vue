@@ -2,7 +2,7 @@
   <section class="section-block">
     <!-- PC端显示的关系网图表 -->
     <div class="network-container desktop-only">
-      该模块正在制作中，当前仅演示初版效果：
+      <div class="claim">该模块正在制作中，当前仅演示初版效果：</div>
       <div class="circle-layout">
         <!-- SVG连线层，位于节点下方 -->
         <svg class="lines-layer" viewBox="0 0 500 500">
@@ -125,8 +125,12 @@
 
   .network-container {
     display: flex;
-    justify-content: center;
-    height: 600px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .claim {
+    display: block;
   }
 
   .circle-layout {

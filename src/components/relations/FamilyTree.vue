@@ -4,8 +4,13 @@
     <!-- 族谱网格布局容器 -->
     <div class="genealogy-grid">
       <!-- 循环渲染每一个家庭单元 -->
-      <div v-for="(family, index) in normalizedFamilyData" :key="index" class="family-unit">
-        <!-- 父母层容器 -->
+      <div
+        v-for="(family, index) in normalizedFamilyData"
+        :key="index"
+        class="family-unit"
+        :class="{ 'special-unit': isWakaba(family) }"
+      >
+        <!-- 双亲层容器 -->
         <div class="parents-row">
           <div
             v-for="mom in family.mother"
@@ -58,6 +63,12 @@
   // 获取基础路径
   const baseUrl = import.meta.env.BASE_URL
 
+  // 如果是若叶家
+  const isWakaba = (family: any) => {
+    const judgeName = ['若叶睦', '祐天寺若麦']
+    return family.mother[0].name in judgeName
+  }
+
   // 处理路径
   const resolvePath = (path: string) => {
     if (!path) return ''
@@ -75,10 +86,14 @@
     }
   }
 
-  // 格式化数据
+  /*
+  格式化数据：
+  如果child不是对象数组，只有单个对象，就转成对象数组
+  其实这段代码不写也行，我json写可好了
+  */
   const normalizedFamilyData = computed(() => {
     return props.familyData.map((item: any) => ({
-      ...item,
+      ...item, // 修改child，mother和type下面没写，就是原封不动的意思
       child: Array.isArray(item.child) ? item.child : [item.child],
     }))
   })
@@ -91,12 +106,12 @@
     scroll-margin-top: 100px;
   }
 
-  /* PC端网格布局：强制3列 */
+  /* 网格布局：强制3列 */
   .genealogy-grid {
     display: grid;
     grid-template-rows: auto auto; /* 两行自适应高度 */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px 0; /* 行间距60px，列间距为0(靠对齐方式控制) */
+    grid-template-columns: repeat(3, auto);
+    gap: 80px 100px;
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -107,70 +122,43 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 300px;
+    justify-self: center;
+    width: fit-content;
   }
 
-  /* === PC端定位：第一行 === */
-
-  /* 丰川(1) -> 第1列 */
-  .family-unit:nth-child(1) {
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  /* 若叶(3) -> 第2列 */
-  .family-unit:nth-child(3) {
-    grid-row: 1;
-    grid-column: 2;
-  }
-
-  /* 长崎(5) -> 第3列 (与高松互换位置) */
-  .family-unit:nth-child(5) {
-    grid-row: 1;
-    grid-column: 3;
-  }
-
-  /* === PC端定位：第二行 (彻底解决重叠) === */
-
-  /* 八幡(2) -> 放在第1列，但是靠右对齐 */
-  .family-unit:nth-child(2) {
+  .family-unit:nth-child(4) {
     grid-row: 2;
     grid-column: 1;
     justify-self: end; /* 靠右对齐，靠近中间 */
-    margin-right: -100px; /* 向右微调，伸入第2列的空白区 */
+    margin-right: -10rem;
   }
 
-  /* 高松(4) -> 放在第3列，但是靠左对齐 (与长崎互换位置) */
-  .family-unit:nth-child(4) {
+  .family-unit:nth-child(5) {
     grid-row: 2;
     grid-column: 3;
     justify-self: start; /* 靠左对齐，靠近中间 */
-    margin-left: -100px; /* 向左微调，伸入第2列的空白区 */
+    margin-left: -10rem;
   }
 
-  /* 父母行与子女行布局 */
+  /* 双亲行与子女行布局 */
   .parents-row,
   .child-row {
     position: relative;
     z-index: 2;
     display: flex;
-    gap: 40px;
+    gap: 60px;
     justify-content: center;
   }
 
-  /* 交互节点样式 */
+  /* 交互节点（连名字带头像）样式 */
   .interactive-node {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80px;
+
+    /* width: 80px; */
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  /* 悬停效果 */
-  .interactive-node:hover {
-    transform: translateY(-5px) scale(1.1);
   }
 
   /* 头像样式 */
@@ -185,11 +173,6 @@
     transition: all 0.3s ease;
   }
 
-  .interactive-node:hover .avatar-round {
-    border-color: #ffd700;
-    box-shadow: 0 0 15px #d4af37;
-  }
-
   /* 名字样式 */
   .name {
     font-size: 0.85rem;
@@ -197,6 +180,18 @@
     transition: color 0.3s ease;
   }
 
+  /* 悬停效果 */
+  .interactive-node:hover {
+    transform: translateY(-5px) scale(1.1);
+  }
+
+  /* 悬停效果-头像 */
+  .interactive-node:hover .avatar-round {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px #d4af37;
+  }
+
+  /* 悬停效果-名字 */
   .interactive-node:hover .name {
     font-weight: bold;
     color: #fff;
@@ -216,22 +211,23 @@
 
   /* 连接线绘制 */
   .connector-top {
-    width: 60%;
+    width: 100%;
     height: 20px;
     border-bottom: 1px solid #d4af37;
   }
 
   .connector-bottom {
     position: relative;
-    width: 60%;
+    width: 100%;
     height: 20px;
     border-top: 1px solid #d4af37;
   }
 
+  /* 居中小竖线 */
   .connector-bottom::before {
     position: absolute;
-    top: -20px;
-    left: 50%;
+    top: -20px; /* 上浮的距离和小竖线的高度相同 */
+    left: 50%; /* 从左边平移50%，因此小竖线居中 */
     width: 1px;
     height: 20px;
     content: '';
@@ -264,68 +260,56 @@
   @media (width <= 768px) {
     /* 手机端 Grid 布局配置 */
     .genealogy-grid {
-      box-sizing: border-box;
-      display: grid;
-      grid-template-rows: auto auto auto; /* 三行 */
-      grid-template-columns: 1fr 1fr; /* 两列 */
-      gap: 30px 10px;
-      justify-items: center;
-      width: 100%;
-      padding: 0;
+      grid-template-rows: repeat(3, auto);
+      grid-template-columns: repeat(2, auto); /* 两列 */
+      gap: 3.5rem 3rem;
     }
 
     /* 重置样式 */
     .family-unit {
-      grid-row: auto !important; /* 清除PC端行定义 */
-      grid-column: auto !important; /* 清除PC端列定义 */
-      justify-self: center !important; /* 清除PC端对齐 */
-      order: unset !important;
       width: 100%;
       min-width: 0;
-      margin: 0 !important; /* 清除PC端边距 */
       transform: scale(0.9);
     }
 
-    /* === 手机端强制定位 === */
-
-    /* 第一行左：丰川(1) */
-    .family-unit:nth-child(1) {
-      grid-row: 1;
-      grid-column: 1;
-    }
-
-    /* 第一行右：高松(4) */
-    .family-unit:nth-child(4) {
-      grid-row: 1;
-      grid-column: 2;
-    }
-
-    /* 第二行全宽：若叶(3) */
     .family-unit:nth-child(3) {
-      grid-row: 2;
-      grid-column: 1 / 3; /* 跨两列 */
-      justify-self: center;
-    }
-
-    /* 第三行左：八幡(2) */
-    .family-unit:nth-child(2) {
-      grid-row: 3;
+      grid-row: 1;
       grid-column: 2;
     }
 
-    /* 第三行左：长崎(右) */
+    /* 第二行全宽：若叶(第3个family) */
+    .family-unit:nth-child(2) {
+      grid-row: 2;
+      grid-column: 1 / span 2;
+      justify-self: center;
+      width: 15.5rem; /* 宽度=天穗梦3人头像的宽度+2个gap */
+    }
+
+    .family-unit:nth-child(4) {
+      grid-row: 3;
+      grid-column: 1;
+      margin-right: 0; /* 取消电脑端的偏移效果 */
+    }
+
     .family-unit:nth-child(5) {
       grid-row: 3;
-      grid-column: 1;
+      grid-column: 2;
+      margin-left: 0; /* 取消电脑端的偏移效果 */
     }
 
-    .interactive-node {
-      width: 60px;
+    /* 双亲行与子女行布局 */
+    .parents-row,
+    .child-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
     }
 
     .avatar-round {
-      width: 50px;
-      height: 50px;
+      width: 3.5rem;
+      height: 3.5rem;
     }
 
     .name {

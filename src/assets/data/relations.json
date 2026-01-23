@@ -126,18 +126,6 @@
     },
     {
       "child": [
-        { "id": "riko", "name": "八幡莉子", "avatar": "images/avatar/riko.png" },
-        { "id": "mirei", "name": "椎名美铃", "avatar": "images/avatar/mirei.png" }
-      ],
-      "mother": [
-        { "id": "umiri", "name": "八幡海铃", "avatar": "images/avatar/umiri.png" },
-        { "id": "rikki", "name": "椎名立希", "avatar": "images/avatar/taki.png" }
-      ],
-      "type": "birth"
-    },
-
-    {
-      "child": [
         { "id": "ameha", "name": "若叶天叶", "avatar": "images/avatar/ameha.png" },
         { "id": "wakaho", "name": "若叶若穗", "avatar": "images/avatar/wakaho.png" },
         { "id": "muna", "name": "若叶梦那", "avatar": "images/avatar/muna.png" }
@@ -148,7 +136,25 @@
       ],
       "type": "birth"
     },
-
+    {
+      "child": [{ "id": "shizuku", "name": "高松雫", "avatar": "images/avatar/shizuku.png" }],
+      "mother": [
+        { "id": "tomori", "name": "高松灯", "avatar": "images/avatar/tomori.png" },
+        { "id": "rana", "name": "要乐奈", "avatar": "images/avatar/rana.png" }
+      ],
+      "type": "adopt"
+    },
+    {
+      "child": [
+        { "id": "riko", "name": "八幡莉子", "avatar": "images/avatar/riko.png" },
+        { "id": "mirei", "name": "椎名美铃", "avatar": "images/avatar/mirei.png" }
+      ],
+      "mother": [
+        { "id": "umiri", "name": "八幡海铃", "avatar": "images/avatar/umiri.png" },
+        { "id": "rikki", "name": "椎名立希", "avatar": "images/avatar/taki.png" }
+      ],
+      "type": "birth"
+    },
     {
       "child": [
         { "id": "anna", "name": "长崎杏奈", "avatar": "images/avatar/anna.png" },
@@ -159,15 +165,6 @@
         { "id": "anon", "name": "千早爱音", "avatar": "images/avatar/anon.png" }
       ],
       "type": "birth"
-    },
-
-    {
-      "child": { "id": "shizuku", "name": "高松雫", "avatar": "images/avatar/shizuku.png" },
-      "mother": [
-        { "id": "tomori", "name": "高松灯", "avatar": "images/avatar/tomori.png" },
-        { "id": "rana", "name": "要乐奈", "avatar": "images/avatar/rana.png" }
-      ],
-      "type": "adopt"
     }
   ]
 }

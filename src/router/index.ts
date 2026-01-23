@@ -11,37 +11,43 @@ const router = createRouter({
       component: () => import('@/views/HomeView.vue'),
       meta: { keepAlive: true } // 标记需要缓存的页面
     },
+
     {
       path: '/characters',
       name: 'characters',
       component: () => import('@/views/CharactersView.vue'),
       meta: { keepAlive: true }
     },
+
+    // 个人详情页
     {
-      path: '/char-detail/:id',
+      path: '/char-detail/:id', // 参数id每个人的名字，比如sakiko
       name: 'char-detail',
       component: () => import('@/views/CharacterDetailView.vue'),
       props: true
-      // 详情页通常不需要缓存，或者需要根据ID缓存，这里暂不开启
     },
+
     {
       path: '/relations',
       name: 'relations',
       component: () => import('@/views/RelationsView.vue'),
       meta: { keepAlive: true }
     },
+
     {
       path: '/chronicle',
       name: 'chronicle',
       component: () => import('@/views/ChronicleView.vue'),
       meta: { keepAlive: true }
     },
+
     {
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue'),
       meta: { keepAlive: true }
     },
+
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',

@@ -35,13 +35,13 @@
 
   // 计算扁平化的成员列表，供各子组件使用
   const memberList = computed(() => {
-    return relationData.characters.flatMap((g) => g.members)
+    return relationData.characters.flatMap((group) => group.members)
   })
 
   // 提取称呼表数据
   const callTable = relationData.callTable
 
-  // 提取族谱数据
+  // 提取亲缘谱数据
   const familyData = relationData.familyTree
 
   // 导航菜单配置
