@@ -5,12 +5,15 @@
 
     <div class="page-container">
       <!-- 第一部分：称呼表子组件 -->
+      <SectionTitle title="称呼表" />
       <CallTable id="section-table" :memberList="memberList" :callTable="callTable" />
 
       <!-- 第二部分：关系网子组件 -->
+      <SectionTitle title="关系网" />
       <RelationNetwork id="section-network" :memberList="memberList" />
 
       <!-- 第三部分：亲缘谱子组件 -->
+      <SectionTitle title="亲缘谱" />
       <FamilyTree id="section-family" :familyData="familyData" />
 
       <!-- 特殊注释 -->
@@ -23,6 +26,7 @@
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   // 引入子组件
   import SidebarNav from '@/components/relations/SidebarNav.vue'
+  import SectionTitle from '@/components/relations/SectionTitle.vue'
   import CallTable from '@/components/relations/CallTable.vue'
   import RelationNetwork from '@/components/relations/RelationNetwork.vue'
   import FamilyTree from '@/components/relations/FamilyTree.vue'

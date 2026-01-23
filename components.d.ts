@@ -21,6 +21,7 @@ declare module 'vue' {
     RelationNetwork: typeof import('./src/components/relations/RelationNetwork.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SectionTitle: typeof import('./src/components/relations/SectionTitle.vue')['default']
     SidebarNav: typeof import('./src/components/relations/SidebarNav.vue')['default']
     SpecialNoteBox: typeof import('./src/components/SpecialNoteBox.vue')['default']
     StarryBackground: typeof import('./src/components/home/StarryBackground.vue')['default']

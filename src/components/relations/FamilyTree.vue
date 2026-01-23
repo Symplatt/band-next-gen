@@ -1,9 +1,6 @@
 <template>
   <!-- 亲缘谱板块容器 -->
   <section class="section-block">
-    <!-- 标题区域 -->
-    <h2 class="section-title"><span>亲缘谱</span></h2>
-
     <!-- 族谱网格布局容器 -->
     <div class="genealogy-grid">
       <!-- 循环渲染每一个家庭单元 -->
@@ -92,58 +89,6 @@
   .section-block {
     margin-bottom: 150px;
     scroll-margin-top: 100px;
-  }
-
-  /* 标题样式 */
-  .section-title {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding-bottom: 0;
-    margin-bottom: 60px;
-    font-family: 'Noto Serif SC', cursive;
-    font-size: 2.5rem;
-    color: #d4af37;
-    letter-spacing: 4px;
-    text-shadow: 0 0 10px rgb(212 175 55 / 30%);
-    border-bottom: none;
-  }
-
-  /* 标题动画初始状态 */
-  .section-title span {
-    opacity: 0;
-    transform: translateY(-10px);
-    transition:
-      opacity 1.5s ease-out,
-      transform 1.5s ease-out;
-  }
-
-  /* 标题装饰线 */
-  .section-title::before,
-  .section-title::after {
-    display: block;
-    width: 0;
-    height: 1px;
-    content: '';
-    background: linear-gradient(90deg, transparent, rgb(185 153 48 / 50%));
-    transition: width 1.2s ease-out;
-  }
-
-  .section-title::after {
-    background: linear-gradient(90deg, rgb(185 153 48 / 50%), transparent);
-  }
-
-  /* 标题可见状态 */
-  .section-title.visible span {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .section-title.visible::before,
-  .section-title.visible::after {
-    width: 400px;
   }
 
   /* PC端网格布局：强制3列 */
@@ -317,20 +262,6 @@
 
   /* --- 移动端适配 --- */
   @media (width <= 768px) {
-    .section-title {
-      gap: 10px;
-      font-size: 1.8rem;
-    }
-
-    .section-title.visible::before,
-    .section-title.visible::after {
-      width: 30vw;
-    }
-
-    .section-title span {
-      transform: translateY(-5px);
-    }
-
     /* 手机端 Grid 布局配置 */
     .genealogy-grid {
       box-sizing: border-box;
