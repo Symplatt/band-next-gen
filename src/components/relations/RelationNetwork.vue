@@ -1,7 +1,5 @@
 <template>
   <section class="section-block">
-    <h2 class="section-title"><span>关系网</span></h2>
-
     <!-- PC端显示的关系网图表 -->
     <div class="network-container desktop-only">
       该模块正在制作中，当前仅演示初版效果：
@@ -125,55 +123,6 @@
     scroll-margin-top: 100px;
   }
 
-  /* 标题样式（需与 CallTable 保持一致或抽取公共样式） */
-  .section-title {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding-bottom: 0;
-    margin-bottom: 60px;
-    font-family: 'Noto Serif SC', cursive;
-    font-size: 2.5rem;
-    color: #d4af37;
-    letter-spacing: 4px;
-    text-shadow: 0 0 10px rgb(212 175 55 / 30%);
-    border-bottom: none;
-  }
-
-  .section-title span {
-    opacity: 0;
-    transform: translateY(-10px);
-    transition:
-      opacity 1.5s ease-out,
-      transform 1.5s ease-out;
-  }
-
-  .section-title::before,
-  .section-title::after {
-    display: block;
-    width: 0;
-    height: 1px;
-    content: '';
-    background: linear-gradient(90deg, transparent, rgb(185 153 48 / 50%));
-    transition: width 1.2s ease-out;
-  }
-
-  .section-title::after {
-    background: linear-gradient(90deg, rgb(185 153 48 / 50%), transparent);
-  }
-
-  .section-title.visible span {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .section-title.visible::before,
-  .section-title.visible::after {
-    width: 400px;
-  }
-
   .network-container {
     display: flex;
     justify-content: center;
@@ -292,20 +241,6 @@
 
     .mobile-network-msg {
       display: block;
-    }
-
-    .section-title {
-      gap: 10px;
-      font-size: 1.8rem;
-    }
-
-    .section-title.visible::before,
-    .section-title.visible::after {
-      width: 30vw;
-    }
-
-    .section-title span {
-      transform: translateY(-5px);
     }
   }
 </style>

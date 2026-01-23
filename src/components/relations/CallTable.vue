@@ -1,8 +1,5 @@
 <template>
   <section class="section-block">
-    <!-- 标题区域，包含下划线动画效果 -->
-    <h2 class="section-title"><span>称呼表</span></h2>
-
     <div class="table-scroll-wrapper">
       <table class="call-table">
         <thead>
@@ -146,58 +143,6 @@
     scroll-margin-top: 100px;
   }
 
-  /* 标题样式：包含下划线和淡入动画 */
-  .section-title {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding-bottom: 0;
-    margin-bottom: 60px;
-    font-family: 'Noto Serif SC', cursive;
-    font-size: 2.5rem;
-    color: #d4af37;
-    letter-spacing: 4px;
-    text-shadow: 0 0 10px rgb(212 175 55 / 30%);
-    border-bottom: none;
-  }
-
-  /* 标题文字初始状态为不可见 */
-  .section-title span {
-    opacity: 0;
-    transform: translateY(-10px);
-    transition:
-      opacity 1.5s ease-out,
-      transform 1.5s ease-out;
-  }
-
-  /* 标题两侧的装饰线 */
-  .section-title::before,
-  .section-title::after {
-    display: block;
-    width: 0;
-    height: 1px;
-    content: '';
-    background: linear-gradient(90deg, transparent, rgb(185 153 48 / 50%));
-    transition: width 1.2s ease-out;
-  }
-
-  .section-title::after {
-    background: linear-gradient(90deg, rgb(185 153 48 / 50%), transparent);
-  }
-
-  /* 当父级添加 visible 类时触发动画 */
-  .section-title.visible span {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .section-title.visible::before,
-  .section-title.visible::after {
-    width: 400px;
-  }
-
   /* 表格横向滚动容器 */
   .table-scroll-wrapper {
     padding-bottom: 10px;
@@ -339,21 +284,5 @@
 
   .cell.active .romaji {
     color: #333;
-  }
-
-  @media (width <= 768px) {
-    .section-title {
-      gap: 10px;
-      font-size: 1.8rem;
-    }
-
-    .section-title.visible::before,
-    .section-title.visible::after {
-      width: 30vw;
-    }
-
-    .section-title span {
-      transform: translateY(-5px);
-    }
   }
 </style>

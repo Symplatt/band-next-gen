@@ -89,7 +89,7 @@
     opacity: 0;
 
     /* 初始位置向上偏移 */
-    transform: translateY(-20px);
+    transform: translateY(-5px);
   }
 
   /* 标题左右两侧装饰线条的初始状态 */
