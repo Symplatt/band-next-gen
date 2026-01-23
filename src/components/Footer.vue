@@ -1,3 +1,5 @@
+<!-- 底部信息栏 -->
+
 <template>
   <footer class="site-footer" v-if="!route.meta.hideFooter">
     <div class="page-container">
