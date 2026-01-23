@@ -13,7 +13,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     BackToTop: typeof import('./src/components/BackToTop.vue')['default']
     CallTable: typeof import('./src/components/relations/CallTable.vue')['default']
-    CustomCursor: typeof import('./src/components/CustomCursor.vue')['default']
     FamilyTree: typeof import('./src/components/relations/FamilyTree.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     HeroSection: typeof import('./src/components/home/HeroSection.vue')['default']

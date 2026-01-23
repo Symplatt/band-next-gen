@@ -24,7 +24,6 @@
   import { computed } from 'vue'
   import { useRoute } from 'vue-router'
   import NavigationBar from './components/NavigationBar.vue'
-  import CustomCursor from './components/CustomCursor.vue'
   import Footer from './components/Footer.vue'
   import BackToTop from './components/BackToTop.vue'
 
