@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-6iZObjCU.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-D7lYb5_w.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-D9QqguZa.js";import{d as a,c as o,f as n,h as t,q as e,e as s,_ as c}from"./index-u62jiKHt.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」企划，是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -72,4 +72,4 @@ import{M as r}from"./MarkDownViewer-6iZObjCU.js";import{d as a,c as o,f as n,h a
 1. 本站不对因理解、解读或使用站内内容而产生的任何直接或间接后果承担责任。\r
 2. 用户应自行判断站内信息的创作属性与虚构性质。\r
 \r
-`,m={class:"about-view"},d={class:"page-container"},u={class:"content-card"},p={class:"footer-disclaimer"},_=a({__name:"AboutView",setup(f){return(h,g)=>(s(),o("div",m,[n("div",d,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",p,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),v=c(_,[["__scopeId","data-v-0cfeb860"]]);export{v as default};
+`,m={class:"about-view"},d={class:"page-container"},u={class:"content-card"},_={class:"footer-disclaimer"},p=a({__name:"AboutView",setup(f){return(h,g)=>(s(),o("div",m,[n("div",d,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",_,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),v=c(p,[["__scopeId","data-v-0cfeb860"]]);export{v as default};
