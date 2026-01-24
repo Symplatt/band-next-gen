@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-CB1WTIpg.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-DIzSQMGB.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-C961xZhH.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-DSN56nHf.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -24,6 +24,10 @@ import{M as r}from"./MarkDownViewer-CB1WTIpg.js";import{d as a,c as o,f as n,h a
 \r
 ② 高清立绘大图、完整称呼表格、可交互关系网等仅在电脑端浏览器显示，因此**推荐使用电脑浏览器**。\r
 \r
+③ BGM为《颜》/《影色舞》纯音乐，随机播放\r
+\r
+④ 本网站仅收录全年龄向内容。\r
+\r
 ## 加入我们\r
 \r
 <div style="display: flex;margin-bottom: 30px;" >\r
@@ -35,9 +39,7 @@ import{M as r}from"./MarkDownViewer-CB1WTIpg.js";import{d as a,c as o,f as n,h a
 ① 由于服务器位于海外，部分地区（如中国大陆）的访问速度可能较慢或不稳定。\r
 (预计2026年2月1日前，将完成国内服务器部署，届时所有用户均可稳定访问)\r
 \r
-② 本网站仅收录全年龄向内容。\r
-\r
-③ GitHub地址：\\l[https://github.com/symplatt/band-next-gen](https://github.com/symplatt/band-next-gen)\r
+② GitHub地址：\\l[https://github.com/symplatt/band-next-gen](https://github.com/symplatt/band-next-gen)\r
 `,l=`## 免责声明\r
 \r
 本网站为非商业性质的二次创作同人展示站点，内容基于《BanG Dream! It's MyGO!!!!!》与《BanG Dream! Ave Mujica》原作世界观进行延伸创作，仅用于同人交流与作品展示目的。\r
@@ -70,4 +72,4 @@ import{M as r}from"./MarkDownViewer-CB1WTIpg.js";import{d as a,c as o,f as n,h a
 1. 本站不对因理解、解读或使用站内内容而产生的任何直接或间接后果承担责任。\r
 2. 用户应自行判断站内信息的创作属性与虚构性质。\r
 \r
-`,m={class:"about-view"},d={class:"page-container"},u={class:"content-card"},p={class:"footer-disclaimer"},_=a({__name:"AboutView",setup(f){return(h,g)=>(s(),o("div",m,[n("div",d,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",p,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),G=c(_,[["__scopeId","data-v-0cfeb860"]]);export{G as default};
+`,m={class:"about-view"},d={class:"page-container"},u={class:"content-card"},p={class:"footer-disclaimer"},_=a({__name:"AboutView",setup(f){return(h,g)=>(s(),o("div",m,[n("div",d,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",p,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),v=c(_,[["__scopeId","data-v-0cfeb860"]]);export{v as default};
