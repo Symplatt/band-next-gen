@@ -23,7 +23,7 @@
       </div>
 
       <div class="content-wrapper">
-        <!-- 左侧：立绘 + 学生证 -->
+        <!-- 左侧图片区 -->
         <div class="left-column">
           <div class="tachie-container">
             <!-- 立绘 -->
@@ -250,7 +250,7 @@
   .char-detail-view {
     position: relative;
     min-height: 100vh;
-    padding-top: 80px;
+    padding-top: 40px;
     padding-bottom: 150px; /* 1. 增加底部间距 */
     color: #fff;
     background-color: #0b0c10;
@@ -324,7 +324,7 @@
 
   .pc-back-btn {
     position: absolute;
-    top: 90px;
+    top: 60px;
     left: 40px;
     z-index: 100;
   }
@@ -337,8 +337,8 @@
     position: relative;
     z-index: 10;
     display: grid;
-    grid-template-columns: 45% 55%;
-    gap: 40px;
+    grid-template-columns: 45% 50%;
+    gap: 5%;
     align-items: start;
     margin-top: 20px;
   }
@@ -361,8 +361,9 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    border-radius: 5px;
-    filter: drop-shadow(0 0 15px rgb(0 0 0 / 60%));
+    border: solid rgb(212 175 55 / 30%);
+    border-radius: 10px;
+    filter: drop-shadow(0 0 10px rgb(212 175 55 / 60%)); /* 金色虚影增加立体感 */
   }
 
   .codename-vertical {
@@ -391,8 +392,8 @@
   }
 
   .cards-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 15px;
   }
 
@@ -406,11 +407,11 @@
 
   .student-card-img {
     width: 100%;
-    max-width: 280px;
     height: auto;
     border: 1px solid rgb(255 255 255 / 20%);
     border-radius: 4px;
     box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
+    filter: drop-shadow(0 0 1px rgb(212 175 55 / 60%)); /* 金色虚影增加立体感 */
     transition: transform 0.3s ease;
   }
 
