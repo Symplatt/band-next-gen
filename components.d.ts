@@ -15,6 +15,7 @@ declare module 'vue' {
     CallTable: typeof import('./src/components/relations/CallTable.vue')['default']
     FamilyTree: typeof import('./src/components/relations/FamilyTree.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    GlobalBgm: typeof import('./src/components/GlobalBgm.vue')['default']
     HeroSection: typeof import('./src/components/home/HeroSection.vue')['default']
     MarkDownViewer: typeof import('./src/components/MarkDownViewer.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']

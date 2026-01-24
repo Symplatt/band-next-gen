@@ -24,6 +24,7 @@ export interface Family {
   mothers?: SimpleRel[]
   sisters?: SimpleRel[]
   kids?: SimpleRel[]
+  spouse?: SimpleRel
 }
 
 // 成员信息

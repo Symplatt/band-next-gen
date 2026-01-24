@@ -4,19 +4,26 @@
     <!-- 导航栏 -->
     <NavigationBar />
 
-    <RouterView v-slot="{ Component }">
-      <!-- 仅缓存路由 meta 中标记为 keepAlive 的组件 -->
-      <KeepAlive>
-        <component :is="Component" v-if="$route.meta.keepAlive" :key="$route.name" />
-      </KeepAlive>
-      <!-- 不缓存的组件直接渲染 -->
-      <component :is="Component" v-if="!$route.meta.keepAlive" :key="$route.fullPath" />
-    </RouterView>
+    <!-- 内容区域 -->
+    <div class="app-content">
+      <RouterView v-slot="{ Component }">
+        <!-- 仅缓存路由 meta 中标记为 keepAlive 的组件 -->
+        <KeepAlive>
+          <component :is="Component" v-if="$route.meta.keepAlive" :key="$route.name" />
+        </KeepAlive>
+        <!-- 不缓存的组件直接渲染 -->
+        <component :is="Component" v-if="!$route.meta.keepAlive" :key="$route.fullPath" />
+      </RouterView>
+    </div>
 
     <!-- 根据路由元信息决定是否隐藏 Footer -->
     <Footer v-if="!$route.meta.hideFooter" />
 
+    <!-- 回到顶部按钮 -->
     <BackToTop :ifDisplay="showBackToTop" />
+
+    <!-- 网站BGM -->
+    <GlobalBgm />
   </div>
 </template>
 
@@ -26,6 +33,7 @@
   import NavigationBar from './components/NavigationBar.vue'
   import Footer from './components/Footer.vue'
   import BackToTop from './components/BackToTop.vue'
+  import GlobalBgm from './components/GlobalBgm.vue'
 
   const route = useRoute()
 
@@ -46,6 +54,12 @@
     display: flex;
     flex-direction: column;
     min-height: 100%;
+  }
+
+  /* 让包含导航栏高度的整个网页至少占满视口高度 */
+  .app-content {
+    width: 100%;
+    min-height: calc(100vh - var(--header-height));
   }
 
   a,

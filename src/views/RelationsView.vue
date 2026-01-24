@@ -5,17 +5,20 @@
     <SidebarNav :navItems="navItems" :activeSection="activeSection" @scrollTo="handleScrollTo" />
 
     <div class="page-container">
-      <!-- 第一部分：称呼表子组件 -->
-      <SectionTitle title="称呼表" />
-      <CallTable id="section-table" :memberList="memberList" :callTable="callTable" />
+      <section id="section-table">
+        <SectionTitle title="称呼表" />
+        <CallTable :memberList="memberList" :callTable="callTable" />
+      </section>
 
-      <!-- 第二部分：关系网子组件 -->
-      <SectionTitle title="关系网" />
-      <RelationNetwork id="section-network" :memberList="memberList" />
+      <section id="section-network">
+        <SectionTitle title="关系网" />
+        <RelationNetwork :memberList="memberList" />
+      </section>
 
-      <!-- 第三部分：亲缘谱子组件 -->
-      <SectionTitle title="亲缘谱" />
-      <FamilyTree id="section-family" :familyData="familyData" />
+      <section id="section-family">
+        <SectionTitle title="亲缘谱" />
+        <FamilyTree :familyData="familyData" />
+      </section>
 
       <!-- 特殊注释 -->
       <SpecialNoteBox note-content="本页面所展示的立绘皆截取自鹤星发布于各平台的作品" />
@@ -68,7 +71,7 @@
       const baseOffset = parseInt(headerHeight || '60')
       // 计算目标位置，留出顶部余量
       const elementPosition = el.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - baseOffset - 20
+      const offsetPosition = elementPosition + window.pageYOffset - baseOffset + 40
 
       // 执行平滑滚动
       window.scrollTo({

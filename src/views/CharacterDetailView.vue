@@ -110,8 +110,17 @@
 
           <!-- 家庭关系 -->
           <div class="family-section" v-if="hasFamily">
-            <h3 class="section-title-normal">BLOOD RELATIONS</h3>
+            <h3 class="section-title-normal">FAMILY RELATIONS</h3>
             <div class="family-cards-grid">
+              <!-- 配偶 -->
+              <template v-if="member.family?.spouse">
+                <div class="rel-card" @click="goToRel(member.family.spouse.id)">
+                  <div class="rel-label">SPOUSE</div>
+                  <div class="rel-name">{{ member.family.spouse.name }}</div>
+                  <div class="rel-arrow"></div>
+                </div>
+              </template>
+              <!-- 母亲 -->
               <template v-if="member.family?.mothers">
                 <div
                   v-for="m in member.family?.mothers"
@@ -124,6 +133,7 @@
                   <div class="rel-arrow"></div>
                 </div>
               </template>
+              <!-- 姐妹 -->
               <template v-if="member.family?.sisters">
                 <div
                   v-for="s in member.family?.sisters"
@@ -136,6 +146,7 @@
                   <div class="rel-arrow"></div>
                 </div>
               </template>
+              <!-- 孩子 -->
               <template v-if="member.family?.kids">
                 <div
                   v-for="k in member.family?.kids"
@@ -522,11 +533,24 @@
     opacity: 0.3;
   }
 
+  .intro-segment {
+    padding: 0 20px 30px;
+    margin-bottom: 25px;
+    background: linear-gradient(145deg, rgb(255 255 255 / 3%) 0%, transparent 100%);
+    border: 1px solid rgb(212 175 55 / 15%);
+    border-left: 1px solid #d4af37;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 20%);
+    backdrop-filter: blur(2px);
+  }
+
   .intro-title {
-    margin-bottom: 10px;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
     font-family: 'Share Tech Mono', monospace;
     font-size: 1.1rem;
     color: #d4af37;
+    border-bottom: 1px dashed rgb(212 175 55 / 30%);
   }
 
   .intro-text {
@@ -535,6 +559,11 @@
     line-height: 1.7;
     color: #ccc;
     text-align: justify;
+  }
+
+  /* 移除卡片内最后一段文字的底部边距，保持布局整洁 */
+  .intro-text:last-child {
+    margin-bottom: 0;
   }
 
   .family-section {
@@ -675,6 +704,11 @@
       background: rgb(255 255 255 / 10%);
       border: 1px solid rgb(255 215 0);
       border-radius: 2px;
+    }
+
+    .intro-segment {
+      padding: 0 10px 20px;
+      border: 1px solid rgb(212 175 55 / 15%);
     }
   }
 </style>
