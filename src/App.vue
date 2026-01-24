@@ -21,9 +21,6 @@
 
     <!-- 回到顶部按钮 -->
     <BackToTop :ifDisplay="showBackToTop" />
-
-    <!-- 网站BGM -->
-    <GlobalBgm />
   </div>
 </template>
 
@@ -33,12 +30,11 @@
   import NavigationBar from './components/NavigationBar.vue'
   import Footer from './components/Footer.vue'
   import BackToTop from './components/BackToTop.vue'
-  import GlobalBgm from './components/GlobalBgm.vue'
 
   const route = useRoute()
 
-  // 计算属性：非首页且不是404页面时显示回到顶部
-  const showBackToTop = computed(() => route.name !== 'home' && route.name !== 'not-found')
+  // 计算属性：不是404页面时显示回到顶部
+  const showBackToTop = computed(() => route.name !== 'not-found')
 </script>
 
 <style>
