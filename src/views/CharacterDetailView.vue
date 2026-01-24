@@ -374,7 +374,7 @@
     object-fit: contain;
     border: solid rgb(212 175 55 / 30%);
     border-radius: 10px;
-    filter: drop-shadow(0 0 10px rgb(212 175 55 / 60%)); /* 金色虚影增加立体感 */
+    filter: drop-shadow(0 0 5px rgb(212 175 55 / 60%)); /* 金色虚影增加立体感 */
   }
 
   .codename-vertical {
