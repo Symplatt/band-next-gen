@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-B8cd5_4e.js";import{d as a,c as o,f as n,h as t,q as e,e as s,_ as c}from"./index-CAdR3aR1.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-DFzXR5Yw.js";import{d as a,c as o,f as n,h as t,p as e,e as s,_ as c}from"./index-qzbPSlLU.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -20,9 +20,9 @@ import{M as r}from"./MarkDownViewer-B8cd5_4e.js";import{d as a,c as o,f as n,h a
 \r
 ## 关于网站\r
 \r
-本网站适配电脑浏览器与手机浏览器，二者在界面布局上稍有不同，但不存在内容差异。\r
+① 本网站适配电脑浏览器与手机浏览器，针对屏幕尺寸采用两套界面布局，但不存在内容差异。\r
 \r
-高清立绘大图、完整称呼表格、可交互关系网等仅在电脑端浏览器显示，因此**推荐使用电脑浏览器**访问本网站。\r
+② 高清立绘大图、完整称呼表格、可交互关系网等仅在电脑端浏览器显示，因此**推荐使用电脑浏览器**。\r
 \r
 ## 加入我们\r
 \r
@@ -32,7 +32,8 @@ import{M as r}from"./MarkDownViewer-B8cd5_4e.js";import{d as a,c as o,f as n,h a
 \r
 ## 其他\r
 \r
-① 由于服务器位于海外，部分地区（如中国大陆）的访问速度可能较慢或不稳定。(预计2026年2月1日前，将完成国内服务器部署，届时所有用户均可稳定访问)\r
+① 由于服务器位于海外，部分地区（如中国大陆）的访问速度可能较慢或不稳定。\r
+(预计2026年2月1日前，将完成国内服务器部署，届时所有用户均可稳定访问)\r
 \r
 ② 本网站仅收录全年龄向内容。\r
 \r
@@ -69,4 +70,4 @@ import{M as r}from"./MarkDownViewer-B8cd5_4e.js";import{d as a,c as o,f as n,h a
 1. 本站不对因理解、解读或使用站内内容而产生的任何直接或间接后果承担责任。\r
 2. 用户应自行判断站内信息的创作属性与虚构性质。\r
 \r
-`,m={class:"about-view"},d={class:"page-container"},u={class:"content-card"},_={class:"footer-disclaimer"},p=a({__name:"AboutView",setup(f){return(h,g)=>(s(),o("div",m,[n("div",d,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",_,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),G=c(p,[["__scopeId","data-v-0cfeb860"]]);export{G as default};
+`,m={class:"about-view"},d={class:"page-container"},u={class:"content-card"},p={class:"footer-disclaimer"},_=a({__name:"AboutView",setup(f){return(h,g)=>(s(),o("div",m,[n("div",d,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",p,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),G=c(_,[["__scopeId","data-v-0cfeb860"]]);export{G as default};
