@@ -171,7 +171,7 @@
   import { useRoute, useRouter } from 'vue-router'
   import rawData from '@/assets/data/characters.json'
 
-  interface IntroSegment {
+  interface Archive {
     introTitle: string
     content: string[]
   }
@@ -180,7 +180,7 @@
     birthday: string
     constellation: string
     mbti?: string
-    longIntro: IntroSegment[]
+    longIntro: Archive[]
   }
   interface SimpleRel {
     name: string
