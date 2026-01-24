@@ -21,7 +21,7 @@ interface Family {
   kids?: Kid[]
 }
 
-export interface Archive {
+export interface IntroSegment {
   introTitle: string;
   content: string[]; // 正文内容也是数组形式 ["段落1", "段落2"]
 }
@@ -31,7 +31,7 @@ interface Profile {
   mbti?: string       // 部分角色可能没有，保留 ?
   birthday: string
   constellation: string
-  longIntro: Archive[] // 修正：统一为对象数组结构
+  longIntro: IntroSegment[] // 修正：统一为对象数组结构
 }
 
 interface Member {

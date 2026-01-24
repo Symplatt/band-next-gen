@@ -102,7 +102,7 @@
     sisters?: Sister[]
     kids?: Kid[]
   }
-  interface Archive {
+  interface IntroSegment {
     introTitle: string
     content: string[]
   }
@@ -111,7 +111,7 @@
     birthday: string
     constellation: string
     mbti?: string
-    longIntro: Archive[]
+    longIntro: IntroSegment[]
   }
   interface Member {
     id: string
