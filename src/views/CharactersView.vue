@@ -308,14 +308,41 @@
     width: 100%;
     aspect-ratio: 3 / 4;
     overflow: hidden;
+
+    /* 添加默认背景色（深灰色），在图片加载前显示 */
+    background-color: rgb(255 255 255 / 5%);
+
+    /* 添加一个简单的加载中动画 */
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(255 255 255 / 5%) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
   }
 
+  /* 定义骨架屏动画 */
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* 图片加载完成后，覆盖掉背景 */
   .char-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top center;
-    transition: transform 0.6s ease;
+    transition:
+      transform 0.6s ease,
+      opacity 0.3s ease; /* 加一个透明度过渡 */
   }
 
   .char-card:hover .char-image {
