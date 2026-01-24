@@ -79,10 +79,14 @@
 </template>
 
 <script setup lang="ts">
+  // 引入API
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
+  // 引入数据
   import rawData from '@/assets/data/characters.json'
+  // 引入组件
   import SpecialNoteBox from '@/components/SpecialNoteBox.vue'
+  // 引入接口
 
   // 类型定义保持不变
   interface Mother {

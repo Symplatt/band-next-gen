@@ -174,41 +174,43 @@
   import rawData from '@/assets/data/characters.json'
   // 引入接口
   import type { Group, Member } from '@/types/character.model'
+  // 引入工具
+  import { resolvePath } from '@/utils/assets'
+  // 引入配置
+  import { BASE_URL } from '@/config/env'
 
   const route = useRoute()
   const router = useRouter()
   const baseUrl = import.meta.env.BASE_URL
 
+  // 获取要在本页面呈现的那个角色
   const member = computed(() => {
+    // 从路由参数获取id(sakiko、rikki那个)
     const targetId = route.params.id as string
+    // 遍历数据，找到匹配的成员
     for (const group of rawData as Group[]) {
-      const found = group.members.find((m) => m.route === targetId || m.id === targetId)
+      const found = group.members.find((m) => m.route === targetId)
       if (found) return found
     }
     return null
   })
 
+  // 获取当前角色的乐队logo
   const currentGroupLogo = computed(() => {
     if (!member.value) return ''
     const group = (rawData as Group[]).find((g) => g.members.some((m) => m.id === member.value?.id))
     return group?.bandLogo || ''
   })
 
+  // 判断成员是否有学生卡
   const hasStudentCards = computed(() => {
     return member.value?.studentCard && member.value.studentCard.length > 0
   })
 
   const hasFamily = computed(() => {
     const f = member.value?.family
-    return f && (f.mothers?.length || f.sisters?.length || f.kids?.length)
+    return f && (f.mothers?.length || f.sisters?.length || f.kids?.length) // 只要有其中一个，就不会返回0
   })
-
-  const resolvePath = (path: string) => {
-    if (!path) return ''
-    if (path.startsWith('http')) return path
-    const cleanPath = path.startsWith('/') ? path.slice(1) : path
-    return `${baseUrl}${cleanPath}`
-  }
 
   const onImageError = (e: Event) => {
     const img = e.target as HTMLImageElement
