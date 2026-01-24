@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
   import HeroSection from '@/components/home/HeroSection.vue'
 
   const profileSectionRef = ref<HTMLElement | null>(null)
@@ -125,6 +125,22 @@
     { num: '680+', desc: '三创插画' },
     { num: '150+', desc: '三创文章' },
   ])
+
+  onMounted(() => {
+    // 浏览器空闲时执行预加载任务，如果浏览器不支持idleCallback，则使用setTimeout代替
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 3000))
+
+    idleCallback(() => {
+      // 显式导入角色页和关系页，就它俩最耗资源，那~么~多图。
+      try {
+        import('@/views/CharactersView.vue')
+        import('@/views/RelationsView.vue')
+        console.log('角色页和关系页已完成预加载')
+      } catch (e) {
+        console.error('预加载角色页和关系页时出错：', e)
+      }
+    })
+  })
 </script>
 
 <style scoped>
