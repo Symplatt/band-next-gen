@@ -28,7 +28,7 @@
           <div class="tachie-container">
             <!-- 立绘 -->
             <img
-              :src="resolvePath(member.image[0] || '')"
+              :src="tachieSrc"
               class="main-tachie"
               @error="onImageError"
               alt="Character Tachie"
@@ -204,6 +204,14 @@
       if (found) return found
     }
     return null
+  })
+
+  // 处理角色页传来的图片，或直接加载的图片
+  const tachieSrc = computed(() => {
+    // 优先处理是不是角色页传来的图片
+    if (history.state?.passedImage) return resolvePath(history.state.passedImage)
+    // 如果用户直接访问个人详情页，则直接加载图片
+    return resolvePath(member.value?.image[0] || '')
   })
 
   // 获取当前角色的乐队logo

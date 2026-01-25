@@ -9,7 +9,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* 控制滚动条样式 */
+/* === 控制滚动条样式 === */
 /* Firefox */
 * {
   scrollbar-color: rgba(255, 255, 255, 0.28) transparent;

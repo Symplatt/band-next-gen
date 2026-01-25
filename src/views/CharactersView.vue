@@ -35,7 +35,7 @@
             v-for="member in group.members"
             :key="member.id"
             class="char-card"
-            @click="goToDetailPage(member.route)"
+            @click="goToDetailPage(member.route, member.image[0] || '')"
           >
             <!-- 图片区域 -->
             <div class="card-image-wrapper">
@@ -122,8 +122,17 @@
     }
   }
 
-  function goToDetailPage(routeKey: string) {
-    router.push({ name: 'char-detail', params: { id: routeKey } })
+  /**
+   * 传递数据给详情页
+   * @param routeKey 角色的route键，比如sakiko、rikki
+   * @param rawImagePath 角色立绘的原始路径，用于详情页展示。PS：幸亏当初没改缩略图显示
+   */
+  function goToDetailPage(routeKey: string, rawImagePath: string) {
+    router.push({
+      name: 'char-detail',
+      params: { id: routeKey },
+      state: { passedImage: rawImagePath },
+    })
   }
 
   function setGroupRef(el: HTMLElement | null, groupKey: string) {
