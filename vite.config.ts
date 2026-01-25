@@ -14,7 +14,7 @@ export default defineConfig({
       // 自动导入组件，无需手动注册
     }),
   ],
-  base: './',
+  base: '/band-next-gen/',
   server: {
     host: '0.0.0.0',
     port: 5173
