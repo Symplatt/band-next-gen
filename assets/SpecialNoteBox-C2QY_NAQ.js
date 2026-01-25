@@ -1,1 +1,0 @@
-import{d as o,c as s,f as n,v as a,t as c,e as _,_ as p}from"./index-Dd1tgjWt.js";const r={class:"special-note-box"},l=o({__name:"SpecialNoteBox",props:{noteContent:{default:""}},setup(t){return(i,e)=>(_(),s("div",r,[e[0]||(e[0]=n("span",{class:"note-symbol"},"✱",-1)),a(c(t.noteContent),1)]))}}),m=p(l,[["__scopeId","data-v-966a4a56"]]);export{m as _};
