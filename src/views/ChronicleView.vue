@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
   import MarkDownViewer from '@/components/MarkDownViewer.vue'
-  import chronicle from '@/content/纪事.md?raw'
+  import chronicle from '@/content/chronicle.md?raw'
 </script>
 
 <style lang="css" scoped>

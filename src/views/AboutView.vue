@@ -19,8 +19,8 @@
 
 <script lang="ts" setup>
   import MarkDownViewer from '@/components/MarkDownViewer.vue'
-  import introduction from '@/content/项目介绍.md?raw'
-  import discalimer from '@/content/免责声明.md?raw'
+  import introduction from '@/content/project.md?raw'
+  import discalimer from '@/content/mianze.md?raw'
 </script>
 
 <style scoped>
