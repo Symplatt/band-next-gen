@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-CsSAuRYj.js";import{d as e,c,f as n,h as a,s as o,e as i,_ as t}from"./index-DaMRBaKW.js";const s=`## 2020年，老团15，\\l高一，动画的时间\r
+import{M as e}from"./MarkDownViewer-DBNBu4kI.js";import{S as o}from"./SpecialNoteBox-Bv7LmTjh.js";import{d as c,c as a,f as n,h as r,s as i,e as t,_ as s}from"./index-BGhvoIAG.js";const l=`## 2020年，老团15，\\l高一，动画的时间\r
 \r
 与初音同居之后，祥子和老登形成了心照不宣的平衡，我学商科学家业，但是你不要管我乐队的内务也不要试图再插手初音的人生，双方各退一步，至少在丰川的旁支面前能维持祖慈孙孝。相应的双方也在各自添堵，老登根本不派人去压制什么丰川家大小姐玩票的传言，祥子在给事务所挣钱方面也没开始那么拼命，事业是搞的但是通告可以选择性不去。\r
 \r
@@ -153,4 +153,4 @@ Ave Mujica的人气到达了最初演出之后的顶峰。托文春等一众小�
 > 温柔的孩子，比较像ykn\r
 >\r
 > 今井 澪 26.3.21生日、比较会发呆的孩子\r
-`,l={class:"chronicle-view"},_={class:"page-container"},u={class:"content-card"},d=e({__name:"ChronicleView",setup(m){return(p,v)=>(i(),c("div",l,[n("div",_,[n("article",u,[a(r,{content:o(s),indent:2},null,8,["content"])])])]))}}),j=t(d,[["__scopeId","data-v-901a1dc7"]]);export{j as default};
+`,_={class:"chronicle-view"},u={class:"page-container"},m={class:"content-card"},d="该内容正在制作中",p=c({__name:"ChronicleView",setup(v){return(M,f)=>(t(),a("div",_,[n("div",u,[n("article",m,[r(e,{content:i(l),indent:2},null,8,["content"])]),r(o,{"note-content":d})])]))}}),w=s(p,[["__scopeId","data-v-68a61229"]]);export{w as default};
