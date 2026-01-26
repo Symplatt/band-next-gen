@@ -150,6 +150,6 @@
   }
 
   .special-note-box {
-    margin-top: 110px;
+    margin-top: 150px;
   }
 </style>
