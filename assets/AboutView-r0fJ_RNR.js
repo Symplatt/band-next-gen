@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-CgvhaopA.js";import{d as a,c as o,f as n,h as t,s as e,e as s,_ as c}from"./index-RquoEb1z.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-Bfhjm1Ud.js";import{d as o,c as a,f as n,h as e,s as t,e as s,_ as c}from"./index-CUGIOiWF.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」企划，是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -31,15 +31,8 @@ import{M as r}from"./MarkDownViewer-CgvhaopA.js";import{d as a,c as o,f as n,h a
 ## 加入我们\r
 \r
 <div style="display: flex;margin-bottom: 30px;" >\r
-<img src="/band-next-gen/images/group1.png" alt="QQ群（左）" class="qr-img"></img>\r
+<img src="/band-next-gen/images/group1.png" alt="QQ群" class="qr-img"></img>\r
 </div>\r
-\r
-## 其他\r
-\r
-① 由于服务器位于海外，部分地区（如中国大陆）的访问速度可能较慢或不稳定。\r
-(预计2026年2月1日前，将完成国内服务器部署，届时所有用户均可稳定访问)\r
-\r
-② GitHub地址：\\l[https://github.com/symplatt/band-next-gen](https://github.com/symplatt/band-next-gen)\r
 `,l=`## 免责声明\r
 \r
 本网站为非商业性质的二次创作同人展示站点，内容基于《BanG Dream! It's MyGO!!!!!》与《BanG Dream! Ave Mujica》原作世界观进行延伸创作，仅用于同人交流与作品展示目的。\r
@@ -72,4 +65,4 @@ import{M as r}from"./MarkDownViewer-CgvhaopA.js";import{d as a,c as o,f as n,h a
 1. 本站不对因理解、解读或使用站内内容而产生的任何直接或间接后果承担责任。\r
 2. 用户应自行判断站内信息的创作属性与虚构性质。\r
 \r
-`,m={class:"about-view"},d={class:"page-container"},u={class:"content-card"},_={class:"footer-disclaimer"},p=a({__name:"AboutView",setup(f){return(h,g)=>(s(),o("div",m,[n("div",d,[n("article",u,[t(r,{content:e(i)},null,8,["content"])]),n("footer",_,[t(r,{content:e(l),class:"small-text"},null,8,["content"])])])]))}}),v=c(p,[["__scopeId","data-v-1f00790c"]]);export{v as default};
+`,d={class:"about-view"},m={class:"page-container"},_={class:"content-card"},u={class:"footer-disclaimer"},f=o({__name:"AboutView",setup(p){return(h,v)=>(s(),a("div",d,[n("div",m,[n("article",_,[e(r,{content:t(i)},null,8,["content"])]),n("footer",u,[e(r,{content:t(l),class:"small-text"},null,8,["content"])])])]))}}),g=c(f,[["__scopeId","data-v-1f00790c"]]);export{g as default};
