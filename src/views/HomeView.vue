@@ -1,3 +1,5 @@
+<!-- src/views/HomeView.vue -->
+<!-- 首页 -->
 <template>
   <div class="home-view">
     <main class="main-content">
