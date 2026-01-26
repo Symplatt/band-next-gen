@@ -31,5 +31,5 @@
 ## 加入我们
 
 <div style="display: flex;margin-bottom: 30px;" >
-<img src="/band-next-gen/images/group1.png" alt="QQ群（左）" class="qr-img"></img>
+<img src="/band-next-gen/images/group1.png" alt="QQ群" class="qr-img"></img>
 </div>
