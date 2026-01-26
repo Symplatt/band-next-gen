@@ -2,6 +2,8 @@
   <div class="chronicle-view">
     <div class="page-container">
       <article class="content-card"><MarkDownViewer :content="chronicle" :indent="2" /></article>
+      <!-- 特殊注释 -->
+      <SpecialNoteBox :note-content="specialNote" />
     </div>
   </div>
 </template>
@@ -9,12 +11,17 @@
 <script lang="ts" setup>
   import MarkDownViewer from '@/components/MarkDownViewer.vue'
   import chronicle from '@/content/chronicle.md?raw'
+  import SpecialNoteBox from '@/components/SpecialNoteBox.vue'
+
+  // 特殊注释
+  const specialNote = '该内容正在制作中'
 </script>
 
 <style lang="css" scoped>
   .chronicle-view {
     /* 强制宽度为100% */
     width: 100%;
+    padding-bottom: 100px;
     margin-top: 40px;
 
     /* 隐藏横向溢出，锁死页面宽度 */
@@ -35,7 +42,7 @@
     padding: 0 80px;
 
     /* 水平居中并设置底部间距 */
-    margin: 0 auto 60px;
+    margin: 0 auto 100px;
     background: linear-gradient(180deg, rgb(255 255 255 / 3%) 0%, rgb(255 255 255 / 0%) 100%);
     border: 1px solid rgb(212 175 55 / 10%);
     border-radius: 4px;

@@ -21,7 +21,7 @@
       </section>
 
       <!-- 特殊注释 -->
-      <SpecialNoteBox :note-content="specialNoteList" />
+      <SpecialNoteBox class="special-note-box" :note-content="specialNoteList" />
     </div>
   </div>
 </template>
@@ -147,5 +147,9 @@
     overflow-x: hidden;
     color: #fff;
     background-color: #0b0c10;
+  }
+
+  .special-note-box {
+    margin-top: 110px;
   }
 </style>

@@ -34,7 +34,6 @@
   .special-note-box {
     display: flex;
     justify-content: right;
-    margin-top: 200px;
     font-size: 0.85rem;
     font-style: italic;
     color: #666;

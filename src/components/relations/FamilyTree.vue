@@ -102,7 +102,6 @@
 <style scoped>
   /* 板块基础外边距 */
   .section-block {
-    margin-bottom: 150px;
     scroll-margin-top: 100px;
   }
 
