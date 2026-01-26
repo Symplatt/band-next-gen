@@ -1,1 +1,0 @@
-import{_ as o,c as t,f as n,F as a,e as s}from"./index-D_MPGQ99.js";const r={};function c(d,e){return s(),t(a,null,[e[0]||(e[0]=n("div",{class:"notfound-container"},"此页面不存在",-1)),e[1]||(e[1]=n("p",null,"都说了此页面不存在，还翻！",-1))],64)}const f=o(r,[["render",c],["__scopeId","data-v-7aa4b884"]]);export{f as default};

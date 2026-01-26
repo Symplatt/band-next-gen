@@ -1,4 +1,4 @@
-import{M as e}from"./MarkDownViewer-DIVGigwb.js";import{S as o}from"./SpecialNoteBox-D5DB3Rbd.js";import{d as c,c as a,f as n,h as r,s as i,e as t,_ as s}from"./index-D_MPGQ99.js";const l=`## 2020年，老团15，\\l高一，动画的时间\r
+import{M as e}from"./MarkDownViewer-CCa3pJNO.js";import{S as o}from"./SpecialNoteBox-BbwBuKtO.js";import{d as c,c as a,f as n,h as r,s as i,e as t,_ as s}from"./index-BBd66MP2.js";const l=`## 2020年，老团15，\\l高一，动画的时间\r
 \r
 与初音同居之后，祥子和老登形成了心照不宣的平衡，我学商科学家业，但是你不要管我乐队的内务也不要试图再插手初音的人生，双方各退一步，至少在丰川的旁支面前能维持祖慈孙孝。相应的双方也在各自添堵，老登根本不派人去压制什么丰川家大小姐玩票的传言，祥子在给事务所挣钱方面也没开始那么拼命，事业是搞的但是通告可以选择性不去。\r
 \r
