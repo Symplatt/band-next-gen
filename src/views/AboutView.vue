@@ -20,7 +20,7 @@
 <script lang="ts" setup>
   import MarkDownViewer from '@/components/MarkDownViewer.vue'
   import introduction from '@/content/project.md?raw'
-  import discalimer from '@/content/mianze.md?raw'
+  import discalimer from '@/content/disclaimer.md?raw'
 </script>
 
 <style scoped>

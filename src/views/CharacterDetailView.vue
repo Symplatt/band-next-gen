@@ -244,7 +244,7 @@
   // 学生卡加载失败，则使用默认图替换
   const onCardError = (e: Event) => {
     const img = e.target as HTMLImageElement
-    img.src = `${baseUrl}images/card/default-card.png`
+    img.src = `${baseUrl}images/card/default2.png`
   }
 
   const goBack = () => router.back()

@@ -73,7 +73,7 @@
       </section>
 
       <!-- 特殊注释 -->
-      <SpecialNoteBox note-content="本页面所展示的立绘皆截取自鹤星发布于各平台的作品" />
+      <SpecialNoteBox :note-content="specialNoteList" />
     </div>
   </div>
 </template>
@@ -92,6 +92,10 @@
   const characterData = ref<Group[]>(rawData as Group[])
   const groupRefMap = ref<Record<string, HTMLElement | null>>({})
   const router = useRouter()
+  const specialNoteList = [
+    '本页面所展示的立绘皆截取自鹤星发布于各平台的作品',
+    '点击角色卡可进入个人详情页',
+  ]
 
   // 获取 Vite 配置中的 base 路径 (即 /band-next-gen/)
   const baseUrl = import.meta.env.BASE_URL

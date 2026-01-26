@@ -21,7 +21,7 @@
       </section>
 
       <!-- 特殊注释 -->
-      <SpecialNoteBox note-content="本页面所展示的立绘皆截取自鹤星发布于各平台的作品" />
+      <SpecialNoteBox :note-content="specialNoteList" />
     </div>
   </div>
 </template>
@@ -36,6 +36,11 @@
   import FamilyTree from '@/components/relations/FamilyTree.vue'
   // 引入源数据
   import relationData from '@/assets/data/relations.json'
+
+  const specialNoteList = [
+    '本页面所展示的立绘皆截取自鹤星发布于各平台的作品',
+    '点击亲缘谱中的头像可进入个人详情页',
+  ]
 
   // 计算扁平化的成员列表，供各子组件使用
   const memberList = computed(() => {
