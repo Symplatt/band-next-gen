@@ -33,10 +33,3 @@
 <div style="display: flex;margin-bottom: 30px;" >
 <img src="/band-next-gen/images/group1.png" alt="QQ群（左）" class="qr-img"></img>
 </div>
-
-## 其他
-
-① 由于服务器位于海外，部分地区（如中国大陆）的访问速度可能较慢或不稳定。
-(预计2026年2月1日前，将完成国内服务器部署，届时所有用户均可稳定访问)
-
-② GitHub地址：\l[https://github.com/symplatt/band-next-gen](https://github.com/symplatt/band-next-gen)
