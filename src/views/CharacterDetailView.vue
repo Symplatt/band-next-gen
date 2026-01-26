@@ -36,7 +36,7 @@
             <div v-if="member.codeName" class="codename-vertical">{{ member.codeName }}</div>
           </div>
 
-          <!-- 学生证区域 -->
+          <!-- 学生证 -->
           <div class="student-card-section" v-if="hasStudentCards">
             <h3 class="section-title-normal">STUDENT ID CARD</h3>
             <div class="cards-gallery">
@@ -231,14 +231,17 @@
     return f && (f.mothers?.length || f.sisters?.length || f.kids?.length) // 只要有其中一个，就不会返回0
   })
 
+  // 立绘图加载失败，则使用默认图替换
   const onImageError = (e: Event) => {
-    const img = e.target as HTMLImageElement
+    const img = e.target as HTMLImageElement // 如果触发报错的是图片元素
     const defaultPath = `${baseUrl}images/stand-image/default-stand-image.png`
+    // 如果导致error的不是默认图（防止默认图也加载失败导致的死循环）
     if (img.src !== window.location.origin + defaultPath) {
       img.src = defaultPath
     }
   }
 
+  // 学生卡加载失败，则使用默认图替换
   const onCardError = (e: Event) => {
     const img = e.target as HTMLImageElement
     img.src = `${baseUrl}images/card/default-card.png`
