@@ -1,4 +1,5 @@
 <!-- views/NotFound.vue -->
+<!-- 404 界面，一旦路径错误就显示此界面 -->
 
 <template>
   <div class="notfound-container">此页面不存在</div>

@@ -1,3 +1,5 @@
+<!-- 纪事页 -->
+
 <template>
   <div class="chronicle-view">
     <div class="page-container">
