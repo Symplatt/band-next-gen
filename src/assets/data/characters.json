@@ -1,7 +1,7 @@
 [
   {
     "groupKey": "ex-lilith",
-    "groupName": "EX-Lilith",
+    "groupName": "EX_Lilith",
     "bandLogo": "images/band-logo/ex-lilith.png",
     "description": "血脉喻叹",
     "members": [
@@ -25,7 +25,7 @@
             {
               "introTitle": "简介",
               "content": [
-                "丰川集团的千金，大方而不失优雅。天才，钢琴演奏与作词皆有惊人的水准。若叶姐妹的青梅竹马。8岁时从小豆岛回到东京，但与其他孩子们在初中才正式相识。怀着反叛与复权的决意结成 Ex-lilith，为此倾尽所有。然而这份执念的来由，只有她与她的母亲知晓。",
+                "丰川集团的千金，大方而不失优雅。天才，钢琴演奏与作词皆有惊人的水准。若叶姐妹的青梅竹马。8岁时从小豆岛回到东京，但与其他孩子们在初中才正式相识。怀着反叛与复权的决意结成 Ex_lilith，为此倾尽所有。然而这份执念的来由，只有她与她的母亲知晓。",
                 "10岁之前其存在被丰川家族严格保密，由三角女士在岛上抚养长大，叫三角为姐姐。之后被丰川家族接走作为接班人培养。只知其母亲是丰川集团董事丰川祥子，丰川家族称其父亲已去世。"
               ]
             }
@@ -51,7 +51,7 @@
         "romaji": "Yahata Riko",
         "codeName": "Veris",
         "position": "贝斯手",
-        "school": "月之森女子学园",
+        "school": "花咲川女子学园",
         "image": ["images/stand-image/riko1.png"],
         "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": ["images/cards/riko-1.png"],
@@ -108,7 +108,7 @@
             {
               "introTitle": "简介",
               "content": [
-                "谈吐犀利、喜好捉弄朋友，其实性格相当沉稳。莉子的欢喜冤家。已经是小有名气的童星，演技出众。负责Ex-lilith的部分设备与技术工作。平安长大的她，时常让母亲们想起一个熟悉的存在。但这次，她终于真正有能力保护一个乐队，也保护自己心爱的妹妹。"
+                "谈吐犀利、喜好捉弄朋友，其实性格相当沉稳。莉子的欢喜冤家。已经是小有名气的童星，演技出众。负责Ex_Lilith的部分设备与技术工作。平安长大的她，时常让母亲们想起一个熟悉的存在。但这次，她终于真正有能力保护一个乐队，也保护自己心爱的妹妹。"
               ]
             }
           ]
@@ -198,7 +198,7 @@
         "name": "椎名美铃",
         "romaji": "Shiina Mirei",
         "position": "吉他手 / 主唱",
-        "school": "花咲川女子学园",
+        "school": "羽丘女子学园",
         "image": ["images/stand-image/mirei1.png"],
         "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": ["images/cards/mirei-1.png"],
@@ -279,7 +279,7 @@
         "name": "长崎杏奈",
         "romaji": "Nagasaki Anna",
         "position": "贝斯手",
-        "school": "羽丘女子学园",
+        "school": "月之森女子学园",
         "image": ["images/stand-image/anna1.png"],
         "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": ["images/cards/anna-1.png"],
@@ -323,7 +323,7 @@
         "name": "若叶梦那",
         "romaji": "Wakaba Muna",
         "position": "鼓手",
-        "school": "月之森女子学园",
+        "school": "花咲川女子学园",
         "image": ["images/stand-image/muna1.png"],
         "specialNote": "档案中身高数据非固定值，反映成员近期成长情况。",
         "studentCard": ["images/cards/muna-1.png"],
@@ -370,7 +370,7 @@
         "name": "千早空",
         "romaji": "Chihaya Sora",
         "position": "编外人员.后勤",
-        "school": "花咲川女子学园",
+        "school": "月之森女子学园",
         "image": ["images/stand-image/sora1.png"],
         "studentCard": ["images/cards/sora-1.png"],
         "profile": {

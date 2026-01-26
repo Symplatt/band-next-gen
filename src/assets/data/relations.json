@@ -1,7 +1,7 @@
 {
   "characters": [
     {
-      "groupName": "Ex-Lilith",
+      "groupName": "Ex_Lilith",
       "members": [
         { "id": "hazuki", "name": "丰川羽月", "avatar": "images/avatar/hazuki.png" },
         { "id": "riko", "name": "八幡莉子", "avatar": "images/avatar/riko.png" },

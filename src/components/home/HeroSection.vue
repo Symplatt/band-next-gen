@@ -20,7 +20,7 @@
       <h2 class="sub-title">那美好的未来</h2>
 
       <!-- 座右铭 -->
-      <p class="motto">EX-lilith ~ GO Raiiii</p>
+      <p class="motto">EX lilith ~ GO Raiiii</p>
     </div>
 
     <!-- 滚动提示 -->

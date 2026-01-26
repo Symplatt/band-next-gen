@@ -22,7 +22,7 @@
           <!-- 第二行：乐队分组行 -->
           <tr class="header-group">
             <th class="fixed-col"><span class="group-label">所属乐队</span></th>
-            <!-- Ex-Lilith 占4列 -->
+            <!-- Ex_Lilith 占4列 -->
             <th colspan="4" class="group-name lilith">Ex-Lilith</th>
             <!-- Go Raiiii 占4列 -->
             <th colspan="4" class="group-name gorai">Go Raiiii</th>
