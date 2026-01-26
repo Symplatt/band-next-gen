@@ -1,4 +1,4 @@
-import{M as r}from"./MarkDownViewer-Bfhjm1Ud.js";import{d as o,c as a,f as n,h as e,s as t,e as s,_ as c}from"./index-CUGIOiWF.js";const i=`## 项目介绍\r
+import{M as r}from"./MarkDownViewer-Ctb_RrU1.js";import{d as o,c as a,f as n,h as e,s as t,e as s,_ as c}from"./index-0xnYYiYa.js";const i=`## 项目介绍\r
 \r
 「乐队子世代：那美好的未来」企划，是由画师**鹤星**基于《BanG Dream! It's MyGO!!!!!》（迷途之子）与《BanG Dream! Ave Mujica》（颂乐人偶）创作的长篇、多形式系列二次创作。\r
 \r
@@ -22,7 +22,7 @@ import{M as r}from"./MarkDownViewer-Bfhjm1Ud.js";import{d as o,c as a,f as n,h a
 \r
 ① 本网站适配电脑浏览器与手机浏览器，针对屏幕尺寸采用两套界面布局，但不存在内容差异。\r
 \r
-② 高清立绘大图、完整称呼表格、可交互关系网等仅在电脑端浏览器显示，因此**推荐使用电脑浏览器**。\r
+② 高清立绘大图、完整称呼表格、可交互关系网等更适合在电脑端浏览器显示，因此**推荐使用电脑浏览器**。\r
 \r
 ③ BGM为《颜》/《影色舞》纯音乐，随机播放\r
 \r
