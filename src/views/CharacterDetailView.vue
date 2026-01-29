@@ -384,7 +384,7 @@
     height: auto;
     object-fit: contain;
     border: solid rgb(212 175 55 / 30%);
-    border-radius: 10px;
+    border-radius: 5px;
     filter: drop-shadow(0 0 5px rgb(212 175 55 / 60%)); /* 金色虚影增加立体感 */
   }
 
@@ -431,7 +431,7 @@
     width: 100%;
     height: auto;
     border: 1px solid rgb(255 255 255 / 20%);
-    border-radius: 4px;
+    border-radius: 5px;
     box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
     filter: drop-shadow(0 0 1px rgb(212 175 55 / 60%)); /* 金色虚影增加立体感 */
     transition: transform 0.3s ease;
