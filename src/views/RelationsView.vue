@@ -11,7 +11,7 @@
       </section>
 
       <section id="section-network">
-        <SectionTitle title="关系网" />
+        <SectionTitle title="关系网" class="relation-network" />
         <RelationNetwork :memberList="memberList" />
       </section>
 
@@ -151,5 +151,9 @@
 
   .special-note-box {
     margin-top: 150px;
+  }
+
+  .relation-network {
+    margin-bottom: 50px;
   }
 </style>
