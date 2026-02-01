@@ -2,7 +2,6 @@
   <section class="section-block">
     <!-- PC端显示的关系网图表 -->
     <div class="network-container desktop-only">
-      <div class="claim">该模块正在制作中，当前仅演示初版效果：</div>
       <div class="circle-layout">
         <!-- SVG连线层，位于节点下方 -->
         <svg class="lines-layer" viewBox="0 0 500 500">
@@ -34,8 +33,9 @@
           @mouseenter="networkHoverId = char.id"
           @mouseleave="networkHoverId = null"
         >
+          <!-- 包裹头像图片的圆形容器 -->
           <div class="node-circle">
-            <span class="node-text">{{ char.name.slice(-1) }}</span>
+            <img :src="resolvePath(char.avatar)" :alt="char.name.slice(-1)" class="node-avatar" />
           </div>
         </div>
       </div>
@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
   import { ref, computed } from 'vue'
+  import { resolvePath } from '@/utils/assets'
 
   const props = defineProps<{
     memberList: any[] // 成员列表数据
@@ -76,13 +77,18 @@
   // 根据节点ID计算在圆周上的坐标
   const getNodePos = (id: string) => {
     const index = props.memberList.findIndex((m) => m.id === id)
-    if (index === -1) return { x: 250, y: 250 } // 默认中心点
-    const total = props.memberList.length
+
+    if (index === -1) return { x: 250, y: 250 } // 默认中心点，之前写过了viewBox是0 0 500 500
+
+    const total = props.memberList.length // 节点总数
     const radius = 180 // 圆周半径
+
     // 计算角度，减90度是为了从正上方开始
     const angle = (360 / total) * index - 90
+
     // 角度转弧度
     const radian = (angle * Math.PI) / 180
+
     return {
       x: 250 + Math.cos(radian) * radius,
       y: 250 + Math.sin(radian) * radius,
@@ -127,10 +133,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .claim {
-    display: block;
   }
 
   .circle-layout {
@@ -187,17 +189,20 @@
     justify-content: center;
     width: 50px;
     height: 50px;
+    padding: 0;
+    overflow: hidden;
     background: #000;
-    border: 1px solid #d4af37;
+    border: 2px solid #d4af37;
     border-radius: 50%;
     box-shadow: 0 0 10px rgb(212 175 55 / 20%);
     transition: all 0.3s;
   }
 
-  .node-text {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #d4af37;
+  .node-avatar {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .node-wrapper:hover {
